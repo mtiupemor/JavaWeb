@@ -104,6 +104,13 @@ section#reviews .review-filtering .review .review-comment p
   color: #999999;
   text-align: justify;
 }
+section .section-heading .divider:after {
+  background: #3366cc;
+}
+section#reviews .review-filtering .review .review-comment h3 {
+  color: #3366cc;
+}
+
 /*popover*/
 .popover 
 {
