@@ -1104,3 +1104,13 @@ form .form-control:focus {
 .pre-loader {
   background: #336799;
 }
+
+.ejemplosFallas{
+    width: 500px;
+    height: 200px;
+    margin-left: 150px !important;
+    margin-top: 100px !important;
+}
+
+
+
