@@ -45,9 +45,9 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="index.jsp#">APS</a>
+            <li><a href="../index.jsp#">APS</a>
             </li>
-            <li><a href="index.jsp#informacion">Información</a>
+            <li><a href="../index.jsp#informacion">Información</a>
             </li>
             <li><a href="#">Crea tu árbol</a>
             </li>
