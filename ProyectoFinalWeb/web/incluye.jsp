@@ -1,9 +1,21 @@
+<%-- 
+    Document   : incluye
+    Created on : 5/09/2015, 06:07:20 PM
+    Author     : gerardo.valenciano
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+String basePath = request.getScheme() + "://"
+        + request.getServerName() + ":" + request.getServerPort()
+        + request.getContextPath();
+%>
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+<!doctype html>
+<!--[if lt IE 7]><html lang="en" class="no-js ie6"><![endif]-->
+<!--[if IE 7]><html lang="en" class="no-js ie7"><![endif]-->
+<!--[if IE 8]><html lang="en" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
 <html lang="en" class="no-js">
 <!--<![endif]-->
 
@@ -14,17 +26,17 @@ and open the template in the editor.
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <link rel="shortcut icon" href="favicon.png">
 
-    <link rel="stylesheet" href="../web/css/bootstrap.css">
+    <link rel="stylesheet" href="<%=basePath%>/src/java/css/bootstrap.css">
     
-    <link rel="stylesheet" href="../web/css/animate.css">
-    <link rel="stylesheet" href="../web/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../web/css/slick.css">
-    <link rel="stylesheet" href="../web/js/rs-plugin/css/settings.css">
+    <link rel="stylesheet" href="<%=basePath%>/src/java/css/animate.css">
+    <link rel="stylesheet" href="<%=basePath%>/src/java/css/font-awesome.min.css">
+    <link rel="stylesheet" href="<%=basePath%>/src/java/css/slick.css">
+    <link rel="stylesheet" href="<%=basePath%>/src/java/js/rs-plugin/css/settings.css">
 
-    <link rel="stylesheet" href="../web/css/freeze.css">
+    <link rel="stylesheet" href="<%=basePath%>/src/java/css/freeze.css">
 
 
-    <script type="text/javascript" src="../web/js/modernizr.custom.32033.js"></script>
+    <script type="text/javascript" src="<%=basePath%>/src/java/js/modernizr.custom.32033.js"></script>
 
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -37,7 +49,7 @@ and open the template in the editor.
 
     <div class="pre-loader">
         <div class="load-con">
-            <img src="../web/img/freeze/logo.png" class="animated fadeInDown" alt="">
+            <img src="../src/java/img/freeze/logo.png" class="animated fadeInDown" alt="">
             <div class="spinner">
               <div class="bounce1"></div>
               <div class="bounce2"></div>
@@ -56,7 +68,7 @@ and open the template in the editor.
                             <span class="fa fa-bars fa-lg"></span>
                         </button>
                         <a class="navbar-brand" href="index.html">
-                            <img src="../web/img/freeze/logo.png" alt="" class="logo">
+                            <img src="../src/java/img/freeze/logo.png" alt="" class="logo">
                         </a>
                     </div>
 
@@ -64,15 +76,20 @@ and open the template in the editor.
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#">Inicio</a>
+                            <li><a href="#about">about</a>
                             </li>
-                            <li><a href="#features">Información</a>
+                            <li><a href="#features">features</a>
                             </li>
-                            <li><a href="#reviews">Acerca de</a>
+                            <li><a href="#reviews">reviews</a>
                             </li>
-                            <li><a href="#screens">Contacto</a>
+                            <li><a href="#screens">screens</a>
                             </li>
-                           
+                            <li><a href="#demo">demo</a>
+                            </li>
+                            <li><a class="getApp" href="#getApp">get app</a>
+                            </li>
+                            <li><a href="#support">support</a>
+                            </li>
                         </ul>
                     </div>
                     <!-- /.navbar-collapse -->
@@ -88,7 +105,7 @@ and open the template in the editor.
                     <!-- SLIDE  -->
                     <li data-transition="fade" data-slotamount="7" data-masterspeed="1500" >
                         <!-- MAIN IMAGE -->
-                        <img src="../web/img/transparent.png"  alt="slidebg1"  data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat">
+                        <img src="../src/java/img/transparent.png"  alt="slidebg1"  data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat">
                         <!-- LAYERS -->
                         <!-- LAYER NR. 1 -->
                         <div class="tp-caption lfl fadeout hidden-xs"
@@ -99,7 +116,7 @@ and open the template in the editor.
                             data-speed="500"
                             data-start="700"
                             data-easing="Power4.easeOut">
-                            <img src="../web/img/freeze/Slides/reactor01.png" alt="">
+                            <img src="../src/java/img/freeze/Slides/hand-freeze.png" alt="">
                         </div>
 
                         <div class="tp-caption lfl fadeout visible-xs"
@@ -110,31 +127,31 @@ and open the template in the editor.
                             data-speed="500"
                             data-start="700"
                             data-easing="Power4.easeOut">
-                            <img src="../web/img/freeze/iphone-freeze.png" alt="">
+                            <img src="../src/java/img/freeze/iphone-freeze.png" alt="">
                         </div>
-                        <br><br><br>
 
                         <div class="tp-caption large_white_bold sft" data-x="550" data-y="center" data-hoffset="0" data-voffset="-80" data-speed="500" data-start="1200" data-easing="Power4.easeOut">
-                            Análisis  Probabilístico
+                            Oleose
                         </div>
-                        <div class="tp-caption large_white_bold sfr" data-x="770" data-y="center" data-hoffset="0" data-voffset="-80" data-speed="500" data-start="1400" data-easing="Power4.easeOut">
-                               
+                        <div class="tp-caption large_white_light sfr" data-x="770" data-y="center" data-hoffset="0" data-voffset="-80" data-speed="500" data-start="1400" data-easing="Power4.easeOut">
+                            App
                         </div>
-                        <div class="tp-caption large_white_bold sfb" data-x="550" data-y="center" data-hoffset="0" data-voffset="0" data-speed="1000" data-start="1500" data-easing="Power4.easeOut">
-                            de Seguridad
+                        <div class="tp-caption large_white_light sfb" data-x="550" data-y="center" data-hoffset="0" data-voffset="0" data-speed="1000" data-start="1500" data-easing="Power4.easeOut">
+                            Landing Theme
                         </div>
-                        
 
                         <div class="tp-caption sfb hidden-xs" data-x="550" data-y="center" data-hoffset="0" data-voffset="85" data-speed="1000" data-start="1700" data-easing="Power4.easeOut">
-                            <a href="#about" class="btn btn-default btn-lg">Leer Más</a>
+                            <a href="#about" class="btn btn-primary inverse btn-lg">LEARN MORE</a>
                         </div>
-                        
+                        <div class="tp-caption sfr hidden-xs" data-x="730" data-y="center" data-hoffset="0" data-voffset="85" data-speed="1500" data-start="1900" data-easing="Power4.easeOut">
+                            <a href="#getApp" class="btn btn-default btn-lg">GET APP</a>
+                        </div>
 
                     </li>
                     <!-- SLIDE 2 -->
                     <li data-transition="zoomout" data-slotamount="7" data-masterspeed="1000" >
                         <!-- MAIN IMAGE -->
-                        <img src="../web/img/transparent.png"  alt="slidebg1"  data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat">
+                        <img src="../src/java/img/transparent.png"  alt="slidebg1"  data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat">
                         <!-- LAYERS -->
                         <!-- LAYER NR. 1 -->
                         <div class="tp-caption lfb fadeout hidden-xs"
@@ -145,12 +162,12 @@ and open the template in the editor.
                             data-speed="1000"
                             data-start="700"
                             data-easing="Power4.easeOut">
-                            <img src="../web/img/freeze/Slides/freeze-slide2.png" alt="">
+                            <img src="../src/java/img/freeze/Slides/freeze-slide2.png" alt="">
                         </div>
 
                         
                         <div class="tp-caption large_white_light sft" data-x="center" data-y="250" data-hoffset="0" data-voffset="0" data-speed="1000" data-start="1400" data-easing="Power4.easeOut">
-                           Árboles de Fallas
+                            Every Pixel 
                             <!-- <i class="fa fa-heart"></i> -->
                         </div>
                         
@@ -160,24 +177,52 @@ and open the template in the editor.
                     <!-- SLIDE 3 -->
                     <li data-transition="zoomout" data-slotamount="7" data-masterspeed="1000" >
                         <!-- MAIN IMAGE -->
-                        <img src="../web/img/transparent.png"  alt="slidebg1"  data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat">
+                        <img src="../src/java/img/transparent.png"  alt="slidebg1"  data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat">
                         <!-- LAYERS -->
                         <!-- LAYER NR. 1 -->
-                        <div class="tp-caption lfb fadeout hidden-xs"
-                            data-x="center"
-                            data-y="bottom"
+                        <div class="tp-caption customin customout hidden-xs"
+                            data-x="right"
+                            data-y="center"
                             data-hoffset="0"
+                            data-customin="x:50;y:150;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.5;scaleY:0.5;skewX:0;skewY:0;opacity:0;transformPerspective:0;transformOrigin:50% 50%;"
+                        data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
+                            data-voffset="50"
+                            data-speed="1000"
+                            data-start="700"
+                            data-easing="Power4.easeOut">
+                            <!--<img src="../src/java/img/freeze/Slides/family-freeze.png" alt="">-->
+                        </div>
+
+                        <div class="tp-caption customin customout visible-xs"
+                            data-x="center"
+                            data-y="center"
+                            data-hoffset="0"
+                            data-customin="x:50;y:150;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.5;scaleY:0.5;skewX:0;skewY:0;opacity:0;transformPerspective:0;transformOrigin:50% 50%;"
+                        data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
                             data-voffset="0"
                             data-speed="1000"
                             data-start="700"
                             data-easing="Power4.easeOut">
-                            <img src="../web/img/freeze/Slides/freeze-slide2.png" alt="">
+                            <!--<img src="../src/java/img/freeze/Slides/family-freeze.png" alt="">-->
+                        </div>
+
+                        <div class="tp-caption lfb visible-xs" data-x="center" data-y="center" data-hoffset="0" data-voffset="400" data-speed="1000" data-start="1200" data-easing="Power4.easeOut">
+                            <a href="#" class="btn btn-primary inverse btn-lg">Purchase</a>
                         </div>
 
                         
-                        <div class="tp-caption large_white_light sft" data-x="center" data-y="250" data-hoffset="0" data-voffset="0" data-speed="1000" data-start="1400" data-easing="Power4.easeOut">
-                           Árboles de Eventos
-                            <!-- <i class="fa fa-heart"></i> -->
+                        <div class="tp-caption mediumlarge_light_white sfl hidden-xs" data-x="left" data-y="center" data-hoffset="0" data-voffset="-50" data-speed="1000" data-start="1000" data-easing="Power4.easeOut">
+                           Powerful Responsive
+                        </div>
+                        <div class="tp-caption mediumlarge_light_white sft hidden-xs" data-x="left" data-y="center" data-hoffset="0" data-voffset="0" data-speed="1000" data-start="1200" data-easing="Power4.easeOut">
+                           App Landing Page
+                        </div>
+                        <div class="tp-caption small_light_white sfb hidden-xs" data-x="left" data-y="center" data-hoffset="0" data-voffset="80" data-speed="1000" data-start="1600" data-easing="Power4.easeOut">
+                           <p>Nulla pretium libero interdum, tempus lorem non, rutrum diam. <br> Quisque pellentesque diam sed pulvinar lobortis. Vestibulum ante <br>ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.</p>
+                        </div>
+
+                        <div class="tp-caption lfl hidden-xs" data-x="left" data-y="center" data-hoffset="0" data-voffset="160" data-speed="1000" data-start="1800" data-easing="Power4.easeOut">
+                            <a href="#" class="btn btn-primary inverse btn-lg">Purchase</a>
                         </div>
                         
                         
@@ -199,8 +244,9 @@ and open the template in the editor.
             <div class="container">
                 
                 <div class="section-heading scrollpoint sp-effect3">
-                    <h1>¿Qué es APS?</h1>
+                    <h1>About Us</h1>
                     <div class="divider"></div>
+                    <p>Oleose Beautiful App Landing Page</p>
                 </div>
 
                 <div class="row">
@@ -292,7 +338,7 @@ and open the template in the editor.
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-4" >
-                        <img src="../web/img/freeze/iphone-freeze.png" class="img-responsive scrollpoint sp-effect5" alt="">
+                        <img src="../src/java/img/freeze/iphone-freeze.png" class="img-responsive scrollpoint sp-effect5" alt="">
                     </div>
                     <div class="col-md-4 col-sm-4 scrollpoint sp-effect2">
                         <div class="media feature">
@@ -388,7 +434,7 @@ and open the template in the editor.
                                     </div>
                                     <div class="col-md-10">
                                         <div class="review-comment">
-                                            <h3>Análisis Probabilístico de Seguridad</h3>
+                                            <h3>“Oleaose Is The Best Stable, Fast App I Have Ever Experienced”</h3>
                                             <p>
                                                 - Theodore Willis
                                                 <span>
@@ -450,31 +496,31 @@ and open the template in the editor.
                 </div>
                 <div class="slider filtering scrollpoint sp-effect5" >
                     <div class="one">
-                        <img src="../web/img/freeze/screens/profile.jpg" alt="">
+                        <img src="../src/java/img/freeze/screens/profile.jpg" alt="">
                         <h4>Profile Page</h4>
                     </div>
                     <div class="two">
-                        <img src="../web/img/freeze/screens/menu.jpg" alt="">
+                        <img src="../src/java/img/freeze/screens/menu.jpg" alt="">
                         <h4>Toggel Menu</h4>
                     </div>
                     <div class="three">
-                        <img src="../web/img/freeze/screens/weather.jpg" alt="">
+                        <img src="../src/java/img/freeze/screens/weather.jpg" alt="">
                         <h4>Weather Forcast</h4>
                     </div>
                     <div class="one">
-                        <img src="../web/img/freeze/screens/signup.jpg" alt="">
+                        <img src="../src/java/img/freeze/screens/signup.jpg" alt="">
                         <h4>Sign Up</h4>
                     </div>
                     <div class="one">
-                        <img src="../web/img/freeze/screens/calendar.jpg" alt="">
+                        <img src="../src/java/img/freeze/screens/calendar.jpg" alt="">
                         <h4>Event Calendar</h4>
                     </div>
                     <div class="two">
-                        <img src="../web/img/freeze/screens/options.jpg" alt="">
+                        <img src="../src/java/img/freeze/screens/options.jpg" alt="">
                         <h4>Some Options</h4>
                     </div>
                     <div class="three">
-                        <img src="../web/img/freeze/screens/sales.jpg" alt="">
+                        <img src="../src/java/img/freeze/screens/sales.jpg" alt="">
                         <h4>Sales Analysis</h4>
                     </div>
                 </div>
@@ -509,7 +555,7 @@ and open the template in the editor.
                 <div class="row">
                     <div class="col-md-12">
                         <div class="hanging-phone scrollpoint sp-effect2 hidden-xs">
-                            <img src="../web/img/freeze/freeze-angled2.png" alt="">
+                            <img src="../src/java/img/freeze/freeze-angled2.png" alt="">
                         </div>
                         <div class="platforms">
                             <a href="#" class="btn btn-primary inverse scrollpoint sp-effect1">
@@ -594,7 +640,7 @@ and open the template in the editor.
         <footer>
             <div class="container">
                 <a href="#" class="scrollpoint sp-effect3">
-                    <img src="../web/img/freeze/logo.png" alt="" class="logo">
+                    <img src="../src/java/img/freeze/logo.png" alt="" class="logo">
                 </a>
                 <div class="social">
                     <a href="#" class="scrollpoint sp-effect3"><i class="fa fa-twitter fa-lg"></i></a>
@@ -609,14 +655,14 @@ and open the template in the editor.
         </footer>
 
     </div>
-    <script src="../web/js/jquery-1.11.1.min.js"></script>
-    <script src="../web/js/bootstrap.min.js"></script>
-    <script src="../web/js/slick.min.js"></script>
-    <script src="../web/js/placeholdem.min.js"></script>
-    <script src="../web/js/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
-    <script src="../web/js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
-    <script src="../web/js/waypoints.min.js"></script>
-    <script src="../web/js/scripts.js"></script>
+    <script src="../src/java/js/jquery-1.11.1.min.js"></script>
+    <script src="../src/java/js/bootstrap.min.js"></script>
+    <script src="../src/java/js/slick.min.js"></script>
+    <script src="../src/java/js/placeholdem.min.js"></script>
+    <script src="../src/java/js/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
+    <script src="../src/java/js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+    <script src="../src/java/js/waypoints.min.js"></script>
+    <script src="../src/java/js/scripts.js"></script>
 
     <script>
         $(document).ready(function() {
@@ -627,3 +673,4 @@ and open the template in the editor.
 </body>
 
 </html>
+
