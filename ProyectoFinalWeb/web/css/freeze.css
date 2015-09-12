@@ -186,16 +186,16 @@ header .navbar-default.scrolled ul.navbar-nav {
 .section-heading.inverse .divider:after {
   background: #ffffff;
 }
-section#about {
+section#informacion {
   position: relative;
 }
-section#about .about-item {
+section#informacion .informacion-item {
   text-align: center;
   font-size: 17px;
   line-height: 25px;
   color: #999999;
 }
-section#about .about-item i.fa {
+section#informacion .informacion-item i.fa {
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   -ms-border-radius: 50%;
@@ -836,15 +836,15 @@ header .navbar-default.scrolled .navbar-brand {
 section .section-heading .divider:after {
   background: #66cdcc;
 }
-section#about .about-item i.fa {
+section#informacion .informacion-item i.fa {
   border: 2px solid #66cdcc;
   color: #66cdcc;
 }
-section#about .about-item:hover i.fa {
+section#informacion .informacion-item:hover i.fa {
   color: #ffffff;
   background: #66cdcc;
 }
-section#about .about-item:hover h3 {
+section#informacion .informacion-item:hover h3 {
   color: #66cdcc;
 }
 section#features {
