@@ -331,7 +331,7 @@ section#screens .slider div img {
 }
 section#screens .slider div h4 {
   text-align: center;
-  margin-top: 40px;
+  margin-top: 20px;
   font-size: 16px;
 }
 section#screens .slider .slick-dots li button {
@@ -872,13 +872,13 @@ section#features .media.active .media-heading {
   color: #66cdcc;
 }
 section#reviews {
-  background: url("../img/freeze/bk-freeze.jpg");
+  background: url("../img/freeze/bk-freeze-ga.jpg");
 }
 section#reviews header {
-  color: #ffffff;
+  color: #66cdcc;
 }
 section#reviews header h1:after {
-  background: #ffffff;
+  background: #66cdcc;
 }
 section#reviews .review-filtering .review .review-person img {
   border: 3px solid #ffffff;
