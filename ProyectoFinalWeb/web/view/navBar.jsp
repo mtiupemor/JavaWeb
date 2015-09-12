@@ -34,9 +34,9 @@
                             <span class="fa fa-bars fa-lg"></span>
                         </button>
                         <a class="navbar-brand" href="index.jsp">
-                            <img src="img/freeze/logo.png" alt="" class="logo" style="width: 222px !important; height:81px !important;">
+                            <img src="img/freeze/logomin.png" alt="" class="logo" style="width: 222px !important; height:81px !important;">
                         </a>
-                    </div>
+                    </div>                    
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

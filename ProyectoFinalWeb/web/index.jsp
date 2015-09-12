@@ -31,7 +31,7 @@ and open the template in the editor.
 
     <div class="pre-loader">
         <div class="load-con">
-            <img src="img/freeze/logo.png" class="animated fadeInDown" alt="">
+            <img src="img/freeze/logomin.png" class="animated fadeInDown" alt="">
             <div class="spinner">
               <div class="bounce1"></div>
               <div class="bounce2"></div>
