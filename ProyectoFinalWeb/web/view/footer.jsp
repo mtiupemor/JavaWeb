@@ -15,7 +15,7 @@
         <footer>
             <div class="container">
                 <a href="#" class="scrollpoint sp-effect3">
-                    <img src="img/freeze/logo.png" alt="" class="logo">
+                    <img src="../img/freeze/logo.png" alt="" class="logo">
                 </a>
                 <div class="rights">
                     <p>Copyright &copy; 2015</p>
