@@ -836,9 +836,9 @@ header .navbar-default.scrolled ul.navbar-nav li a:hover {
 header .navbar-default.scrolled ul.navbar-nav li a:hover:after {
   background: #336799;
 }
-header .navbar-default.scrolled .navbar-brand {
+/*header .navbar-default.scrolled .navbar-brand {
   background: #336799;
-}
+}*/
 section .section-heading .divider:after {
   background: #66cdcc;
 }
