@@ -12,14 +12,14 @@
         <%//Includes generales%>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-        <link rel="shortcut icon" href="view/favicon.png">
-        <link rel="stylesheet" href="css/bootstrap.css">
-        <link rel="stylesheet" href="css/animate.css">
-        <link rel="stylesheet" href="css/font-awesome.min.css">
-        <link rel="stylesheet" href="css/slick.css">
-        <link rel="stylesheet" href="js/rs-plugin/css/settings.css">
-        <link rel="stylesheet" href="css/freeze.css">
-        <script type="text/javascript" src="js/modernizr.custom.32033.js"></script>
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="../css/bootstrap.css">
+        <link rel="stylesheet" href="../css/animate.css">
+        <link rel="stylesheet" href="../css/font-awesome.min.css">
+        <link rel="stylesheet" href="../css/slick.css">
+        <link rel="stylesheet" href="../js/rs-plugin/css/settings.css">
+        <link rel="stylesheet" href="../css/freeze.css">
+        <script type="text/javascript" src="../js/modernizr.custom.32033.js"></script>
     
         <title>Includes del NavBar </title>
         
@@ -34,7 +34,7 @@
                             <span class="fa fa-bars fa-lg"></span>
                         </button>
                         <a class="navbar-brand" href="index.jsp">
-                            <img src="img/freeze/logo.png" alt="" class="logo" style="width: 222px !important; height:81px !important;">
+                            <img src="../img/freeze/logo.png" alt="" class="logo" style="width: 222px !important; height:81px !important;">
                         </a>
                     </div>
 
@@ -48,9 +48,9 @@
                             </li>
                             <li><a href="#">Crea tu árbol</a>
                             </li>
-                            <li><a href="view/acercaDe.html">Acerca de</a>
+                            <li><a href="acercaDe.html">Acerca de</a>
                             </li>
-                            <li><a href="view/contacto.html">Contacto</a>
+                            <li><a href="contacto.html">Contacto</a>
                             </li>
                            
                         </ul>
