@@ -128,13 +128,13 @@ header .navbar-default.scrolled {
   -o-transition: all 0.25s ease-in-out;
   transition: all 0.25s ease-in-out;
 }
-header .navbar-default.scrolled .navbar-brand {
+/*header .navbar-default.scrolled .navbar-brand {
   padding: 15px 20px;
 }
 header .navbar-default.scrolled .navbar-brand img {
   width: auto;
   max-height: 33px;
-}
+}*/
 header .navbar-default.scrolled ul.navbar-nav {
   padding-top: 15px;
 }
