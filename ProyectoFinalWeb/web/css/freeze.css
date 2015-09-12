@@ -763,6 +763,12 @@ header {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#66cdcc, endColorstr=#336799, GradientType=1);
   /* IE6-9 fallback on horizontal gradient */
 }
+
+header ul.navbar-nav2 li a {
+  color: #336799 !important;
+  background: none;
+}
+
 header .navbar-default ul.navbar-nav li a {
   color: #ffffff;
   background: none;
