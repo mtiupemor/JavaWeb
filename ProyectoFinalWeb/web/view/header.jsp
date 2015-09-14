@@ -36,8 +36,7 @@
     
     </head>
     <body>
-    <header> 
-    <nav class="navbar navbar-default navbar-fixed-top scrolled" role="navigation" data-capa="arbol">
+     <nav class="navbar navbar-default navbar-fixed-top scrolled" role="navigation" data-capa="arbol">
       <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
