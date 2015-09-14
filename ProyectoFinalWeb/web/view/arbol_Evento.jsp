@@ -5,10 +5,10 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<header>
  <%@include file="header.jsp" %>
       <link rel="stylesheet" href="../css/estilos.css">
-    </header>
+</header>
     <div class="wrapper">
         <section id="reviews">
             <div class="container">
