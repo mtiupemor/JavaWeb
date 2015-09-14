@@ -44,28 +44,26 @@ and open the template in the editor.
       <section id="contacto" class="doublediagonal">
         <div class="container">
           <br/><br/><br/><br/><br/>
+
           <div class="section-heading scrollpoint sp-effect3">
             <h1>Acerca de</h1>
             <div class="divider"></div>
             <p>Equipo de desarrolladores</p>
           </div>
-          <!--  <div class="row"> -->
+
           <div class="col-md-12">
             <div class="row">
 
               <div class="section-heading scrollpoint sp-effect3">
                 <form role="form">
                   <div class="form-group">
-                    <!--<div class="media" > -->
                     <div class="tp-caption lfl fadeout hidden-xs">
-                      <img src="../img/freeze/imgFotoGrupal.jpg" alt=""  data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat" >
+                      <img src="../img/freeze/imgFotoGrupal_2015.jpg" alt=""  data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat" >
                     </div>
                   </div>
 
                   <div class="form-group">
-
                     <div class="col-md-4 col-sm-4 contact-details scrollpoint sp-effect2" style="text-align: left">
-
 
                       <div class="media">
                         <a class="pull-left" href="#" >
@@ -192,18 +190,13 @@ and open the template in the editor.
                           <h4 class="media-heading">Valenciano Guzmán Gerardo  </h4>
                         </div>
                       </div>
-
                     </div>
-
                   </div>
 
                 </form>
               </div>
-
-
             </div>
           </div>
-          <!-- </div> -->
         </div>
       </section>
 
@@ -211,7 +204,7 @@ and open the template in the editor.
 
     </div>
 
-   
+
 
   </body>
 
