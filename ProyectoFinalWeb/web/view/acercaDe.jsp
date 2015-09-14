@@ -57,8 +57,15 @@ and open the template in the editor.
               <div class="section-heading scrollpoint sp-effect3">
                 <form role="form">
                   <div class="form-group">
-                    <div class="tp-caption lfl fadeout hidden-xs">
-                      <img src="../img/freeze/imgFotoGrupal_2015.jpg" alt=""  data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat" >
+                    <div class="img-responsive">
+
+                      <img src="../img/freeze/imgFotoGrupal_2015.jpg" 
+                           alt=""  
+                           data-bgfit="cover" 
+                           data-bgposition="left top" 
+                           data-bgrepeat="no-repeat" 
+                           style="width: 100%; height:auto;"> 
+
                     </div>
                   </div>
 

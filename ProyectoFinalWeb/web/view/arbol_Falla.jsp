@@ -245,10 +245,21 @@
                 </div>
               </div>
             </div>
+            
             <div class="col-md-8 col-sm-8 scrollpoint sp-effect3">
-              <div class=" img-responsive" >
-                <img src="../img/freeze/a_fallas.png" class="ejemplosFallas" alt="" style="height: 50%; width: 70% ">
+              
+              <div class="form-group " >
+
+                <img src="../img/freeze/a_fallas.png" 
+                     class="img-responsive" 
+                     alt=""
+                     data-bgfit="cover" 
+                     data-bgposition="left top" 
+                     data-bgrepeat="no-repeat" 
+                     style="width: 100%; height:auto;">
+
               </div>
+              
               <div class="info-diagrama">
                 <h5>Diagrama de Árbol de Fallas</h5>
                 <p>
@@ -258,36 +269,37 @@
                   Por lo tanto, el evento tope para este árbol es la “falla de sistema con rocío”, y esto puedo ocurrir de tres maneras; la primera es que falle la válvula, la segunda es que falle la bomba y la última es que los dos sistemas de inicio fallen, esto se ve representado en el árbol de fallas, el cual, está representado en la figura del lado izquierdo.
                 </p>
               </div>
+              
             </div>
           </div>
         </div>
       </section>
       <%@include file="footer.jsp" %>
-       </div>
-      <script>
-        $(document).ready(function () {
+    </div>
+    <script>
+      $(document).ready(function () {
 
-          var inicio = $(".m_simbolos li[class='add']").attr('data-capa');
-          $("#" + inicio).show();
+        var inicio = $(".m_simbolos li[class='add']").attr('data-capa');
+        $("#" + inicio).show();
 
-          $(".m_simbolos li").on('click', function () {
-            var capa = $(this).attr('data-capa');
+        $(".m_simbolos li").on('click', function () {
+          var capa = $(this).attr('data-capa');
 
-            $('.m_simbolos li').removeClass('add');
-            $(this).addClass('add');
+          $('.m_simbolos li').removeClass('add');
+          $(this).addClass('add');
 
-            $("div #" + capa).toggle();
-            $("#conte .base[id != " + capa + "]").hide();
-
-          });
-
-          $('.item').popover({
-            placement: "bottom",
-            trigger: "hover"
-          }); //popover
+          $("div #" + capa).toggle();
+          $("#conte .base[id != " + capa + "]").hide();
 
         });
-      </script>
+
+        $('.item').popover({
+          placement: "bottom",
+          trigger: "hover"
+        }); //popover
+
+      });
+    </script>
 
   </body>
 
