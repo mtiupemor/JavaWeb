@@ -836,22 +836,22 @@ header .navbar-default.scrolled ul.navbar-nav li a:hover {
 header .navbar-default.scrolled ul.navbar-nav li a:hover:after {
   background: #336799;
 }
-/*header .navbar-default.scrolled .navbar-brand {
-  background: #336799;
-}*/
+header .navbar-default.scrolled .navbar-brand {
+  background: none;/*#336799*/
+}
 section .section-heading .divider:after {
   background: #66cdcc;
 }
 section#informacion .informacion-item i.fa {
-  border: 2px solid #66cdcc;
-  color: #66cdcc;
+  border: 2px solid #0e76bc;
+  color: #0e76bc;
 }
 section#informacion .informacion-item:hover i.fa {
   color: #ffffff;
-  background: #66cdcc;
+  background: #0e76bc;
 }
 section#informacion .informacion-item:hover h3 {
-  color: #66cdcc;
+  color: #0e76bc;
 }
 section#features {
   background: #f6f6f6;
@@ -860,22 +860,22 @@ section#features header h1:after {
   background: #66cdcc;
 }
 section#features .media i.fa {
-  border: 2px solid #66cdcc;
-  color: #66cdcc;
+  border: 2px solid #0e76bc;/*#66cdcc; #3366cccambio de color para los iconos de la seccion de feactures*/
+  color: #0e76bc;
 }
 section#features .media:hover i.fa {
   color: #ffffff;
-  background: #66cdcc;
+  background: #0e76bc;
 }
 section#features .media:hover h3 {
-  color: #66cdcc;
+  color: #0e76bc;
 }
 section#features .media.active i.fa {
   color: #ffffff;
-  background: #66cdcc;
+  background: #0e76bc;
 }
 section#features .media.active .media-heading {
-  color: #66cdcc;
+  color: #3366cc;
 }
 section#reviews {
   background: url("../img/freeze/bk-freeze-ga.jpg");
