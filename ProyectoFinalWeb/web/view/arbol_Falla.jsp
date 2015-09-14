@@ -9,7 +9,7 @@
 <html lang="en" class="no-js">
   <!--<![endif]-->
   <head>
-    <title>Acerca de</title>
+    <title>Árbol de Fallas</title>
     <meta charset="UTF-8">
   </head>
 
@@ -80,13 +80,13 @@
                           <p>Este método parte de:</p>
                           <ul class="lista">
                             <li>
-                              <b>Definir el evento tope.-</b> Los eventos topes se toman de los árboles de eventos.
+                              <b>Definir el evento tope.-</b> El evento  tope es el análisis de falla de un sistema dentro del árbol de eventos.
                             </li>
                             <li>
                               <b>Analizar los criterios de éxito.-</b> Esta interpretación depende de las características del sistema, pudiéndose distinguir entre sistemas principales y sistemas de apoyo, así como si están normalmente en reserva o en operación continúa.
                             </li>
                             <li>
-                              <b>Utilizar los DTI.</b>
+                              <b>Utilizar los DTI.-</b>Los DTI (Diagramas Técnicos de planta).Son los diagramas de los sistemas de  seguridad de la planta, o cualquier otra.
                             </li>
                             <li>
                               <b>Realizar el árbol de eventos.</b>
