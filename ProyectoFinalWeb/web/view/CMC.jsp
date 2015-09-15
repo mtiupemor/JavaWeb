@@ -4,21 +4,22 @@
     Author     : Norma
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@include file="footer.jsp" %>
 <!DOCTYPE html>
 <html>
      <head>
         <meta charset="UTF-8">
-        <title>APS</title>
+        <title>CMC</title>
     </head>
     <body>
         <header>
-        <%@include file="header.jsp" %>  
+        <%@include file="header.jsp" %>
+        <link rel="stylesheet" href="../css/estilos.css">
         </header>
         <section id="screens">
             <div class="container">
 
                 <div class="section-heading scrollpoint sp-effect3">
+                    <br/><br/><br/><br/><br/>
                     <h1>CMC</h1>
                     <div class="divider"></div>
                     <p>Conjuntos Mínimos de Corte </p>
@@ -32,116 +33,151 @@
                     </p>                    
 
                 </div>
-
-                <div class="filter scrollpoint sp-effect3">
-                    <!--     <a href="javascript:void(0)" class="button js-filter-all active">Todos</a> -->
-                    <a href="javascript:void(0)" class="button js-filter-one">Ley Conmutativa</a>
-                    <a href="javascript:void(0)" class="button js-filter-two">Ley Asociativa</a>
-                    <a href="javascript:void(0)" class="button js-filter-three">Ley Distributiva</a>
-                    <a href="javascript:void(0)" class="button js-filter-four">Ley de Absorción</a>
-                    <a href="javascript:void(0)" class="button js-filter-five">Complementación</a>
-                    <a href="javascript:void(0)" class="button js-filter-six">Teorema de Morgan</a>
-                    <a href="javascript:void(0)" class="button js-filter-seven">Ejemplo</a>
+            <div class="row">
+                <div class="col-sm-3  scrollpoint sp-effect3">
+                    <ul class="m_simbolos">
+                        <li class="add" data-capa="conmutativa">Ley Conmutativa</li>
+                        <li  data-capa="asociativa">Ley Asociativa</li>
+                        <li  data-capa="distributiva">Ley Distributiva</li>
+                        <li  data-capa="absorcion">Ley de Absorción</li>
+                        <li  data-capa="complementacion">Complementación</li>
+                        <li  data-capa="morgan">Teorema de Morgan</li>
+                       <li><a href="#features">Ejemplo</a></li>
+                    </ul>
                 </div>
 
-                <div class="filtering scrollpoint sp-effect5" >
-                    <div class="one">
-                        <h4>Símbolo Matemático</h4>
-                        <img src="../img/cmc/conmutativa Mat__3.png" width="250" heigth="250" alt="">
+                <div class="col-sm-9 scrollpoint sp-effect3" id="conte">
+                    <div class="base" id="conmutativa">
+                        <div class="itemLey" >
+                            <h4>Símbolo Matemático</h4>
+                            <img src="../img/cmc/conmutativa Mat__3.png"  alt="">
+                        </div>
+                        <div class="itemLey" >
+                            <h4>Símbolo Ingeniería</h4>
+                            <img src="../img/cmc/conmutativa Ing__3.png" alt="">
+                        </div>
                     </div>
-
-                    <div class="one"> 
-                        <h4>Símbolo Ingeniería</h4>
-
-                        <img src="../img/cmc/conmutativa Ing__3.png" width="250" heigth="250" alt="">
+                    <div class="base" id="asociativa">
+                        <div class="itemLey" >
+                            <h4>Símbolo Matemático</h4>
+                            <img src="../img/cmc/asociativa Mat_3.png"  alt="">
+                        </div>
+                        <div class="itemLey">
+                            <h4>Símbolo Ingeniería</h4>
+                        <img src="../img/cmc/asociativa Ing_3.png" alt="">   
+                        </div>
                     </div>
-
-                    <div class="two">
-                        <h4>Símbolo Matemático</h4>
-                        <img src="../img/cmc/asociativa Mat_3.png" width="250" heigth="250" alt="">
+                    <div class="base" id="distributiva">
+                        <div class="itemLey" >
+                            <h4>Símbolo Matemático</h4>
+                            <img src="../img/cmc/distributiva Mat_3.png" alt="">
+                        </div>
+                        <div class="itemLey" >
+                            <h4>Símbolo Ingeniería</h4>
+                            <img src="../img/cmc/distributiva Ing_3.png"  alt="">  
+                        </div>
                     </div>
-
-                    <div class="two">
-                        <h4>Símbolo Ingeniería</h4>
-                        <img src="../img/cmc/asociativa Ing_3.png" width="250" heigth="250" alt="">   
+                    <div class="base" id="absorcion">
+                        <div class="itemLey" >
+                            <h4>Símbolo Matemático</h4>
+                            <img src="../img/cmc/absorcion Mat_3.png"  alt="">
+                        </div>
+                        <div class="itemLey" >
+                            <h4>Símbolo Ingeniería</h4>
+                            <img src="../img/cmc/absorcion Ing_3.png"  alt="">  
+                        </div>
                     </div>
-
-                    <div class="three">
-                        <h4>Símbolo Matemático</h4>
-                        <img src="../img/cmc/distributiva Mat_3.png" width="250" heigth="250" alt="">
-
+                    <div class="base" id="complementacion">
+                        <div class="itemLey" >
+                            <h4>Símbolo Matemático</h4>
+                            <img src="../img/cmc/complementario Mat_3.png"  alt="">
+                        </div>
+                        <div class="itemLey" >
+                            <h4>Símbolo Ingeniería</h4>
+                            <img src="../img/cmc/complementario Ing_3.png"  alt=""> 
+                        </div>
                     </div>
-
-                    <div class="three">
-                        <h4>Símbolo Ingeniería</h4>
-                        <img src="../img/cmc/distributiva Ing_3.png" width="250" heigth="250" alt="">
+                    <div class="base" id="morgan">
+                        <div class="itemLey" >
+                            <h4>Símbolo Matemático</h4>
+                            <img src="../img/cmc/TMorgan Mat_3.png"  alt="">
+                        </div>
+                        <div class="itemLey">
+                            <h4>Símbolo Ingeniería</h4>
+                            <img src="../img/cmc/TMorgan Ing_3.png"  alt=""> 
+                        </div>
                     </div>
-
-                    <div class="four">
-                        <h4>Símbolo Matemático</h4>
-                        <img src="../img/cmc/absorcion Mat_3.png" width="250" heigth="250" alt="">
-                    </div>
-
-                    <div class="four">
-                        <h4>Símbolo Ingeniería</h4>
-                        <img src="../img/cmc/absorcion Ing_3.png" width="250" heigth="250" alt="">
-                    </div>
-
-                    <div class="five">
-                        <h4>Símbolo Matemático</h4>
-                        <img src="../img/cmc/complementario Mat_3.png" width="250" heigth="250" alt="">
-                    </div>
-
-                    <div class="five">  
-                        <h4>Símbolo Ingeniería</h4>
-                        <img src="../img/cmc/complementario Ing_3.png" width="250" heigth="250" alt="">
-                    </div>
-                    <div class="six">
-                        <h4>Símbolo Matemático</h4>
-                        <img src="../img/cmc/TMorgan Mat_3.png" width="250" heigth="250" alt="">
-                    </div>
-
-                    <div class="six">
-                        <h4>Símbolo Ingeniería</h4>
-                        <img src="../img/cmc/TMorgan Ing_3.png" width="250" heigth="250" alt="">
-                    </div>
-                    <div class="seven">
-                        <h4>Ejemplo de un CMC </h4>
-                        <h4>Supóngase que se tiene el siguiente árbol de fallas: </h4>
-                        <img src="../img/cmc/Diagrama CMC_ 2.png" width="350" heigth="350" alt="">
-                    </div>  
-                    <div class="seven">
-
-                    </div>  
-                    <div class="seven">
-                        <h4>Haciendo las siguientes sustituciones: </h4>
-                        <img src="../img/cmc/01.png" width="100" heigth="100" alt="">
-                        <h4>La función del árbol de fallas es la siguiente: </h4>
-                        <img src="../img/cmc/02.png" width="100" heigth="100" alt="">
-                        <h4>Sustituyendo los valores de E1 y E2 queda de la siguiente manera: </h4> 
-                        <img src="../img/cmc/03.png" width="150" heigth="150" alt="">
-                        <h4>Resolviendo la multiplicación da: </h4>
-                        <img src="../img/cmc/04.png" width="270" heigth="270" alt="">
-                        <h4>Sustituyendo para E3: </h4>
-                        <img src="../img/cmc/05.png" width="280" heigth="280" alt="">
-                        <h4>Por el álgebra de Boole se sabe que C*C=C, entonces la ecuación queda de la manera siguiente:</h4>
-                        <img src="../img/cmc/06.png" width="270" heigth="270" alt="">
-                        <h4>Por la ley de la absorción tenemos que A*C+B*C+C+E4*C=C</h4>
-                        <img src="../img/cmc/07.png" width="150" heigth="150" alt="">
-                        <h4>Finalmente, se sustituye para E4 y aplicando la ley de absorción: </h4>
-                        <img src="../img/cmc/07.png" width="150" heigth="150" alt="">
-                    </div> 
                 </div>
-        </section>
+            </div><!-- row-->
+        </div>
+    </section>
+    <section id="features" >
+        <div class="container">
+          <div class="section-heading scrollpoint sp-effect3">
+              <br/><br/>
+            <h2>Ejemplo: CMC</h2>
+            <div class="divider"></div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 col-sm-4 scrollpoint sp-effect1">
+                <h4>Supóngase que se tiene el siguiente árbol de fallas: </h4>
+                <div class="form-group " >
 
-        <style>
-            section#screens .slick-prev:before {
-                display:none !important;
-            }
-            section#screens .slick-next:before {
-                display:none !important;
-            }
-        </style>
+                <img src="../img/cmc/Diagrama CMC_ 2.png" 
+                     class="img-responsive" 
+                     alt=""
+                     data-bgfit="cover" 
+                     data-bgposition="left top" 
+                     data-bgrepeat="no-repeat" 
+                     style="width: 80%; height:auto;">
+
+              </div>
+            </div>
+            
+            <div class="col-md-8 col-sm-8 scrollpoint sp-effect3">
+              <div class="info-diagrama">
+                <p>Haciendo las siguientes sustituciones: </p>
+                <img src="../img/cmc/01.png" width="100" heigth="100" alt="">
+                <p>La función del árbol de fallas es la siguiente: </p>
+                <img src="../img/cmc/02.png" width="100" heigth="100" alt="">
+                <p>Sustituyendo los valores de E1 y E2 queda de la siguiente manera: </p> 
+                <img src="../img/cmc/03.png" width="150" heigth="150" alt="">
+                <p>Resolviendo la multiplicación da: </p>
+                <img src="../img/cmc/04.png" width="270" heigth="270" alt="">
+                <p>Sustituyendo para E3: </p>
+                <img src="../img/cmc/05.png" width="280" heigth="280" alt="">
+                <p>Por el álgebra de Boole se sabe que C*C=C, entonces la ecuación queda de la manera siguiente:</p>
+                <img src="../img/cmc/06.png" width="270" heigth="270" alt="">
+                <p>Por la ley de la absorción tenemos que A*C+B*C+C+E4*C=C</p>
+                <img src="../img/cmc/07.png" width="150" heigth="150" alt="">
+                <p>Finalmente, se sustituye para E4 y aplicando la ley de absorción: </p>
+                <img src="../img/cmc/07.png" width="150" heigth="150" alt="">
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </section>
+        
 <%@include file="footer.jsp" %>
+<script>
+      $(document).ready(function () {
+
+        var inicio = $(".m_simbolos li[class='add']").attr('data-capa');
+        $("#" + inicio).show();
+
+        $(".m_simbolos li").on('click', function () {
+          var capa = $(this).attr('data-capa');
+
+          $('.m_simbolos li').removeClass('add');
+          $(this).addClass('add');
+
+          $("div #" + capa).toggle();
+          $("#conte .base[id != " + capa + "]").hide();
+
+        });
+
+      });
+    </script>
     </body>
 </html>

@@ -22,7 +22,7 @@
       <section id="reviews">
         <div class="container">
           <div class="section-heading inverse scrollpoint sp-effect3">
-            </br>
+            <br/><br/><br/><br/><br/>
             <h1>Árboles de Fallas</h1>
             <div class="divider"></div>
             <p>"Conociendo las técnicas empleadas en el APS"</p>
@@ -92,7 +92,7 @@
                               <b>Realizar el árbol de eventos.</b>
                             </li>
                             <li>
-                              <b>Obtener los conjuntos mínimos de corte (<a href="CMC.jsp">CMC)</a>.</b>
+                              <b>Obtener los conjuntos mínimos de corte <a href="CMC.jsp">(CMC)</a>.</b>
                             </li>
                           </ul>
 
@@ -110,6 +110,7 @@
         <div class="container">
 
           <div class="section-heading scrollpoint sp-effect3">
+              <br/><br/>
             <h1>Simbología</h1>
             <div class="divider"></div>
             <p>"Elementos empleados en los árboles de fallas"</p>
@@ -121,7 +122,7 @@
                 <li  data-capa="intermedios">Eventos Intermedios</li>
                 <li  data-capa="compuertas">Simbolos de Compuertas</li>
                 <li  data-capa="transferencias">Simbolos de Transferencias</li>
-                <li><a href="arbol_evento.html">Ejemplo</a></li>
+                <li><a href="#features">Ejemplo</a></li>
               </ul>
             </div>
             <div class="col-sm-8 scrollpoint sp-effect3" id="conte">
@@ -199,7 +200,8 @@
       <section id="features" >
         <div class="container">
           <div class="section-heading scrollpoint sp-effect3">
-            <h1>Ejemplos</h1>
+              <br/><br/>
+            <h2>Ejemplo: Árbol de Fallas</h2>
             <div class="divider"></div>
           </div>
           <div class="row">
