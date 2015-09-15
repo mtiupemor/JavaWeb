@@ -15,32 +15,54 @@
 
   <body>
     <header>
-      <%@include file="header.jsp" %>  
+      <%@include file="header.jsp" %>
+      <link rel="stylesheet" href="../css/estilos.css">
     </header>
-       <section id="screens">
-            <div class="container">
-
-                   <div class="section-heading scrollpoint sp-effect3">
-                    <br/><br/><br/><br/><br/>
-                    <h1>Conceptos</h1>
-                    <div class="divider"></div>
-                
-                    <h3 class = "text-justify">¿Qué es un evento Iniciador?</h3>
-                    <p class = "text-justify">
-                        El primer paso en el desarrollo de secuencias de accidente, es la definición de  los eventos que pueden 
+    <section id="reviews">
+        <div class="container">
+          <div class="section-heading inverse scrollpoint sp-effect3">
+            <br/><br/><br/><br/><br/>
+            <h1>Eventos</h1>
+            <div class="divider"></div>
+            <p>"Conceptos"</p>
+          </div>
+          <div class="row">
+            <div class="col-md-10 col-md-push-1 scrollpoint sp-effect3">
+              <div class="review-filtering">
+                <div class="review">
+                  <div class="row">
+                    <div class="col-md-2">
+                      <div class="review-person">
+                        <img src="../img/bookmark.png" alt="" class="img-responsive">
+                      </div>
+                    </div>
+                    <div class="col-md-10">
+                      <div class="review-comment">
+                        <h3>¿Qué es un evento Iniciador?</h3>
+                        <div>
+                          <p>
+                            El primer paso en el desarrollo de secuencias de accidente, es la definición de  los eventos que pueden 
                        perturbar la operación normal de la planta, requiriendo así la intervención de sistemas para mitigar 
-                       esta perturbación y llevar el reactor en caso necesario, a un apagado seguro.</p>
-                    <br>
-                    <br>
-                    <h3 class = "text-justify">¿Qué es un evento Tope?</h3>
-                    <p class = "text-justify">
-                        El primer paso en el desarrollo de secuencias de accidente, es la definición de  los eventos que pueden 
+                       esta perturbación y llevar el reactor en caso necesario, a un apagado seguro.
+                          </p>
+                        </div>
+                        <h3>¿Qué es un evento Tope?</h3>
+                        <div>
+                            <p>
+                                El primer paso en el desarrollo de secuencias de accidente, es la definición de  los eventos que pueden 
                        perturbar la operación normal de la planta, requiriendo así la intervención de sistemas para mitigar 
-                       esta perturbación y llevar el reactor en caso necesario, a un apagado seguro. El evento  tope es el análisis de falla de un sistema dentro del árbol de eventos.</p>
-                   </div>
-
-               
-        </section>
+                       esta perturbación y llevar el reactor en caso necesario, a un apagado seguro. El evento  tope es el análisis de falla de un sistema dentro del árbol de eventos.
+                            </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div> 
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
         <%@include file="footer.jsp" %>
     </body>
 </html>
