@@ -18,5 +18,10 @@
     <script>
       $(document).ready(function () {
         appMaster.preLoader();
+        
+        var url = window.location.pathname;  
+        if(url==="/ProyectoFinalWeb/index.jsp")
+          $(".logo").attr('src','img/freeze/logomin.png');
+        
       });
     </script> 
