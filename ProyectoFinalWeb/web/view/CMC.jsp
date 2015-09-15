@@ -15,23 +15,51 @@
         <%@include file="header.jsp" %>
         <link rel="stylesheet" href="../css/estilos.css">
         </header>
-        <section id="screens">
-            <div class="container">
-
-                <div class="section-heading scrollpoint sp-effect3">
-                    <br/><br/><br/><br/><br/>
-                    <h1>CMC</h1>
-                    <div class="divider"></div>
-                    <p>Conjuntos Mínimos de Corte </p>
-                    <br>
-
-                    <p class = "text-justify">
-                        La solución de los árboles de falla implica la solución de los conjuntos mínimos de corte (CMC), 
+    <section id="reviews">
+        <div class="container">
+          <div class="section-heading inverse scrollpoint sp-effect3">
+            <br/><br/><br/><br/><br/>
+            <h1>CMC</h1>
+            <div class="divider"></div>
+            <p>"Conjuntos Mínimos de Corte"</p>
+          </div>
+          <div class="row">
+            <div class="col-md-10 col-md-push-1 scrollpoint sp-effect3">
+              <div class="review-filtering">
+                <div class="review">
+                  <div class="row">
+                    <div class="col-md-2">
+                      <div class="review-person">
+                        <img src="../img/bookmark.png" alt="" class="img-responsive">
+                      </div>
+                    </div>
+                    <div class="col-md-10">
+                      <div class="review-comment">
+                        <h3>Concepto</h3>
+                        <div>
+                          <p>
+                            La solución de los árboles de falla implica la solución de los conjuntos mínimos de corte (CMC), 
                         estos de los conjuntos de combinaciones mínimas necesarias de eventos básicos que pueden 
                         ocasionar el evento tope del sistema, los CMC se usan para saber que combinación de 
                         eventos básicos es al que contribuye más a la falla del sistema.
-                    </p>                    
-
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div> 
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    <section id="screens">
+          <div class="container">
+              <div class="section-heading inverse scrollpoint sp-effect3">
+                   <br/><br/><br/>
+                    <h2>Reglas del Álgebra Booleana</h2>
+                    <div class="divider"></div>
+                    <p>"Conjuntos Mínimos de Corte"</p>
                 </div>
             <div class="row">
                 <div class="col-sm-3  scrollpoint sp-effect3">
