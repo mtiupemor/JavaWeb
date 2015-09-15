@@ -8,7 +8,7 @@
         <footer>
             <div class="container">
                 <a href="#" class="scrollpoint sp-effect3">
-                    <img src="../img/freeze/logo.png" alt="" class="logo">
+                    <img src="../img/freeze/logomin.png" alt="" class="logo">
                 </a>
                 <div class="rights">
                     <p>Copyright &copy; 2015</p>
@@ -18,5 +18,10 @@
     <script>
       $(document).ready(function () {
         appMaster.preLoader();
+        
+        var url = window.location.pathname;  
+        if(url==="/ProyectoFinalWeb/index.jsp")
+          $(".logo").attr('src','img/freeze/logomin.png');
+        
       });
     </script> 

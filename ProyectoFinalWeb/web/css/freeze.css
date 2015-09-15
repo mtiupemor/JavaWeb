@@ -385,7 +385,7 @@ section#screens .filter a {
   -o-border-radius: 5em;
   border-radius: 5em;
   margin: 10px 5px;
-  text-transform: uppercase;
+  text-transform: capitalize;
   -webkit-transition: all 0.25s ease-in-out;
   -moz-transition: all 0.25s ease-in-out;
   -ms-transition: all 0.25s ease-in-out;
@@ -854,7 +854,7 @@ section#informacion .informacion-item:hover h3 {
   color: #0e76bc;
 }
 section#features {
-  background: #f6f6f6;
+  background: #fff
 }
 section#features header h1:after {
   background: #66cdcc;
