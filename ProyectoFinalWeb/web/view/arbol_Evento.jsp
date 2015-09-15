@@ -97,49 +97,49 @@
         <div class="col-md-4 col-sm-4 scrollpoint sp-effect1">
        
           <div class="media media-left feature">
-            <a class="pull-left" href="#">
+            <p class="pull-left">
               <i class="fa fa-exclamation-triangle fa-2x"></i>
-            </a>
+            </p>
             <div class="media-body">
               <h3 class="media-heading">1. Búsqueda de eventos iniciadores.</h3>
             </div>
           </div>
           <div class="media media-left feature">
-            <a class="pull-left" href="#">
+            <p class="pull-left">
               <i class="fa fa-check fa-2x"></i>
-            </a>
+            </p>
             <div class="media-body">
               <h3 class="media-heading">2. Enlistar los sistemas que intervienen para mitigar el evento iniciador.</h3>
             </div>
           </div>
           <div class="media media-left feature">
-            <a class="pull-left" href="#">
+            <p class="pull-left">
               <i class="fa  fa-sitemap fa-2x"></i>
-            </a>
+            </p>
             <div class="media-body">
               <h3 class="media-heading">3. Agrupar los eventos iniciadores.</h3>
             </div>
           </div>
           <div class="media media-left feature">
-            <a class="pull-left" href="#">
+            <p class="pull-left">
               <i class="fa fa-pagelines fa-2x"></i>
-            </a>
+            </p>
             <div class="media-body">
               <h3 class="media-heading">4. Realizar el árbol de eventos para cada grupo.</h3>
             </div>
           </div>
           <div class="media media-left feature">
-            <a class="pull-left" href="#">
+            <p class="pull-left">
               <i class="fa fa-chain-broken fa-2x"></i>
-            </a>
+            </p>
             <div class="media-body">
               <h3 class="media-heading">5.  Obtener los estados finales.</h3>
             </div>
           </div>
           <div class="media media-left feature">
-            <a class="pull-left" href="#">
+            <p class="pull-left">
               <i class="fa fa-chain-broken fa-2x"></i>
-            </a>
+            </p>
             <div class="media-body">
               <h3 class="media-heading">6. Calcular las frecuencias de las secuencias de accidente.</h3>
             </div>
