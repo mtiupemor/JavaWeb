@@ -13,6 +13,7 @@
   <section id="reviews">
     <div class="container">
       <div class="section-heading inverse scrollpoint sp-effect3">
+         <br/><br/><br/><br/><br/>
         <h1>Árbol de Eventos</h1>
         <div class="divider"></div>
         <p>"Conociendo las técnicas empleadas en el APS"</p>
@@ -32,7 +33,7 @@
                     <h3>Concepto</h3>
                     <div>
                       <p>
-                        Los árboles de eventos es un método cuya función es la de modelar, a partir de un diagrama, las posibles secuencias de accidentes derivadas de un <abbr><a href="#">evento iniciador</a></abbr>.
+                        Los árboles de eventos es un método cuya función es la de modelar, a partir de un diagrama, las posibles secuencias de accidentes derivadas de un <abbr><a href="EventoIniciador.jsp">evento iniciador</a></abbr>.
                       </p
                     </div>
                     <div>
@@ -88,6 +89,7 @@
   <section id="features" >
     <div class="container">
       <div class="section-heading scrollpoint sp-effect3">
+          <br/><br/>
         <h2>Ejemplo: Árbol de Eventos</h2>
         <div class="divider"></div>
       </div>

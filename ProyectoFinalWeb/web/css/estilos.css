@@ -12,7 +12,7 @@
 .info-diagrama h5{
     color: #3366cc;
 }
-.item
+.item, .itemLey
 {
 	border: 1px solid #ccc;
 	border-radius: 10px;
@@ -30,7 +30,8 @@
 {
 	cursor: pointer;
 }
-.item h4
+.item h4,
+.itemLey h4
 {
 	bottom: 0;
 	font-size: 1em;
@@ -40,9 +41,14 @@
 	position: absolute;
 	width: 80%;
 }
-.item img
+.item img,
+.itemLey img
 {
 	width: 65%;
+}
+.itemLey
+{
+    width: 60%;
 }
 .m_simbolos
 {
@@ -122,9 +128,9 @@ section#reviews .review .review-comment ul.lista
 section#reviews .review .review-comment ul.lista li{
     margin-bottom: 1em;
 }
-section .section-heading .divider:after {
+/*section .section-heading .divider:after {
   background: #3366cc;
-}
+}*/
 section#reviews .review-filtering .review .review-comment h3 {
   color: #3366cc;
 }
@@ -137,7 +143,7 @@ section#features .media.media-left .media-body h3 {
 .popover 
 {
     border: 2px dotted #3399ff;
-    width: 200px;
+    width: 230px;
 }
 
 .popover.right
