@@ -62,7 +62,9 @@ and open the template in the editor.
                             data-speed="500"
                             data-start="700"
                             data-easing="Power4.easeOut">
-                            <img src="img/freeze/Slides/reactor01.png" alt="" style="width:499px !important; heigth:600px !important;">
+                            <img src="img/freeze/Slides/slideMain.png" 
+                                 alt="" 
+                                 style="width:499px !important; heigth:600px !important; padding-bottom: 100px;">
                         </div>
 
                         <div class="tp-caption lfl fadeout visible-xs"
@@ -73,7 +75,7 @@ and open the template in the editor.
                             data-speed="500"
                             data-start="700"
                             data-easing="Power4.easeOut">
-                            <img src="img/freeze/Slides/reactor01.png" alt="">
+                            <img src="img/freeze/Slides/slideMain.png" alt="">
                         </div>
                         <br><br><br>
 
@@ -129,12 +131,10 @@ and open the template in the editor.
 
                         
                         <div class="tp-caption mediumlarge_light_white sfl hidden-xs" data-x="left" data-y="center" data-hoffset="0" data-voffset="-50" data-speed="1000" data-start="1000" data-easing="Power4.easeOut">
-                           Prevención 
+                           Prevención de fallas
                         </div>
-                        <div class="tp-caption mediumlarge_light_white sft hidden-xs" data-x="left" data-y="center" data-hoffset="0" data-voffset="0" data-speed="1000" data-start="1200" data-easing="Power4.easeOut">
-                           de fallas
-                        </div>
-                        <div class="tp-caption small_light_white sfb hidden-xs" data-x="left" data-y="center" data-hoffset="0" data-voffset="80" data-speed="1000" data-start="1600" data-easing="Power4.easeOut">
+                        
+                        <div style= "alignment-baseline: central" class="tp-caption small_light_white sfb hidden-xs" data-x="left" data-y="center" data-hoffset="0" data-voffset="80" data-speed="1000" data-start="1600" data-easing="Power4.easeOut">
                            <p> Un APS puede usarse  para  estudiar,  evaluar, medir y prevenir las fallas de los sistemas <br> que pueden iniciar y desencadenar eventos no deseados  (accidentes)<br> que  afecten a las personas, los bienes y el medio ambiente.</p>
                         </div>
                         
@@ -175,13 +175,11 @@ and open the template in the editor.
 
                         
                         <div class="tp-caption mediumlarge_light_white sfl hidden-xs" data-x="left" data-y="center" data-hoffset="0" data-voffset="-50" data-speed="1000" data-start="1000" data-easing="Power4.easeOut">
-                           Secuencia
+                           Secuencia de accidentes
                         </div>
-                        <div class="tp-caption mediumlarge_light_white sft hidden-xs" data-x="left" data-y="center" data-hoffset="0" data-voffset="0" data-speed="1000" data-start="1200" data-easing="Power4.easeOut">
-                           de accidentes
-                        </div>
+                       
                         <div class="tp-caption small_light_white sfb hidden-xs" data-x="left" data-y="center" data-hoffset="0" data-voffset="80" data-speed="1000" data-start="1600" data-easing="Power4.easeOut">
-                           <p>  Un APS puede utilizarse para evaluar y modificar el entrenamiento de los operadores <br> en los procedimientos de operación de emergencia de la  planta,<br> para definir las secuencias de accidente, para simular el uso de los planes de  emergencia,<br> entre otras aplicaciones </p>
+                           <p>  Un APS puede utilizarse para evaluar y modificar el entrenamiento de los operadores <br> en los procedimientos de operación de emergencia de la  planta, para definir las secuencias de accidente,<br> para simular el uso de los planes de  emergencia, entre otras aplicaciones </p>
                         </div>
                         
                         
@@ -208,26 +206,26 @@ and open the template in the editor.
                 <div class="row">
                     <div class="col-md-3 col-sm-3 col-xs-6">
                         <div class="informacion-item scrollpoint sp-effect2">
-                            <a href="view/arbol_Falla.html"><i class="fa fa-exclamation fa-2x"></i></a>
+                            <a href="view/arbol_Falla.jsp"><i class="fa fa-exclamation fa-2x"></i></a>
                             <h3>Árboles de fallas</h3>                            
                         </div>
                     </div>
                     <div class="col-md-3 col-sm-3 col-xs-6" >
                         <div class="informacion-item scrollpoint sp-effect2">
-                            <a href="view/arbol_Evento.html"><i class="fa fa-cubes fa-2x"></i></a>
+                            <a href="view/arbol_Evento.jsp"><i class="fa fa-cubes fa-2x"></i></a>
                             <h3>Árboles de eventos</h3>                           
                         </div>
                     </div>
                     <div class="col-md-3 col-sm-3 col-xs-6" >
                         <div class="informacion-item scrollpoint sp-effect2">
-                            <a href="view/CMC.html"><i class="fa fa-cogs fa-2x"></i></a>
+                            <a href="view/CMC.jsp"><i class="fa fa-cogs fa-2x"></i></a>
                             <h3>Conjuntos</h3>
                         </div>
                     </div>
 
                     <div class="col-md-3 col-sm-3 col-xs-6" >
                         <div class="informacion-item scrollpoint sp-effect2">
-                            <a href="view/EventoIniciador.html"><i class="fa fa-arrow-circle-right fa-2x"></i></a>
+                            <a href="view/EventoIniciador.jsp"><i class="fa fa-arrow-circle-right fa-2x"></i></a>
                             <h3>Evento Iniciador</h3>                         
                         </div>
                     </div>
@@ -238,21 +236,7 @@ and open the template in the editor.
     <%@include file="view/footer.jsp" %>
 
     </div>
-    <script src="js/jquery-1.11.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/slick.min.js"></script>
-    <script src="js/placeholdem.min.js"></script>
-    <script src="js/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
-    <script src="js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
-    <script src="js/waypoints.min.js"></script>
-    <script src="js/scripts.js"></script>
-
-    <script>
-        $(document).ready(function() {
-            appMaster.preLoader();
-        });
-    </script>
-
+    
 </body>
 
 </html>
