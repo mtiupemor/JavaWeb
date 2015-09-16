@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <link rel="stylesheet" href="css/joint.css" />
+        <link rel="stylesheet" href="css/arbol.css" />
+        <link rel="stylesheet" href="css/compuerta.css" />
+        <script src="js/joint.js"></script>
+        <script src="js/joint.shapes.arbol.js"></script>
+        <script src="js/arbollogica.js"></script>
+        <script>
+
+            $(document).ready(function() {
+
+                //alert($(".inputEvento").val());
+
+            });
+
+            var eT=new ARBOL.EventoTope();
+            $(document).ready(function () {
+
+
+                var e1=new ARBOL.Evento("","Evento1");
+                var e2=new ARBOL.Evento("","Evento2");
+
+                var compuerta1=new ARBOL.Compuerta("","OR");
+                compuerta1.setHijoEvento(e1);
+                e1.setValor(0.3);
+                e2.setValor(2);
+                compuerta1.setHijoEvento(e2);
+                e2.setValor(0.1);
+                //e1.suscribir(compuerta1);                
+                console.log("compuerta 1"+compuerta1.getTipo());
+                console.log(compuerta1.getValorCompuerta(compuerta1));
+                
+                var e3=new ARBOL.Evento("","Evento3");
+                e3.setValor(0.1);
+                var compuerta2=new ARBOL.Compuerta("","AND");
+                compuerta2.setHijoEvento(e3);
+                console.log(compuerta2.getValorCompuerta(compuerta2));
+                
+                compuerta2.setHijoCompuerta(compuerta1);
+                console.log("compuerta 2",compuerta2.getValorCompuerta(compuerta2));
+                
+                var eventoTope=new ARBOL.EventoTope('tope1','Evento Tope 1');
+                eventoTope.setHijo(compuerta2);
+                console.log(eventoTope.getHijo());
+                
+                eventoTope.setValor(eventoTope.getHijo().getValorCompuerta(eventoTope.getHijo()));
+                console.log("El valor es:"+eventoTope.getValor());
+                //console.log("El valor es:"+eventoTope.getValor());
+                e3.setValor(0.3);
+                //
+                //eventoTope.setValor(eventoTope.getHijo().getValorCompuerta(eventoTope.getHijo()));
+                console.log("El valor es:"+eventoTope.getValor());
+                //console.log("El valor es:"+eventoTope.getValor());
+                
+                
+                
+                
+
+
+
+
+
+
+
+                var graph = new joint.dia.Graph;
+
+                var paper = new joint.dia.Paper(
+                {
+                    el: $('#paper'),
+                    width: 1100,
+                    height: 600,
+                    gridSize: 1,
+                    model: graph,
+                    snapLinks: true,
+                    embeddingMode: true,
+                    validateEmbedding: function (childView, parentView) {
+                        return false;//parentView.model instanceof joint.shapes.arbol.Coupled;
+                    },
+                   validateConnection: function (sourceView, sourceMagnet, targetView, targetMagnet)
+                   {
+                        console.log("test");
+                        return sourceMagnet != targetMagnet;
+                    }
+             });
+
+/*here*/
+                /*
+                 * To change this license header, choose License Headers in Project Properties.
+                 * To change this template file, choose Tools | Templates
+                 * and open the template in the editor.
+                 */
+
+               /* var connect = function (source, sourcePort, target, targetPort) {
+                    if(source instanceof joint.shapes.arbol.Evento && target instanceof joint.shapes.arbol.Evento ){
+                            console.log("Evento no se puede unir con evento");
+                    }else{
+                        console.log("Entra");
+                    var link = new joint.shapes.arbol.Link({
+                        source: {id: source.id, selector: source.getPortSelector(sourcePort)},
+                        target: {id: target.id, selector: target.getPortSelector(targetPort)}
+                    });
+                    link.addTo(graph).reparent();
+                }
+                };*/
+
+
+
+                /*
+                 eventoIniciador.el=new ARBOL.EventoIniciador;
+                 console.log(eventoIniciador);
+                 */
+
+
+                /* Metodo para asignar ID del evento*/
+                //No eliminar
+               // evento.setIdModel("500ffe65-583f-4205-92b3-1545dd618d4x");
+
+
+//graph.addCells([evento,cAND]);
+
+//connect(a3,'y',a1,'a');
+
+//connect(c1,'in',a1,'xy');
+
+                /* rounded corners */
+                /*
+                 _.each([c1,a1,a2,a3,a4,cAND], function(element) {
+                 element.attr({ '.body': { 'rx': 6, 'ry': 6 }});
+                 });
+                 */
+
+                /* custom highlighting */
+
+                var highlighter = V('circle', {
+                    'r': 14,
+                    'stroke': '#ff7e5d',
+                    'stroke-width': '6px',
+                    'fill': 'transparent',
+                    'pointer-events': 'none'
+                });
+
+                paper.off('cell:highlight cell:unhighlight').on({
+                    'cell:highlight': function (cellView, el, opt) {
+
+                        if (opt.embedding) {
+                            V(el).addClass('highlighted-parent');
+                        }
+
+                        if (opt.connecting) {
+                            var bbox = V(el).bbox(false, paper.viewport);
+                            highlighter.translate(bbox.x + 10, bbox.y + 10, {absolute: true});
+                            V(paper.viewport).append(highlighter);
+                        }
+                    },
+                    'cell:unhighlight': function (cellView, el, opt) {
+
+                        if (opt.embedding) {
+                            V(el).removeClass('highlighted-parent');
+                        }
+
+                        if (opt.connecting) {
+                            highlighter.remove();
+                        }
+                    }
+                });
+
+                //Llamada a evento tope
+                $("#eventoTope").click(function (evt) {
+
+                    var eventoIniciador = new joint.shapes.arbol.Evento({
+                        position: {x: 920, y: 30},
+                        size: {width: 170, height: 100},
+                        label: 'I am HTML',
+                        inPorts: ['in'],
+                    });
+
+
+                    graph.addCells([eventoIniciador]);
+
+                }); //FIN compuertaTope
+
+                  //Llamada a evento
+                  $("#evento").click(function (evt) {
+                  var evento = new joint.shapes.arbol.Evento({
+                        position: {x: 920, y: 30},
+                        size: {width: 170, height: 100},
+                        label: 'I am HTML',
+                        inPorts: ['in'],
+                        outPorts: ['out']
+                    });
+					evento.Evento=new ARBOL.Evento('','Evento 1');
+					console.log(evento);
+                  graph.addCells([evento]);
+                    }); //Fin compuerta evento
+
+
+                 //Llamada a compuerta And
+                $("#compuertaAnd").click(function (evt) {
+
+                    var cAND = new joint.shapes.arbol.CompuertaAND({
+                    position: {x: 1000, y: 40},
+                    size: {width: 48, height: 48},
+                    inPorts: [""],
+                    outPorts: [""]
+                });
+                cAND.Compuerta=new ARBOL.Compuerta(cAND.id,'AND')
+                graph.addCells([cAND]);
+                console.log(cAND);
+                }); //FIN compuertaAnd
+
+
+                //Llamada a compuerta Or
+                $("#compuertaOr").click(function (evt)
+                {
+                     var cOr = new joint.shapes.arbol.CompuertaOR({
+                    position: {x: 1000, y: 40},
+                    size: {width: 48, height: 48},
+                    inPorts: [""],
+                    outPorts: [""]
+                });
+                    graph.addCells([cOr]);
+
+                }); //FIN compuertaOr
+
+               //Llamada a compuerta Or Exclusiva
+                $("#compuertaOrEx").click(function (evt)
+                {
+                    var cOrExclusiva = new joint.shapes.arbol.CompuertaOREX({
+                    position: {x: 1000, y: 40},
+                    size: {width: 48, height: 48},
+                    inPorts: [""],
+                    outPorts: [""]
+                });
+                    graph.addCells([cOrExclusiva]);
+
+                }); //FIN compuertaOr
+
+                //Llamada a compuerta AND Prioritaria
+                $("#compuertaAndPri").click(function (evt)
+                {
+                    var cAndPrioritaria = new joint.shapes.arbol.CompuertaANDPRI({
+                    position: {x: 1000, y: 40},
+                    size: {width: 48, height: 48},
+                    inPorts: [""],
+                    outPorts: [""]
+                });
+                    graph.addCells([cAndPrioritaria]);
+
+                }); //FIN compuertaAND Prioritaria
+
+            }); //FIN DE READY
+
+
+        </script>
+    </head>
+    <body>
+        <table border="1">
+            <tr>
+                <td rowspan="7">
+                    <div id="paper" >
+
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td width="250" align="CENTER">
+                    <input type="button" id="eventoTope" value="Evento tope" />
+                </td>
+            </tr>
+             <tr>
+                <td width="250" align="CENTER">
+                    <input type="button" id="evento" value="Evento" />
+                </td>
+            </tr>
+            <tr>
+                <td width="250" align="CENTER">
+                    <input type="button" id="compuertaAnd" value="AND" />
+                </td>
+            </tr>
+            <tr>
+                <td width="250" align="CENTER">
+                    <input type="button" id="compuertaOr" value="OR" />
+                </td>
+            </tr>
+            <tr>
+                <td width="250" align="CENTER">
+                    <input type="button" id="compuertaOrEx" value="OR EX."/>
+                </td>
+            </tr>
+            <tr>
+                <td width="250" align="CENTER">
+                    <input type="button" id="compuertaAndPri" value="AND PRI." />
+                </td>
+            </tr>
+        </table>
+
+
+    </body>
+</html>
