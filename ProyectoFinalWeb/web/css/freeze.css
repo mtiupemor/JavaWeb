@@ -614,6 +614,15 @@ form textarea.form-control {
   height: auto;
   line-height: normal;
 }
+form input.form-control {
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+  border-radius: 20px;
+  height: auto;
+  line-height: normal;
+}
 @media screen and (max-width: 640px) {
   .logo {
     width: 100px;
