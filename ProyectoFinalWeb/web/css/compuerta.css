@@ -1,0 +1,58 @@
+
+/* Control de los compuertas*/
+
+.compuerta {
+   position: absolute;
+   
+   pointer-events: auto;
+   /* Make sure events are propagated to the JointJS element so, e.g. dragging works.*/
+   -webkit-user-select: none;
+   border-radius: 4px;
+   
+   
+   padding: 5px;
+   box-sizing: border-box;
+   z-index: 1000;
+}
+
+
+
+.compuerta:hover .delete 
+{
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  display: block;  
+}
+
+
+
+
+
+.compuerta button.delete
+ {
+    color: #FFF; /*Color de la letra de la x*/
+    border: medium none;
+    background-color: #C0392B; /*color de relleno del circulo*/
+    border-radius: 20px;
+    width: 15px;
+    height: 15px;
+    line-height: 15px;
+    position: absolute;
+    top: -14px;
+    left: -14px;
+    padding: 0px;
+    margin: 0px;
+    font-weight: bold;
+    /*cursor: pointer;*/
+    display: none;
+}
+
+
+.compuerta button {
+   /* Enable interacting with inputs only. */
+   pointer-events: auto;  
+
+}
+
+
