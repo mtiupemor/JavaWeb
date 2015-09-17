@@ -56,7 +56,7 @@
             </li>
             <li><a href="../index.jsp#informacion">Información</a>
             </li>
-            <li><a href="../savearbol.html">Crea tu árbol</a>
+            <li><a href="../creaArbol.jsp">Crea tu árbol</a>
             </li>
             <li><a href="acercaDe.jsp">Acerca de</a>
             </li>

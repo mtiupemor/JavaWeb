@@ -164,7 +164,7 @@ joint.shapes.arbol.CompuertaAND = joint.shapes.arbol.Model.extend({
              image: { 
                 width:80,
                 height:80,
-                'xlink:href': "images/and.png"},
+                'xlink:href': "../images/and.png"},
             '.inPorts .port-body': { fill: 'PaleGreen' },
             '.outPorts .port-body': { fill: 'Tomato' }
         }
@@ -205,7 +205,7 @@ joint.shapes.arbol.CompuertaOR = joint.shapes.arbol.Model.extend({
              image: { 
                 width:80,
                 height:80,
-                'xlink:href': "images/or.png"},
+                'xlink:href': "../images/or.png"},
             '.inPorts .port-body': { fill: 'PaleGreen' },
             '.outPorts .port-body': { fill: 'Tomato' }
         }
@@ -245,7 +245,7 @@ joint.shapes.arbol.CompuertaOREX = joint.shapes.arbol.Model.extend({
              image: { 
                 width:80,
                 height:80,
-                'xlink:href': "images/orEx.png"},
+                'xlink:href': "../images/orEx.png"},
             '.inPorts .port-body': { fill: 'PaleGreen' },
             '.outPorts .port-body': { fill: 'Tomato' }
         }
@@ -285,7 +285,7 @@ joint.shapes.arbol.CompuertaANDPRI = joint.shapes.arbol.Model.extend({
              image: { 
                 width:80,
                 height:80,
-                'xlink:href': "images/andPri.png"},
+                'xlink:href': "../images/andPri.png"},
             '.inPorts .port-body': { fill: 'PaleGreen' },
             '.outPorts .port-body': { fill: 'Tomato' }
         }
