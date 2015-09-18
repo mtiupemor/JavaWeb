@@ -191,7 +191,7 @@
 
           var eventoIniciador = new joint.shapes.arbol.Evento({
             position: {x: 920, y: 30},
-            size: {width: 170, height: 100},
+            size: {width: 80, height: 80},
             label: 'I am HTML',
             inPorts: ['in'],
           });
@@ -205,7 +205,7 @@
         $("#evento").click(function (evt) {
           var evento = new joint.shapes.arbol.Evento({
             position: {x: 920, y: 30},
-            size: {width: 170, height: 100},
+            size: {width: 80, height: 80},
             label: 'I am HTML',
             inPorts: ['in'],
             outPorts: ['out']

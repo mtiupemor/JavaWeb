@@ -238,17 +238,6 @@ and open the template in the editor.
     /*cursor: pointer;*/
     display: none;
 }
-/*
-.evento button
- {
-    pointer-events: auto;
-}
-
-.evento :
-{
-    pointer-events: none;
-}*/
-
 
 .evento select,
 .evento input,
@@ -263,7 +252,7 @@ and open the template in the editor.
    right: 2px;
    bottom: 28px;
 }
-.evento input.name{   
+/*.evento input.name{   
   position: absolute;
 top: 10px;
 left: 8px;
@@ -273,18 +262,23 @@ padding: 5px;
 height: 22px;
 text-align: center;
 width: 90%;
-}
+}*/
 
-.evento input.value {
-   position:absolute;
-   bottom: 10px;
-   left:8px;   
-   border: none;
-   color: #333;
-   padding: 5px;
-   height: 22px;
-   text-align:center;
-   width:90%; 
+.evento input{
+  border: none;
+  border-radius: 5px;
+  color: #333;
+  font-size: 0.8em;
+  height: 20px;
+  margin: 0;
+  margin-bottom: 10px;
+  margin-left: 3px;
+  margin-top: 3px;
+  overflow: hidden;
+  position:relative;
+  text-align:center;
+  width:95%; 
+   
 }
 .evento label {
    color: #333;

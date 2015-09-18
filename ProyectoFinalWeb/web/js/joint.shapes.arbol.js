@@ -131,10 +131,10 @@ joint.shapes.arbol.Evento=joint.shapes.arbol.Model.extend({
 
         attrs[portLabelSelector] = { text: portName };
         attrs[portBodySelector] = { port: { id: portName || _.uniqueId(type) , type: type } };
-        attrs[portSelector] = { ref: '.body', 'ref-x': (index + 0.5) * (1 / total) };
+        attrs[portSelector] = { ref: '.body', 'ref-x': (index + 0.3) * (1 / total) };
 
-        if (selector === '.inPorts') { attrs[portSelector]['ref-dy'] = 2; }
-        if (selector === '.outPorts') { attrs[portSelector]['ref-y'] = -10; }       
+        if (selector === '.inPorts') { attrs[portSelector]['ref-dy'] = 15;}
+        if (selector === '.outPorts') { attrs[portSelector]['ref-y'] = -15; }       
        return attrs;
     }
     });
@@ -1064,8 +1064,8 @@ joint.shapes.arbol.ModelView = joint.dia.ElementView.extend({
     template: [
         '<div class="evento">',
         '<button class="delete">x</button>',
-        '<input class="name" name="nameEvento" type="text"  value="1" />',
-        '<input class="value" name="valueEvento" type="text" size="5" value="0" />',
+        '<input class="name" name="nameEvento" type="text"   value="1" />',
+        '<input class="value" name="valueEvento"  type="text"  value="0" />',
         '</div>'
     ].join(''),
 
