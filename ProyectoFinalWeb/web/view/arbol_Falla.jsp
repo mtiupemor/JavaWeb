@@ -143,15 +143,7 @@
                   <img src="../img/simbolos/Eventos Primarios/Evento Externo_.png">
                   <h4>Evento externo</h4>
                 </div>
-                <div class="item" title="Envía a" data-content="Indica que el árbol sigue desarrollandose en otro lugar.">
-                  <img src="../img/simbolos/Eventos Primarios/Envia a_.png">
-                  <h4>Envía a</h4>
-                </div>
-                <div class="item" title="Llega de" data-content="Indica la continuación del árbol.">
-                  <img src="../img/simbolos/Eventos Primarios/Llega de__.png">
-                  <h4>Llega de</h4>
-                </div>  
-
+               
               </div> 
               <div class="base"  id="intermedios">
                 <div class="item" title="Evento intermedio" data-content="Indica la continuacion del árbol.">

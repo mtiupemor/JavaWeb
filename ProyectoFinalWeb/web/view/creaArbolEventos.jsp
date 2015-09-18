@@ -276,7 +276,7 @@
 
 
 
-                <table border="1" width="100%">
+                <table border="1" width="98%">
 
                   <tr>
                     <td rowspan="4">
