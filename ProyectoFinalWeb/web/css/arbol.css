@@ -70,7 +70,7 @@ and open the template in the editor.
 .arbol.Atomic .label {
     fill: #ffb176;
 }
-
+/*
 .arbol.EventoIniciador .body {    
     //stroke: #ffb176;
   
@@ -83,7 +83,7 @@ and open the template in the editor.
 }
 .arbol.EventoIniciador .label {
    // fill: #ffb176;
-}
+}*/
 
 /* links */
 
@@ -183,17 +183,6 @@ and open the template in the editor.
    box-sizing: border-box;
    z-index: 1000;
 }
-/*.evento  :hover{
-   position: absolute;
-   background: #000;
-}*/
-/*
-.evento:hover 
-{
-  pointer-events: none;
-}*/
-
-
 
 .evento:hover .delete 
 {
@@ -202,23 +191,6 @@ and open the template in the editor.
   line-height: 20px;
   display: block;  
 }
-
-/*
-.evento:onclick 
-{
-  cursor: pointer;
-  pointer-events: none;
-}*/
-
-/*Efecto del circulo cuando se pasa el mouse sobre el mismo boton de cerrar*/
-/*.evento button.delete:hover 
-{
-    width: 40px;
-    height: 40px;
-    line-height: 40px;
-}*/
-
-
 
 .evento button.delete
  {
@@ -252,17 +224,6 @@ and open the template in the editor.
    right: 2px;
    bottom: 28px;
 }
-/*.evento input.name{   
-  position: absolute;
-top: 10px;
-left: 8px;
-border: medium none;
-color: #333;
-padding: 5px;
-height: 22px;
-text-align: center;
-width: 90%;
-}*/
 
 .evento input{
   border: none;
