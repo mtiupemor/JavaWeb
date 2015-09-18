@@ -1105,14 +1105,28 @@ joint.shapes.arbol.ModelView = joint.dia.ElementView.extend({
             //this.model.set('input', $(evt.target).val());
         }, this));
          this.$box.find('.name').on('change', _.bind(function(evt) {
-            //alert($);
-            console.log("en name",$(evt.target).val());
+             if(typeof this.model.Evento!='undefined'){
+                this.model.Evento.setNombre($(evt.target).val());                
+                $(evt.target).val($(evt.target).val());
+                console.log(this.model.Evento);
+            }
         }, this));
         
         this.$box.find('.value').on('change', _.bind(function(evt) {
             //alert($);
-            console.log("en value",$(evt.target).val());
+            console.log("en value",$(evt.target).val(),this);
             valorEvento=$(evt.target).val();
+            if(typeof this.model.Evento!='undefined'){                             
+                this.model.Evento.setValor(eval($(evt.target).val()));
+                if(!this.model.Evento.isValido()){
+                    alert("Objeto no valido"+this.model.Evento.id);
+                    $(evt.target).val('')
+                }
+                else                    
+                $(evt.target).val($(evt.target).val());
+            console.log(this.model.Evento);
+            }
+            
         }, this));
         
         /*this.$box.find('select').on('change', _.bind(function(evt) {

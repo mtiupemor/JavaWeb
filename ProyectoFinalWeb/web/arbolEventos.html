@@ -3,11 +3,11 @@
         <meta charset="UTF-8">
         <title></title>
         <link rel="stylesheet" href="css/joint.css" />
-        <link rel="stylesheet" href="css/arbol.css" />
+        <link rel="stylesheet" href="css/arbolEventos.css" />
         <link rel="stylesheet" href="css/compuerta.css" />
         <link rel="stylesheet" href="css/logic.css" />
         <script src="js/joint.js"></script>                
-        <script src="js/joint.shapes.arbol.js"></script>
+        <script src="js/joint.shapes.arbolEventos.js"></script>
        
         <script src="js/joint.shapes.logic.js"></script>
         <script src="js/joint.shapes.logic.min.js"></script>
@@ -20,7 +20,10 @@
             var id1="";
             var sistema;
             var exito;
-            var position;
+            var xySistema;
+            var xyExito;
+            var exitosNull=[]; //Almacena los exitos que han quedado nulos
+            var sistemasNull=[];//Almacena los sistemas que han quedado nulos
            $(document).ready(function () {
 
                 var graph = new joint.dia.Graph;
@@ -75,7 +78,7 @@
                 //Llamada a evento iniciador
                 $("#eventoIniciador").click(function (evt) {
 
-                    eventoIniciador = new joint.shapes.arbol.EventoIniciador({
+                    eventoIniciador = new joint.shapes.arbolEventos.EventoIniciador({
                         position: {x: 20, y: 300},
                         size: {width: 100, height: 40},
                         label: 'I am HTML',
@@ -87,70 +90,98 @@
   
                
                   //Llamada a sistema
+                
                 $("#sistema").click(function (evt) {
-                  sistema = new joint.shapes.arbol.Sistema({
-                        position: {x: lon, y: lat},
-                        size: {width: 100, height: 40},
-                        inPorts: ['in']
-                    });
-                  position = sistema.get('position');//Obtiene la posición del sistema creado
-                  graph.addCells([sistema]);
-                  crearExito(lon,position.y-100); //Crea un elemento exito 100 pixeles arriba del sistema
-                  sistema.embed(exito); //Lo agrega como hijo del sistema creado
-                  conectar(sistema,'in',exito,'in');
-                  lon+=150;  //Desplazamiento de x
-                  lat+=100;
+                          
                   if (document.getElementById("rbtFalla").checked)
                   {
-                    //alert("Es falla");
                     
-                    if(graph.getCell(idSistema)!=null){
-                        graph.getCell(idSistema).embed(sistema);//Agrega el nuevo sistema como hijo del sistema anterior
-                        conectar(graph.getCell(idSistema),'in',sistema,'in');
-                        //connectar(graph.getCell(sistema.get('parent')),'in',sistema,'in');
-                    }else{
-                        idSistema = sistema.get('id'); //Obtiene el id del primer sistema
-                        conectar(eventoIniciador,'in',sistema,'in')//se conecta el evento iniciador con el primer sistema
-                    }
-                    idSistema=sistema.get('id'); //Obtiene el id del nuevo sistema
-                    }else{
-                      alert("Es exito");
-                      if(graph.getCell(idSistema)!=null){
-                        graph.getCell(idSistema).embed(sistema);//Agrega el nuevo sistema como hijo del sistema anterior
-                        conectar(graph.getCell(idSistema),'in',sistema,'in');
-                        //connectar(graph.getCell(sistema.get('parent')),'in',sistema,'in');
-                      }else{
-                            idSistema = sistema.get('id'); //Obtiene el id del primer sistema
+                        
+                        if(graph.getCell(idSistema)!=null){
+                            lon=xySistema.x+150;  //Desplazamiento de x
+                            lat=xySistema.y+100;  
+                            crearSistema();
+                            //graph.getCell(idSistema).embed(sistema);//Agrega el nuevo sistema como hijo del sistema anterior
+                            conectar(graph.getCell(idSistema),'in',sistema,'in');
+                            exitosNull.push(idExito); //Se agrega el sistema anterior porque queda nulo
+                        }else{
+                            crearSistema();
+                            id1 = sistema.get('id'); //Obtiene el id del primer sistema
                             conectar(eventoIniciador,'in',sistema,'in')//se conecta el evento iniciador con el primer sistema
-                      }
-                      idSistema=sistema.get('id'); //Obtiene el id del nuevo sistema
-                    }else{
-                    }
-                  
-                  
+                            //idExito = exito.get('id'); //Obtiene el id del nuevo exito
+                            //exitosNull.push(idExito); //Se agrega el sistema anterior porque queda nulo
+                        }
+                        
+                  }else{
+                        
+                        if(graph.getCell(idSistema)!=null){
+                          lon=xyExito.x+150;
+                          lat=xyExito.y;
+                          crearSistema();
+                          //graph.getCell(idExito).embed(sistema);//Agrega el nuevo sistema como hijo del sistema anterior
+                          conectar(graph.getCell(idExito),'in',sistema,'in');
+                          sistemasNull.push(idSistema); //Se agrega el exito anterior porque ha quedado nulo
+                        }else{
+                            alert("Agrega primero un sistema");
+                            //idSistema = sistema.get('id'); //Obtiene el id del primer sistema
+                            //conectar(eventoIniciador,'in',sistema,'in')//se conecta el evento iniciador con el primer sistema
+
+                        }
+                        
+                  }
+                  idSistema=sistema.get('id'); //Obtiene el id del nuevo sistema
+                  idExito = exito.get('id'); //Obtiene el id del nuevo exito
+                
                 }); //Fin sistema
                     
                   //Llamada a exito  
                 $("#exito").click(function (evt) {
-                  crearExito(100,100);
+                  var exitoFin = new joint.shapes.arbolEventos.Exito({
+                        position: {x: lon1, y: (lat1)},
+                        size: {width: 100, height: 40},
+                        inPorts: ['in']
+                    });
+                    exitoFin.type="exitoFin"; 
+                    graph.addCells([exitoFin]);
                   
-                }); 
+                });
+                function crearSistema(){
+                    sistema = new joint.shapes.arbolEventos.Sistema({
+                        position: {x: lon, y: lat},
+                        size: {width: 100, height: 40},
+                        inPorts: ['in']
+                    });
+                    sistema.type="sistema";
+                    xySistema = sistema.get('position');//Obtiene la posición del sistema creado
+                    graph.addCells([sistema]);
+                    crearExito(xySistema.x,xySistema.y-100); //Crea un elemento exito 100 pixeles arriba del sistema
+                    xyExito = exito.get('position');
+                    //sistema.embed(exito); //Lo agrega como hijo del sistema creado
+                    conectar(sistema,'in',exito,'in');
+                    
+                }
                 function crearExito(lon1,lat1){
-                    exito = new joint.shapes.arbol.Exito({
+                    exito = new joint.shapes.arbolEventos.Exito({
+                        position: {x: lon1, y: (lat1)},
+                        size: {width: 100, height: 40},
+                        inPorts: ['in']
+                    });
+                    exito.type="exito"; 
+                    graph.addCells([exito]);
+      
+                }
+                function calcularXY(lon1,lat1){
+                    exito = new joint.shapes.arbolEventos.Exito({
                         position: {x: lon1, y: (lat1)},
                         size: {width: 100, height: 40},
                         inPorts: ['in']
                     });
                     graph.addCells([exito]);
-                    console.log(exito);
-      
+    
                 }
                 //Fin exito
                 //Funcion conectar
                 var conectar = function(source, sourcePort, target, targetPort) {
-                    console.log("endConectar");
-                      console.log(source);
-                       console.log(target);
                 var link = new joint.shapes.logic.Wire({
                 source: { id: source.id, selector: source.getPortSelector(sourcePort) },
                 target: { id: target.id, selector: target.getPortSelector(targetPort) }
@@ -161,13 +192,46 @@
                 
                  //Llamada a una frecuencia 
                 $("#frecuencia").click(function (evt) {
-                  var frecuencia = new joint.shapes.arbol.Frecuencia({
+                  var frecuencia = new joint.shapes.arbolEventos.Frecuencia({
                         position: {x: 30, y: 80},
                         size: {width: 100, height: 40},
                         inPorts: ['in']
                     });
                   graph.addCells([frecuencia]);
                 }); //Fin frecuencia
+                
+                graph.on('add', function(sistema) { 
+                                    
+                if(sistema.type==="exito"){
+                    var cont =0;
+                    console.log("Nuevo exito y: ",graph.getCell(sistema.id).get('position').y)
+                    var yExito = graph.getCell(sistema.id).get('position').y; //Se obtiene valor y del nuevo elemento exito
+                    for (var cont = exitosNull.length - 1; cont >= 0 ; cont--){
+                        console.log(cont," exito y: ",graph.getCell(exitosNull[cont]).get('position').y);
+                        if( yExito <= graph.getCell(exitosNull[cont]).get('position').y){
+                            yExito= graph.getCell(exitosNull[cont]).get('position').y - yExito + 100;
+                            graph.getCell(exitosNull[cont]).translate(0,-yExito);
+                            yExito = graph.getCell(exitosNull[cont]).get('position').y;
+                        }
+                        console.log(cont," exito nuevo y: ",graph.getCell(exitosNull[cont]).get('position').y);
+                }
+                }
+                if(sistema.type==="sistema"){
+                    var cont =0;
+                    console.log("Nuevo sistema y: ",graph.getCell(sistema.id).get('position').y)
+                    var ySistema=graph.getCell(sistema.id).get('position').y;
+                    for (var cont = sistemasNull.length - 1; cont >= 0 ; cont--){
+                        console.log(cont," sistema y: ",graph.getCell(sistemasNull[cont]).get('position').y);
+                        if( ySistema >= graph.getCell(sistemasNull[cont]).get('position').y){
+                            ySistema= ySistema - graph.getCell(sistemasNull[cont]).get('position').y + 100;
+                            graph.getCell(sistemasNull[cont]).translate(0,ySistema);
+                            ySistema = graph.getCell(sistemasNull[cont]).get('position').y;
+                        }
+                        console.log(cont," sistema nuevo y: ",graph.getCell(sistemasNull[cont]).get('position').y);
+                }
+                }
+                });
+                
                     
             }); //FIN DE READY
         </script>
@@ -206,6 +270,11 @@
             <tr>
                 <td width="250" align="CENTER">
                     <input type="button" id="frecuencia" value="Frecuencia" />
+                </td>
+            </tr>
+            <tr>
+                <td width="250" align="CENTER">
+                    <input type="button" id="calcular" value="Calcular" />
                 </td>
             </tr>
         </table>

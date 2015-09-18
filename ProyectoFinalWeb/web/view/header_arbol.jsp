@@ -17,14 +17,8 @@
         <link rel="stylesheet" href="../css/slick.css">
         <link rel="stylesheet" href="../js/rs-plugin/css/settings.css">
         <link rel="stylesheet" href="../css/freeze.css">
-        
-        <link rel="stylesheet" href="../css/joint.css" />
-        <link rel="stylesheet" href="../css/arbol.css" />
-        <link rel="stylesheet" href="../css/compuerta.css" />
-        <link rel="stylesheet" href="../css/logic.css" />
-        
         <script type="text/javascript" src="../js/modernizr.custom.32033.js"></script> 
-        <title>APS</title>
+        
         <script src="../js/jquery-1.11.1.min.js"></script>
         <script src="../js/bootstrap.min.js"></script>
         <script src="../js/slick.min.js"></script>
@@ -33,14 +27,6 @@
         <script src="../js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
         <script src="../js/waypoints.min.js"></script>
         <script src="../js/scripts.js"></script>
-        
-        <script src="../js/joint.js"></script>
-        <script src="../js/joint.shapes.arbol.js"></script>
-        <script src="../js/arbollogica.js"></script>
-        <script src="../js/controlArbol.js"></script>
-        <script src="../js/joint.shapes.logic.js"></script>
-        <script src="../js/joint.shapes.logic.min.js"></script>
-        <script src="../js/funciones.js"></script>
         
         
     <!--[if lt IE 9]>
@@ -70,7 +56,7 @@
             </li>
             <li><a href="../index.jsp#informacion">Información</a>
             </li>
-            <li><a href="savearbol.jsp">Crea tu árbol</a>
+            <li><a href="creaArbolFalla.jsp">Crea tu árbol</a>
             </li>
             <li><a href="acercaDe.jsp">Acerca de</a>
             </li>
@@ -82,4 +68,6 @@
         <!-- /.navbar-collapse -->
       </div>
       <!-- /.container-->
-    </nav>    
+    </nav>  
+    </body>
+</html>
