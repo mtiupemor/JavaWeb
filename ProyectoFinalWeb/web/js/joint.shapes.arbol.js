@@ -164,7 +164,7 @@ joint.shapes.arbol.CompuertaAND = joint.shapes.arbol.Model.extend({
              image: { 
                 width:80,
                 height:80,
-                'xlink:href': "images/and.png"},
+                'xlink:href': "../images/and.png"},
             '.inPorts .port-body': { fill: 'PaleGreen' },
             '.outPorts .port-body': { fill: 'Tomato' }
         }
@@ -205,7 +205,7 @@ joint.shapes.arbol.CompuertaOR = joint.shapes.arbol.Model.extend({
              image: { 
                 width:80,
                 height:80,
-                'xlink:href': "images/or.png"},
+                'xlink:href': "../images/or.png"},
             '.inPorts .port-body': { fill: 'PaleGreen' },
             '.outPorts .port-body': { fill: 'Tomato' }
         }
@@ -245,7 +245,7 @@ joint.shapes.arbol.CompuertaOREX = joint.shapes.arbol.Model.extend({
              image: { 
                 width:80,
                 height:80,
-                'xlink:href': "images/orEx.png"},
+                'xlink:href': "../images/orEx.png"},
             '.inPorts .port-body': { fill: 'PaleGreen' },
             '.outPorts .port-body': { fill: 'Tomato' }
         }
@@ -285,7 +285,7 @@ joint.shapes.arbol.CompuertaANDPRI = joint.shapes.arbol.Model.extend({
              image: { 
                 width:80,
                 height:80,
-                'xlink:href': "images/andPri.png"},
+                'xlink:href': "../images/andPri.png"},
             '.inPorts .port-body': { fill: 'PaleGreen' },
             '.outPorts .port-body': { fill: 'Tomato' }
         }
@@ -1105,14 +1105,28 @@ joint.shapes.arbol.ModelView = joint.dia.ElementView.extend({
             //this.model.set('input', $(evt.target).val());
         }, this));
          this.$box.find('.name').on('change', _.bind(function(evt) {
-            //alert($);
-            console.log("en name",$(evt.target).val());
+             if(typeof this.model.Evento!='undefined'){
+                this.model.Evento.setNombre($(evt.target).val());                
+                $(evt.target).val($(evt.target).val());
+                console.log(this.model.Evento);
+            }
         }, this));
         
         this.$box.find('.value').on('change', _.bind(function(evt) {
             //alert($);
-            console.log("en value",$(evt.target).val());
+            console.log("en value",$(evt.target).val(),this);
             valorEvento=$(evt.target).val();
+            if(typeof this.model.Evento!='undefined'){                             
+                this.model.Evento.setValor(eval($(evt.target).val()));
+                if(!this.model.Evento.isValido()){
+                    alert("Objeto no valido"+this.model.Evento.id);
+                    $(evt.target).val('')
+                }
+                else                    
+                $(evt.target).val($(evt.target).val());
+            console.log(this.model.Evento);
+            }
+            
         }, this));
         
         /*this.$box.find('select').on('change', _.bind(function(evt) {

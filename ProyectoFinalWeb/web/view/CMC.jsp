@@ -82,17 +82,17 @@
                         </div>
                         <div class="itemLey" >
                             <h4>Símbolo Ingeniería</h4>
-                            <img src="../img/cmc/conmutativa Ing__3.png" alt="">
+                            <img src="../img/cmc/conmutativa Ing_3.png" alt="">
                         </div>
                     </div>
                     <div class="base" id="asociativa">
                         <div class="itemLey" >
                             <h4>Símbolo Matemático</h4>
-                            <img src="../img/cmc/asociativa Mat_3.png"  alt="">
+                            <img src="../img/cmc/asociativa Ing_3.png"  alt="">
                         </div>
                         <div class="itemLey">
                             <h4>Símbolo Ingeniería</h4>
-                        <img src="../img/cmc/asociativa Ing_3.png" alt="">   
+                        <img src="../img/cmc/asociativa Mat_3.png"" alt="">   
                         </div>
                     </div>
                     <div class="base" id="distributiva">

@@ -11,6 +11,10 @@ and open the template in the editor.
         <link rel="stylesheet" href="css/joint.css" />
         <link rel="stylesheet" href="css/arbol.css" />
         <link rel="stylesheet" href="css/compuerta.css" />
+        <script>
+            var graph;
+            var veces=0;
+            </script>
         <script src="js/joint.js"></script>
         <script src="js/joint.shapes.arbol.js"></script>
         <script src="js/arbollogica.js"></script>
@@ -35,10 +39,13 @@ and open the template in the editor.
                 e2.setValor(2);
                 compuerta1.setHijoEvento(e2);
                 e2.setValor(0.1);
-                //e1.suscribir(compuerta1);                
-                console.log("compuerta 1"+compuerta1.getTipo());
+                //e1.suscribir(compuerta1);           
+                console.log(compuerta1.hasHijoEvento(e1));
+               
+                console.log("compuerta 1 "+compuerta1.getTipo());
                 console.log(compuerta1.getValorCompuerta(compuerta1));
-                
+                console.log(compuerta1.hasHijoEvento(e2));
+                /*
                 var e3=new ARBOL.Evento("","Evento3");
                 e3.setValor(0.1);
                 var compuerta2=new ARBOL.Compuerta("","AND");
@@ -63,7 +70,7 @@ and open the template in the editor.
                 
                 
                 
-                
+                */
 
 
 
@@ -71,8 +78,11 @@ and open the template in the editor.
 
 
 
-                var graph = new joint.dia.Graph;
-
+                graph = new joint.dia.Graph;
+                /*graph.on('change', function(link){
+                   console.log("En evento graph on",link);                    
+                }
+                );*/
                 var paper = new joint.dia.Paper(
                 {
                     el: $('#paper'),
@@ -80,16 +90,84 @@ and open the template in the editor.
                     height: 600,
                     gridSize: 1,
                     model: graph,
+                    defaultLink:new joint.shapes.arbol.Link,
                     snapLinks: true,
-                    embeddingMode: true,
-                    validateEmbedding: function (childView, parentView) {
-                        return false;//parentView.model instanceof joint.shapes.arbol.Coupled;
-                    },
-                   validateConnection: function (sourceView, sourceMagnet, targetView, targetMagnet)
-                   {
-                        console.log("test");
-                        return sourceMagnet != targetMagnet;
+                    linkPinning: false,                    
+                    restrictTranslate:{x: 0, y: 0, width: 1100, height:600},
+                    validateConnection: function(vs, ms, vt, mt, e, vl) {
+                       if(vs!=vt)
+                       {
+                    if (e === 'target') {
+                        console.log("port source",vs);
+                        console.log("port source");
+                        console.log("vt",vt);
+                        console.log("vs",vs);
+                        var puertoOrigen=V(ms || !ms.getAttribute('class') || mt.getAttribute('class').indexOf('output')).attr('port').slice(0,3);
+                        console.log("tipo de puerto origen",puertoOrigen);                        
+                        if(ms!=mt){
+                            //var source = graph.getCell();
+                            //source.attr('.outPorts circle/magnet', 'passive')
+                        if(puertoOrigen=='out')
+                        {
+                            console.log("out a in",vt,vs);                               
+                                if(((typeof vt.model.Evento)!='undefined')&&((typeof vs.model.Compuerta)!='undefined')){ //cuando se une de out compuerta -> in Evento
+                                    if(!(vt.model.Evento.hasHijoCompuerta(vs.model.Compuerta))){
+                                        vt.model.Evento.setHijo(vs.model.Compuerta);
+                                        console.log("Agregado Compuerta",vt.model.Evento.getHijo());
+                                       // alert("Se agrego la compuerta como hijo de Evento");
+                                        return true;
+                                    }
+                             }else if(((typeof vs.model.Evento)!='undefined')&&((typeof vt.model.Compuerta)!='undefined')){ //se une out Evento-> int Compuerta
+                                        if(!(vt.model.Compuerta.hasHijoEvento(vs.model.Evento))){
+                                            vt.model.Compuerta.setHijoEvento(vs.model.Evento);
+                                            console.log("Agregado Evento",vt.model.Compuerta.getTipo(),vt.model.Compuerta.getValor());
+                                            return true;
+                                        }else
+                                             console.log("Lo tengo como hijo");
+                                        console.log("Compuerta",vt.model.Compuerta,"Compuerta \n",vt.model.Compuerta.hasHijoEvento(vs.model.Evento));
+                                    }
+                             
+                            
+                            
+                            /*if(typeof vs.model.Evento!='undefined'&&typeof vt.model.Compuerta!='undefined'){
+                                    if(!(vs.model.Evento.hasHijoCompuerta(vt.model.Compuerta))){
+                                        console.log("Agregando Hijo compuerta!!");
+                                        vs.model.Evento.setHijo(vt.model.Compuerta);
+                                    }
+                                    console.log("Evento",vs.model.Evento,"Evento \n",vs.model.Evento.hasHijoCompuerta(vt.model.Compuerta));
+                                }*/
+                        }else if(puertoOrigen=='in')
+                        {
+                            console.log("in a out");                                                        
+                        }
                     }
+                        //console.log("test",typeof vs.model.Evento!='undefined',typeof vt.model.Compuerta!='undefined',vs.model.Evento.hasHijoCompuerta(vt.model.Compuerta));
+                        // target requires an input port to connect
+                         
+                         /*
+                        
+                        
+                        
+                          }
+                        */
+                        /*if (!mt || !mt.getAttribute('class') || mt.getAttribute('class').indexOf('input') < 0) 
+                            return false;*/
+                        
+                       
+
+                        } else { // e === 'source'
+                            console.log("es source");
+                            // source requires an output port to connect
+                            /*return ms && ms.getAttribute('class') && ms.getAttribute('class').indexOf('output') >= 0; */
+                        }
+                      }
+                     return true;
+                    }
+             });
+             paper.on("cell:highlight",function(cellView, el){
+                 console.log("aqui en paper",cellView,el);
+                 
+                 
              });
 
 /*here*/
@@ -197,9 +275,9 @@ and open the template in the editor.
                         inPorts: ['in'],
                         outPorts: ['out']
                     });
-					evento.Evento=new ARBOL.Evento('','Evento 1');
-					console.log(evento);
-                  graph.addCells([evento]);
+                    evento.Evento=new ARBOL.Evento(evento.id,'Evento 1');                                        
+                    console.log(evento);
+                    graph.addCells([evento]);
                     }); //Fin compuerta evento
 
 
@@ -212,7 +290,7 @@ and open the template in the editor.
                     inPorts: [""],
                     outPorts: [""]
                 });
-                cAND.Compuerta=new ARBOL.Compuerta(cAND.id,'AND')
+                cAND.Compuerta=new ARBOL.Compuerta(cAND.id,'AND');
                 graph.addCells([cAND]);
                 console.log(cAND);
                 }); //FIN compuertaAnd
@@ -227,6 +305,7 @@ and open the template in the editor.
                     inPorts: [""],
                     outPorts: [""]
                 });
+                    cOr.Compuerta=new ARBOL.Compuerta(cOr.id,'OR');
                     graph.addCells([cOr]);
 
                 }); //FIN compuertaOr
@@ -256,6 +335,17 @@ and open the template in the editor.
                     graph.addCells([cAndPrioritaria]);
 
                 }); //FIN compuertaAND Prioritaria
+                
+                
+                /*Funcion para mostrar el resultado de conectar los puertos entrada/salida
+                CLIO
+                16092015 1828
+                */
+                function out(m) 
+                {
+                    $('#paper-link-out').html(m);
+                }//Fin out, CLIO
+
 
             }); //FIN DE READY
 
@@ -303,7 +393,8 @@ and open the template in the editor.
                 </td>
             </tr>
         </table>
-
+ <!--Mostrar conexiones validas,CLIO, 16092015 1830-->
+        <div id="paper-link-out"></div>
 
     </body>
 </html>

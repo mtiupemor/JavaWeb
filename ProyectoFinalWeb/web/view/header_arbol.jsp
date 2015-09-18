@@ -18,7 +18,7 @@
         <link rel="stylesheet" href="../js/rs-plugin/css/settings.css">
         <link rel="stylesheet" href="../css/freeze.css">
         <script type="text/javascript" src="../js/modernizr.custom.32033.js"></script> 
-        <title>APS</title>
+        
         <script src="../js/jquery-1.11.1.min.js"></script>
         <script src="../js/bootstrap.min.js"></script>
         <script src="../js/slick.min.js"></script>

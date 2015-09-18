@@ -113,7 +113,7 @@ and open the template in the editor.
                             data-speed="1000"
                             data-start="700"
                             data-easing="Power4.easeOut">
-                            <img src="img/freeze/Slides/alerta.png" alt="" style="width:500px !important; height:350px !important;">
+                            <img src="img/freeze/Slides/alerta.png" alt="">
                         </div>
 
                         <div class="tp-caption customin customout visible-xs"
@@ -179,7 +179,7 @@ and open the template in the editor.
                         </div>
                        
                         <div class="tp-caption small_light_white sfb hidden-xs" data-x="left" data-y="center" data-hoffset="0" data-voffset="80" data-speed="1000" data-start="1600" data-easing="Power4.easeOut">
-                           <p>  Un APS puede utilizarse para evaluar y modificar el entrenamiento de los operadores <br> en los procedimientos de operación de emergencia de la  planta, para definir las secuencias de accidente,<br> para simular el uso de los planes de  emergencia, entre otras aplicaciones </p>
+                           <p>  Un APS puede utilizarse para evaluar y modificar el entrenamiento de los operadores <br> en los procedimientos de operación de emergencia de la  planta, para definir las secuencias de accidente,<br> para simular el uso de los planes de  emergencia, entre otras aplicaciones. </p>
                         </div>
                         
                         

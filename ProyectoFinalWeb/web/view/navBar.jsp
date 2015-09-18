@@ -31,9 +31,6 @@
     <script src="js/scripts.js"></script>
 
 
-
-    <title>Includes del NavBar </title>
-
   </head>
   <body>
 
@@ -57,7 +54,7 @@
             </li>
             <li><a href="index.jsp#informacion">Información</a>
             </li>
-            <li><a href="savearbol.html">Crea tu árbol</a>
+            <li><a href="view/creaArbolFalla.jsp">Crea tu árbol</a>
             </li>
             <li><a href="view/acercaDe.jsp">Acerca de</a>
             </li>

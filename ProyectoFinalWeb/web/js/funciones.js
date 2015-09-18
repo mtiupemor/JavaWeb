@@ -1,57 +1,85 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title></title>
-        <link rel="stylesheet" href="css/joint.css" />
-        <link rel="stylesheet" href="css/arbol.css" />
-        <link rel="stylesheet" href="css/compuerta.css" />
-        <script src="js/joint.js"></script>
-        <script src="js/joint.shapes.arbol.js"></script>
-        <script src="js/arbollogica.js"></script>
-        <script src="js/controlArbol.js"></script>
-        <script>
+var eT=new ARBOL.EventoTope();
+var arbolGrafico;
+$(document).ready(function () {
 
-            $(document).ready(function() {
+  function calculaOperaciones(link,sourceView, sourceMagnet, targetView, targetMagnet){
+    console.log("en funcion");
+    console.log(link.get('source'));
+      // if(valorCompuerta==="CompuertaAND"){}
+      // alert("Tu valor valculado es: " + valorEvento*2);
+      // else if(valorCompuerta==="CompuertaOR")
+      // alert("no");
+  }
 
-                alert($(".inputEvento").val());
+  var graph = new joint.dia.Graph;
 
-            });
+  var paper = new joint.dia.Paper({
+      el: $('#paper'),
+      width: 1100,
+      height: 450,
+      gridSize: 1,
+      model: graph,
+      snapLinks: true,
+      embeddingMode: true,
+      defaultLink: new joint.shapes.logic.Wire,
+      validateEmbedding: function (childView, parentView) {
+          return false;//parentView.model instanceof joint.shapes.arbol.Coupled;
+      },
+      validateConnection: function (sourceView, sourceMagnet, targetView, targetMagnet)
+      {
+            var msj="";
+        graph.on('change:source change:target', function(link){
+          var puertoOrigen = link.get('source').port;
+          var origenId = link.get('source').id;
+          var puertoDestino = link.get('target').port;
+          var destinoId = link.get('target').id;
 
-            var eT=new ARBOL.EventoTope();
-            var arbolGrafico;
-            $(document).ready(function () {
+          console.log("val1 "+origenId);
+          console.log("val2"+destinoId);
 
-                var graph = new joint.dia.Graph;
+          if(origenId == destinoId)
+          {
+            msj="Mismo";
+            link.remove();
+          }else{
+            msj="Diferente";
+            if(typeof origenId!='undefined' && typeof destinoId!='undefined')
+            {
+              var partida=puertoOrigen.slice(0,2);
+              var destino=puertoDestino.slice(0,2);
+              console.log("puertos: primero>"+partida+" segundo>"+destino);
+              calculaOperaciones(link,sourceView, sourceMagnet, targetView, targetMagnet);
 
-                var paper = new joint.dia.Paper(
-                {
-                    el: $('#paper'),
-                    width: 1100,
-                    height: 600,
-                    gridSize: 1,
-                    model: graph,
-                    snapLinks: true,
-                    embeddingMode: true,
-                    validateEmbedding: function (childView, parentView) {
-                        return false;//parentView.model instanceof joint.shapes.arbol.Coupled;
-                    },
-                   validateConnection: function (sourceView, sourceMagnet, targetView, targetMagnet)
-                   {
-                        return sourceMagnet != targetMagnet;
+              /*ou->ou*/
+              if(partida=="ou" && destino=="ou")
+              {
+                console.log("Primer validacion");
+                link.remove();
+              }else if (partida=="in" && destino=="in") 
+              {
+                        console.log("Segunda validacion");
+                        link.remove();
+                    } else if (partida=="in" && destino=="ou")
+                    {
+                        console.log("Tercera validacion");
+                        link.remove();
+                    }
+                  }
+            }
+            var m = [
+              'The port <b>' + puertoOrigen,
+              '</b> of element with ID <b>' + origenId,
+              '</b> is connected to port <b>' + puertoDestino,
+              '</b> of elemnt with ID <b>' + destinoId + '</b> : '+ '<b>'+msj+'</b>'
+            ].join('');
+                    
+          //enviamos cordenadas
+          out(m);
+          });  
+                   return sourceMagnet != targetMagnet;
                     }
              });
+
 
 /*here*/
                 /*
@@ -218,7 +246,20 @@ and open the template in the editor.
 
                 }); //FIN compuertaAND Prioritaria
                 
-                
+                 //Llamada a redimencionar Pantalla
+                $("#redimenciona").click(function (evt)
+                {
+                  
+                  var heightActual = 0;  
+                    $('#paper').css("height", function(index, value){
+                      var dato = value.length-2;
+                      heightActual = value.substr(0,dato);
+                      heightActual = parseInt(heightActual) + 450;
+                   });
+                  
+                  document.getElementById('paper').style.height = heightActual + "px";
+                  document.getElementById('v-2').style.height = heightActual + "px";
+                });
                 //Funciones del menu general del arbol
                  $("#clearArbol").click(function (evt) {
                      evt.preventDefault();
@@ -231,16 +272,16 @@ and open the template in the editor.
                   evt.preventDefault();
                   arbolGrafico=JSON.stringify(graph);                  
                   //alert(arbolGrafico);   
-                  /*
+                  
                   $.ajax({
-                                   url: "guardaArbol",
+                                   url: "http://192.168.0.4:8084/guardararbol/guardaarbolgrafico",
                                    type: "POST",
-                                   data: {arbol : JSON.stringify(graph)},
-                                   dataType: "html", 
+                                   data: {id:"tree3",nombre:"test",arbol : JSON.stringify(graph)},
+                                   dataType: "json", 
                                   success: function(respuesta)                          
                                   {                                  
                                         
-                                      alert(respuesta);
+                                      alert(respuesta.status);
                                       },
                                      error: function(XMLHttpRequest, textStatus, errorThrown) {
                                         alert("No se encontro el servicio solicitado"+errorThrown);
@@ -250,17 +291,17 @@ and open the template in the editor.
                                      ,
                                      
                                  });   
-                  */
+                  
                     });
                 
                 
                 $("#loadArbol").click(function (evt) {
                    evt.preventDefault();
-                   /*
+                   
                    $.ajax({
-                                   url: "getArbol",
+                                   url: "http://localhost:8084/guardararbol/getArbol",
                                    type: "POST",
-                                   data: {solicitud : "arbolfallas"},
+                                   data: {solicitud : "arbolfallas", id:"tree11"},
                                    dataType: "json", 
                                   success: function(respuesta)                          
                                   {                                  
@@ -275,10 +316,10 @@ and open the template in the editor.
                                         }
                                      ,
                                      
-                                 });   */
+                                 });  
                   // JSON.parse(obtieneArbol("")));
                    
-                     graph.fromJSON(JSON.parse(arbolGrafico));
+                     //graph.fromJSON(JSON.parse(arbolGrafico));
                    console.log("cargando arbol","aqui");
                    
                    
@@ -286,57 +327,20 @@ and open the template in the editor.
                     });
                 
                 
+                /*Funcion para mostrar el resultado de conectar los puertos entrada/salida*/
+                function out(m) 
+                {
+                    $('#paper-link-out').html(m);
+                }
                 
-                
-                
-            }); //FIN DE READY
-
-
-        </script>
-    </head>
-    <body>
-        <table border="1">
-            <tr>
-                <td rowspan="7">
-                    <div id="paper" >
-
-                    </div>
-                </td>
-            </tr>
-
-            <tr>
-                <td width="250" align="CENTER">
-                    <input type="button" id="eventoTope" value="Evento tope" />
-                </td>
-            </tr>
-             <tr>
-                <td width="250" align="CENTER">
-                    <input type="button" id="evento" value="Evento" />
-                </td>
-            </tr>
-            <tr>
-                <td width="250" align="CENTER">
-                    <input type="button" id="compuertaAnd" value="AND" />
-                </td>
-            </tr>
-            <tr>
-                <td width="250" align="CENTER">
-                    <input type="button" id="compuertaOr" value="OR" />
-                </td>
-            </tr>
-            <tr>
-                <td width="250" align="CENTER">
-                    <input type="button" id="compuertaOrEx" value="OR EX."/>
-                </td>
-            </tr>
-            <tr>
-                <td width="250" align="CENTER">
-                    <input type="button" id="compuertaAndPri" value="AND PRI." />
-                </td>
-            </tr>
-        </table>
-        <center><input type="button" id="clearArbol" value="limpiar Area"/>
-        <input type="button" id="saveArbol" value="Guardar Arbol"/>
-        <input type="button" id="loadArbol" value="Cargar un Arbol"/></center>
-    </body>
-</html>
+              /*Funcion para visualizar el paper a escala*/
+              var paperSmall = new joint.dia.Paper({
+              el: $('#myholder-small'),
+              width: 600,
+              height: 200,
+              model: graph,
+              gridSize: 1
+          });
+          paperSmall.scale(.4);
+          paperSmall.$el.css('pointer-events', 'none');
+          }); //FIN DE READY
