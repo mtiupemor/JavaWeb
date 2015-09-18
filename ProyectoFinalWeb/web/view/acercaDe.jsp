@@ -95,7 +95,7 @@ and open the template in the editor.
                           <i class="fa fa-user  fa-2x"></i>
                         </a>
                         <div class="media-body">
-                          <h4 class="media-heading">Conelio Landa Isidoro  </h4>
+                          <h4 class="media-heading">Cornelio Landa Isidoro  </h4>
                         </div>
                       </div>
 
