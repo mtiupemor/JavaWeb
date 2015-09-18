@@ -381,7 +381,7 @@
             <div class="container">
                 <br/><br/><br/>
                 <div class="section-heading scrollpoint sp-effect3">
-                    <h2>Crea tu árbol</h2>
+                    <h2>Crea tu árbol de fallas</h2>
                     <div class="divider"></div>
                 </div>
               <div class="row">
