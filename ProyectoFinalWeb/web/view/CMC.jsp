@@ -1,4 +1,4 @@
-<%-- 
+<<%-- 
     Document   : cmc
     Created on : 12/09/2015, 06:06:13 PM
     Author     : Norma
@@ -165,21 +165,21 @@
             <div class="col-md-8 col-sm-8 scrollpoint sp-effect3">
               <div class="info-diagrama">
                 <p>Haciendo las siguientes sustituciones: </p>
-                <img src="../img/cmc/01.png" width="100" heigth="100" alt="">
+                <img src="../img/cmc/01.png" width="80" heigth="80" alt="">
                 <p>La función del árbol de fallas es la siguiente: </p>
-                <img src="../img/cmc/02.png" width="100" heigth="100" alt="">
+                <img src="../img/cmc/02.png" width="80" heigth="80" alt="">
                 <p>Sustituyendo los valores de E1 y E2 queda de la siguiente manera: </p> 
-                <img src="../img/cmc/03.png" width="150" heigth="150" alt="">
+                <img src="../img/cmc/03.png" width="190" heigth="190" alt="">
                 <p>Resolviendo la multiplicación da: </p>
-                <img src="../img/cmc/04.png" width="270" heigth="270" alt="">
+                <img src="../img/cmc/04.png" width="290" heigth="290" alt="">
                 <p>Sustituyendo para E3: </p>
-                <img src="../img/cmc/05.png" width="280" heigth="280" alt="">
+                <img src="../img/cmc/05.png" width="300" heigth="300" alt="">
                 <p>Por el álgebra de Boole se sabe que C*C=C, entonces la ecuación queda de la manera siguiente:</p>
-                <img src="../img/cmc/06.png" width="270" heigth="270" alt="">
+                <img src="../img/cmc/06.png" width="300" heigth="300" alt="">
                 <p>Por la ley de la absorción tenemos que A*C+B*C+C+E4*C=C</p>
                 <img src="../img/cmc/07.png" width="150" heigth="150" alt="">
                 <p>Finalmente, se sustituye para E4 y aplicando la ley de absorción: </p>
-                <img src="../img/cmc/07.png" width="150" heigth="150" alt="">
+                <img src="../img/cmc/08.png" width="250" heigth="250" alt="">
               </div>
               
             </div>
