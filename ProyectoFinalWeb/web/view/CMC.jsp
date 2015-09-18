@@ -1,10 +1,10 @@
-<<%-- 
+<%-- 
     Document   : cmc
     Created on : 12/09/2015, 06:06:13 PM
     Author     : Norma
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+
 <html lang="en" class="no-js">
 
   <head>
