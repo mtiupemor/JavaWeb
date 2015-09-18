@@ -9,7 +9,11 @@
 <html>
   <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <link rel="shortcut icon" href="favicon.png">
     <title>Crea tu árbol de fallas</title>
+    
     <link rel="stylesheet" href="../css/joint.css" />
     <link rel="stylesheet" href="../css/arbol.css" />
     <link rel="stylesheet" href="../css/compuerta.css" />
@@ -20,9 +24,6 @@
     <script src="../js/controlArbol.js"></script>
     <script src="../js/joint.shapes.logic.js"></script>  <!-- Agrego CLIO-->
     <script src="../js/joint.shapes.logic.min.js"></script> <!-- Agrego CLIO-->
-    
-    <%//@include file="header_arbol.jsp" %>
-    
     <script>
 
       $(document).ready(function () {
@@ -368,80 +369,96 @@
 
 
     </script>
+    
+    <%@include file="head_arbol.jsp" %> 
   </head>
   <body>
-   <!-- <br><br> -->
-
-    <table border="1">
-      <tr>
-        <td rowspan="8">
-          <div id="paper" >
-          </div>
-
-        </td>
-      </tr>
-
-      <tr>
-        <td width="250" align="CENTER">
-          <input type="image" id="eventoTope" title="Agregar Evento Tope" src="../images/eventoTope.png"  width="100" height="100"/>
-        </td>
-      </tr>
-      <tr>
-        <td width="250" align="CENTER">
-          <input type="image" id="evento"  title="Agregar Evento" src="../images/evento.png" width="100" height="100" />
-        </td>
-      </tr>
-      <tr>
-        <td width="250" align="CENTER">
-          <input type="image" id="compuertaAnd" title="Agregar Compuerta AND" src="../images/and.png" width="25" height="30" />
-        </td>
-      </tr>
-      <tr>
-        <td width="250" align="CENTER">
-          <input type="image" id="compuertaOr" title="Agregar Compuerta OR" src="../images/or.png" width="25" height="30" />
-        </td>
-      </tr>
-      <tr>
-        <td width="250" align="CENTER">
-          <input type="image" id="compuertaOrEx"  title="Agregar Compuerta OR Exclusiva" src="../images/orEx.png" width="25" height="30"/>
-        </td>
-      </tr>
-      <tr>
-        <td width="250" align="CENTER">
-          <input type="image" id="compuertaAndPri" title="Agregar Compuerta AND Prioritaria" src="../images/andPri.png" width="25" height="30" />
-        </td>
-      </tr>
-      <tr>
-        <td width="250" align="CENTER">
-          <input type="image" id="redimensiona" title="Redimensiona el área de dibujo" src="../images/redimensionar.png"  width="35" height="35" />
-        </td>
-      </tr>
-    </table>
-  <center>
-    </br>
-    <!--
-    <input type="button" id="clearArbol" value="Limpiar área"/>
-    <input type="button" id="saveArbol" value="Guardar árbol"/>
-    <input type="button" id="loadArbol" value="Cargar un árbol"/>
-    -->
-    <table>
-      <tr>
-        <td width="90" height="70">
-     <input type="image" id="clearArbol" title="Limpiar área" src="../img/freeze/limpia.png"  width="50" height="50" />
-        </td>
-          <td width="90" height="70">
-     <input type="image" id="saveArbol" title="Guardar árbol" src="../img/freeze/guarda.png"  width="50" height="50" />
-      </td>
-        <td width="90" height="70">
-       <input type="image" id="loadArbol" title="Cargar un árbol" src="../img/freeze/recarga.png"  width="50" height="50" />
-      </td>
-      </tr>
-    </table>
-  </center>
-  <!--Mostrar conexiones validas,CLIO, 16092015 1830-->
-  <div id="paper-link-out"><b></b></div>
-    </br>
-
-  <%//@include file="../view/footer.jsp" %>
+    <header>
+      <%@include file="header_arbol.jsp" %> 
+    </header>
+    <div class="wrapper">
+        <section id="informacion">
+            <div class="container">
+                <br/><br/><br/>
+                <div class="section-heading scrollpoint sp-effect3">
+                    <h2>Crea tu árbol</h2>
+                    <div class="divider"></div>
+                </div>
+              <div class="row">
+                <div class="col-md-12">
+                    <div>                     
+                        <table border="1" width="98%">
+                            <tr>
+                                <td rowspan="8">
+                                    <div id="paper" ></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="250" align="CENTER">
+                                    <input type="image" id="eventoTope" title="Agregar Evento Tope" src="../images/eventoTope.png"  width="100" height="100"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="250" align="CENTER">
+                                    <input type="image" id="evento"  title="Agregar Evento" src="../images/evento.png" width="100" height="100" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="250" align="CENTER">
+                                   <input type="image" id="compuertaAnd" title="Agregar Compuerta AND" src="../images/and.png" width="50" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="250" align="CENTER">
+                                    <input type="image" id="compuertaOr" title="Agregar Compuerta OR" src="../images/or.png" width="50"  />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="250" align="CENTER">
+                                    <input type="image" id="compuertaOrEx"  title="Agregar Compuerta OR Exclusiva" src="../images/orEx.png" width="50" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="250" align="CENTER">
+                                    <input type="image" id="compuertaAndPri" title="Agregar Compuerta AND Prioritaria" src="../images/andPri.png" width="50"  />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="250" align="CENTER">
+                                    <input type="image" id="redimensiona" title="Redimensiona el área de dibujo" src="../images/redimensionar.png"  width="50" />
+                                </td>
+                            </tr>
+                        </table>
+                    <center>
+                        <p></p>
+                        <table>
+                            <tr>
+                                <td width="90" height="70">
+                                    <input type="image" id="clearArbol" title="Limpiar área" src="../img/freeze/limpia.png"  width="50" height="50" />
+                                </td>
+                                <td width="90" height="70">
+                                    <input type="image" id="saveArbol" title="Guardar árbol" src="../img/freeze/guarda.png"  width="50" height="50" />
+                                </td>
+                                <td width="90" height="70">
+                                    <input type="image" id="loadArbol" title="Cargar un árbol" src="../img/freeze/recarga.png"  width="50" height="50" />
+                                </td>
+                            </tr>
+                        </table>
+                    </center>
+                    <!--Mostrar conexiones validas,CLIO, 16092015 1830-->
+                    <div id="paper-link-out"><b></b></div>
+                    <p></p>   
+                    </div>
+                </div>  
+              </div>
+            </div>
+        </section>
+        <%@include file="footer.jsp" %>
+    </div>
+     <script>
+      $(document).ready(function () {
+        appMaster.preLoader();        
+      });
+    </script> 
 </body>
 </html>
