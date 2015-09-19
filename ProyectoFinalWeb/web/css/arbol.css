@@ -15,6 +15,25 @@ and open the template in the editor.
   border: dashed 1px #000;
 }
 
+.derecho{
+    float:right;
+    border: dashed 1px;
+    text-align: center;
+    min-height: 604px;
+    width: 110px;
+ }
+
+.izquierdo{
+    float: left;
+    border: dashed 1px;
+    }
+
+.footer{
+    padding: 10px 0;
+    position: relative;
+    clear: both;
+}
+
 /* elements */
 
 .arbol text {

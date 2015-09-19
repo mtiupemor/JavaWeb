@@ -43,7 +43,7 @@
         var paper = new joint.dia.Paper(
                 {
                   el: $('#paper'),
-                  width: 1100,
+                  width: 1000,
                   height: 600,
                   gridSize: 1,
                   model: graph,
@@ -218,7 +218,7 @@
         $("#compuertaAnd").click(function (evt) {
 
           var cAND = new joint.shapes.arbol.CompuertaAND({
-            position: {x: 1000, y: 40},
+            position: {x: 920, y: 30},
             size: {width: 48, height: 48},
             inPorts: [""],
             outPorts: [""]
@@ -233,7 +233,7 @@
         $("#compuertaOr").click(function (evt)
         {
           var cOr = new joint.shapes.arbol.CompuertaOR({
-            position: {x: 1000, y: 40},
+            position: {x: 920, y: 30},
             size: {width: 48, height: 48},
             inPorts: [""],
             outPorts: [""]
@@ -246,7 +246,7 @@
         $("#compuertaOrEx").click(function (evt)
         {
           var cOrExclusiva = new joint.shapes.arbol.CompuertaOREX({
-            position: {x: 1000, y: 40},
+            position: {x: 920, y: 30},
             size: {width: 48, height: 48},
             inPorts: [""],
             outPorts: [""]
@@ -259,7 +259,7 @@
         $("#compuertaAndPri").click(function (evt)
         {
           var cAndPrioritaria = new joint.shapes.arbol.CompuertaANDPRI({
-            position: {x: 1000, y: 40},
+            position: {x: 920, y: 30},
             size: {width: 48, height: 48},
             inPorts: [""],
             outPorts: [""]
@@ -384,75 +384,32 @@
                     <div class="divider"></div>
                 </div>
               <div class="row">
-                <div class="col-md-12">
-                    <div>                     
-                        <table border="1" width="98%" class="cont_Paper">
-                            <tr>
-                                <td rowspan="8">
-                                    <div id="paper" ></div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="250" align="CENTER">
-                                    <input type="image" id="eventoTope" title="Agregar Evento Tope" src="../images/eventoTope.png"  width="100" height="100"/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="250" align="CENTER">
-                                    <input type="image" id="evento"  title="Agregar Evento" src="../images/evento.png" width="100" height="100" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="250" align="CENTER">
-                                   <input type="image" id="compuertaAnd" title="Agregar Compuerta AND" src="../images/and.png" width="50" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="250" align="CENTER">
-                                    <input type="image" id="compuertaOr" title="Agregar Compuerta OR" src="../images/or.png" width="50"  />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="250" align="CENTER">
-                                    <input type="image" id="compuertaOrEx"  title="Agregar Compuerta OR Exclusiva" src="../images/orEx.png" width="50" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="250" align="CENTER">
-                                    <input type="image" id="compuertaAndPri" title="Agregar Compuerta AND Prioritaria" src="../images/andPri.png" width="50"  />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="250" align="CENTER">
-                                    <input type="image" id="redimensiona" title="Redimensiona el área de dibujo" src="../images/redimensionar.png"  width="50" />
-                                </td>
-                            </tr>
-                        </table>
-                    <center>
-                        <p></p>
-                        <table>
-                            <tr>
-                                <td width="90" height="70">
-                                    <input type="image" id="clearArbol" title="Limpiar área" src="../img/freeze/limpia.png"  width="50" height="50" />
-                                </td>
-                                <td width="90" height="70">
-                                    <input type="image" id="saveArbol" title="Guardar árbol" src="../img/freeze/guarda.png"  width="50" height="50" />
-                                </td>
-                                <td width="90" height="70">
-                                    <input type="image" id="loadArbol" title="Cargar un árbol" src="../img/freeze/recarga.png"  width="50" height="50" />
-                                </td>
-                            </tr>
-                        </table>
-                    </center>
-                    <!--Mostrar conexiones validas,CLIO, 16092015 1830-->
-                    <div id="paper-link-out"><b></b></div>
-                    <p></p>   
-                    </div>
+                <div class="col-md-12">               
+                        <div class="izquierdo" border="1">
+                            <div id="paper" ></div>
+                        </div>
+         
+                        <div class="derecho">   
+                            <input type="image" id="eventoTope"   title="Agregar Evento Tope" src="../images/eventoTope.png"  width="100" height="100"/><br><hr>
+                            <input type="image" id="evento"  title="Agregar Evento" src="../images/evento.png" width="100" height="100" /><br> <hr>        
+                            <input type="image" id="compuertaAnd" title="Agregar Compuerta AND" src="../images/and.png" width="25" height="30" /><br><hr>
+                            <input type="image" id="compuertaOr" title="Agregar Compuerta OR" src="../images/or.png" width="25" height="30" /><br><hr>
+                            <input type="image" id="compuertaOrEx"  title="Agregar Compuerta OR Exclusiva" src="../images/orEx.png" width="25" height="30"/><br><hr>
+                            <input type="image" id="compuertaAndPri" title="Agregar Compuerta AND Prioritaria" src="../images/andPri.png" width="25" height="30" /><br><hr>    
+                            <input type="image" id="redimensiona" title="Redimensiona el área de dibujo" src="../images/redimensionar.png"  width="35" height="35" /><br><hr>
+                        </div>
+                        <div class="footer">
+                            <center><input type="button" id="clearArbol" value="Limpiar área"/>
+                            <input type="button" id="saveArbol" value="Guardar árbol"/>
+                            <input type="button" id="loadArbol" value="Cargar un árbol"/></center>
+                        </div>
+                        <!--Mostrar conexiones validas,CLIO, 16092015 1830-->
+                        <div id="paper-link-out"></b></div> 
                 </div>  
               </div>
             </div>
         </section>
-         <footer>
+        <footer>
             <div class="container">
                 <a href="#" >
                     <img src="../img/freeze/logomin.png" alt="" class="logo">
