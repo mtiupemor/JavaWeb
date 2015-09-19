@@ -22,7 +22,15 @@
           <ul class="nav navbar-nav navbar-right">
             <li><a href="../index.jsp#">APS</a>
             </li>
-            <li><a href="../index.jsp#informacion">Información</a>
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+              Información
+              <span class="caret"></span></a>
+                <ul class="dropdown-menu" >
+                    <li><a href="arbol_Falla.jsp">Árbol de Fallas</a></li>
+                    <li><a href="arbol_Evento.jsp">Árbol de Eventos</a></li>
+                </ul>
+           
             </li>
             <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#">

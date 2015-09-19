@@ -63,6 +63,9 @@
           </div>
         </div>
       </section>
+      <style>
+          .slick-slide {  height: 50%!important;  }
+      </style>
         <%@include file="footer.jsp" %>
     </body>
 </html>
