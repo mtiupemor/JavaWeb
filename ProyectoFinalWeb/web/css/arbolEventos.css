@@ -1,0 +1,170 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 8/09/2015, 08:18:27 PM
+    Author     : iiteplus
+*/
+
+/* elements */
+
+.arbolEventos text {
+    text-transform: uppercase;
+    font-weight: 800;
+}
+
+.arbolEventos .body 
+{
+    fill: #ffffff;    
+    stroke-width: 1px;
+    stroke: #FFF;
+}
+
+.arbolEventos .label {
+    fill: #00d2c6;
+    font-size: 10px;
+}
+
+.arbolEventos .port-body {
+    stroke: #ffffff;
+    stroke-width: 1px;
+    fill: #7c68fc;
+   stroke-left: 90px;
+}
+
+.arbolEventos .port-body:hover {
+    opacity: 1;
+    fill: #ff7e5d;
+}
+
+.arbolEventos .port-label {
+    fill: #7c68fc;
+}
+
+.rotatable
+{
+  background-color: #C0392B;
+}
+
+.arbol.Atomic .body {
+    stroke: #ffb176;
+}
+
+.arbol.Atomic .label {
+    fill: #ffb176;
+}
+
+.arbolEventos.EventoIniciador .body {    
+    //stroke: #ffb176;
+  
+}
+
+.arbolEventos.EventoIniciador .img{
+   
+    //stroke: #ffb176;
+  
+}
+.arbolEventos.EventoIniciador .label {
+   // fill: #ffb176;
+}
+
+/* links */
+
+.link .connection {
+    stroke: #212135;
+    stroke-width: 4px;
+}
+
+.link .marker-arrowhead, .link .marker-vertex {
+    fill: #696b87;
+}
+
+.link-tools .tool-remove circle {
+    fill: #ff7e5d;
+}
+
+/* highlighting */
+
+.arbolEventos.highlighted-parent .body {
+    stroke: #ff7e5d;
+    transition: stroke 1s;
+}
+
+.arbolEventos.highlighted-parent .label {
+    fill: #ff7e5d;
+    transition: fill 1s;
+    text-decoration: underline;
+}
+
+/* Control de los eventos*/
+
+.eventoIniciador {
+   position: absolute;
+   background: #0000FF;
+   pointer-events: auto;
+   /* Make sure events are propagated to the JointJS element so, e.g. dragging works.*/
+   -webkit-user-select: none;
+   border-radius: 4px;
+   border: 2px solid #2980B9;
+   box-shadow: inset 0 0 5px black, 2px 2px 1px gray;
+   padding: 5px;
+   box-sizing: border-box;
+   z-index: 1000;
+}
+.sistema {
+   position: absolute;
+   background: #3498DB;
+   pointer-events: auto;
+   /* Make sure events are propagated to the JointJS element so, e.g. dragging works.*/
+   -webkit-user-select: none;
+   border-radius: 4px;
+   border: 2px solid #2980B9;
+   box-shadow: inset 0 0 5px black, 2px 2px 1px gray;
+   padding: 5px;
+   box-sizing: border-box;
+   z-index: 1000;
+}
+
+.frecuencia {
+   position: absolute;
+   background: #FF0000;
+   pointer-events: auto;
+   /* Make sure events are propagated to the JointJS element so, e.g. dragging works.*/
+   -webkit-user-select: none;
+   border-radius: 4px;
+   border: 2px solid #2980B9;
+   box-shadow: inset 0 0 5px black, 2px 2px 1px gray;
+   padding: 5px;
+   box-sizing: border-box;
+   z-index: 1000;
+}
+
+.exito {
+   position: absolute;
+   background: #FFFFF;
+   /* Make sure events are propagated to the JointJS element so, e.g. dragging works.*/
+   -webkit-user-select: none;
+   //border-radius: 0;
+   //border: 0px solid #2980B9;
+   border-width:0;
+   //box-shadow: inset 0 0 5px black, 2px 2px 1px gray;
+   padding: 5px;
+   //box-sizing: border-box;
+   z-index: 1000;
+}
+
+.name{   
+border-width:0;
+}
+
+/* port styling */
+.available-magnet {
+    fill: yellow;
+}
+
+/* element styling */
+.available-cell rect {
+    stroke-dasharray: 5, 2;
+}
