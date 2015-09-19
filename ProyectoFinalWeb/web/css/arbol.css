@@ -8,6 +8,13 @@ and open the template in the editor.
     Author     : iiteplus
 */
 
+/*estilos para la tabla de la app*/
+.cont_Paper,
+.cont_Paper td
+{
+  border: dashed 1px #000;
+}
+
 /* elements */
 
 .arbol text {

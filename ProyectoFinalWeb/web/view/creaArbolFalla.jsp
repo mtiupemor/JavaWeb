@@ -386,7 +386,7 @@
               <div class="row">
                 <div class="col-md-12">
                     <div>                     
-                        <table border="1" width="98%">
+                        <table border="1" width="98%" class="cont_Paper">
                             <tr>
                                 <td rowspan="8">
                                     <div id="paper" ></div>
