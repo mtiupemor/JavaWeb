@@ -59,6 +59,8 @@
                             <ul class="dropdown-menu" >
                                 <li><a href="view/arbol_Falla.jsp" class='submenu' >Árbol de Fallas</a></li>
                                 <li><a href="view/arbol_Evento.jsp" class='submenu'>Árbol de Eventos</a></li>
+                                <li><a href="view/CMC.jsp" class='submenu' >Conjuntos mínimos de corte</a></li>
+                                <li><a href="view/EventoIniciador.jsp" class='submenu'>Evento iniciador</a></li>
                             </ul>
 
                         </li>

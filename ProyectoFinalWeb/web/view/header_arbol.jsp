@@ -29,6 +29,8 @@
                 <ul class="dropdown-menu" >
                     <li><a href="arbol_Falla.jsp">Árbol de Fallas</a></li>
                     <li><a href="arbol_Evento.jsp">Árbol de Eventos</a></li>
+                    <li><a href="CMC.jsp" >Conjuntos mínimos de corte</a></li>
+                    <li><a href="EventoIniciador.jsp" >Evento iniciador</a></li>
                 </ul>
            
             </li>
