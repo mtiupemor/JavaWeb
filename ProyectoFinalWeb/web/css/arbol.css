@@ -32,8 +32,12 @@ and open the template in the editor.
     padding: 10px 0;
     position: relative;
     clear: both;
+    width: 90%;
 }
-
+.footer input{
+    display: inline-block;
+    margin-left: 35px;
+}
 /* elements */
 
 .arbol text {

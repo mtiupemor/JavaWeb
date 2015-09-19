@@ -399,9 +399,11 @@
                             <input type="image" id="redimensiona" title="Redimensiona el área de dibujo" src="../images/redimensionar.png"  width="35" height="35" /><br><hr>
                         </div>
                         <div class="footer">
-                            <center><input type="button" id="clearArbol" value="Limpiar área"/>
-                            <input type="button" id="saveArbol" value="Guardar árbol"/>
-                            <input type="button" id="loadArbol" value="Cargar un árbol"/></center>
+                            <center>
+                                <input type="image" id="clearArbol" title="Limpiar área" src="../img/freeze/limpia.png"  width="50" height="50" />
+                                <input type="image" id="saveArbol" title="Guardar árbol" src="../img/freeze/guarda.png"  width="50" height="50" />
+                                <input type="image" id="loadArbol" title="Cargar un árbol" src="../img/freeze/recarga.png"  width="50" height="50" />
+                            </center>
                         </div>
                         <!--Mostrar conexiones validas,CLIO, 16092015 1830-->
                         <div id="paper-link-out"></b></div> 
