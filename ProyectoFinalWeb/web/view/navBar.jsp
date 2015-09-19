@@ -57,8 +57,8 @@
                                 Información
                                 <span class="caret"></span></a>
                             <ul class="dropdown-menu" >
-                                <li><a href="arbol_Falla.jsp">Árbol de Fallas</a></li>
-                                <li><a href="arbol_Evento.jsp">Árbol de Eventos</a></li>
+                                <li><a href="view/arbol_Falla.jsp" class='submenu' >Árbol de Fallas</a></li>
+                                <li><a href="view/arbol_Evento.jsp" class='submenu'>Árbol de Eventos</a></li>
                             </ul>
 
                         </li>
@@ -67,8 +67,8 @@
                                 Crea tu árbol
                                 <span class="caret"></span></a>
                             <ul class="dropdown-menu" >
-                                <li><a href="creaArbolFalla.jsp">Árbol de Fallas</a></li>
-                                <li><a href="creaArbolEventos.jsp">Árbol de Eventos</a></li>
+                                <li><a href="view/creaArbolFalla.jsp" class='submenu'>Árbol de Fallas</a></li>
+                                <li><a href="view/creaArbolEventos.jsp" class='submenu'>Árbol de Eventos</a></li>
                             </ul>
 
                         </li>
