@@ -80,61 +80,61 @@
             <div class="base" id="conmutativa">
               <div class="itemLey" >
                 <h4>Símbolo Matemático</h4>
-                <img src="../img/cmc/conmutativa Mat__3.png"  alt="">
+                <img src="../img/cmc/conmutativaMat__3.png"  alt="">
               </div>
               <div class="itemLey" >
                 <h4>Símbolo Ingeniería</h4>
-                <img src="../img/cmc/conmutativa Ing_3.png" alt="">
+                <img src="../img/cmc/conmutativaIng_3.png" alt="">
               </div>
             </div>
             <div class="base" id="asociativa">
               <div class="itemLey" >
                 <h4>Símbolo Matemático</h4>
-                <img src="../img/cmc/asociativa Ing_3.png"  alt="">
+                <img src="../img/cmc/asociativaIng_3.png"  alt="">
               </div>
               <div class="itemLey">
                 <h4>Símbolo Ingeniería</h4>
-                <img src="../img/cmc/asociativa Mat_3.png" alt="">   
+                <img src="../img/cmc/asociativaMat_3.png" alt="">   
               </div>
             </div>
             <div class="base" id="distributiva">
               <div class="itemLey" >
                 <h4>Símbolo Matemático</h4>
-                <img src="../img/cmc/distributiva Mat_3.png" alt="">
+                <img src="../img/cmc/distributivaMat_3.png" alt="">
               </div>
               <div class="itemLey" >
                 <h4>Símbolo Ingeniería</h4>
-                <img src="../img/cmc/distributiva Ing_3.png"  alt="">  
+                <img src="../img/cmc/distributivaIng_3.png"  alt="">  
               </div>
             </div>
             <div class="base" id="absorcion">
               <div class="itemLey" >
                 <h4>Símbolo Matemático</h4>
-                <img src="../img/cmc/absorcion Mat_3.png"  alt="">
+                <img src="../img/cmc/absorcionMat_3.png"  alt="">
               </div>
               <div class="itemLey" >
                 <h4>Símbolo Ingeniería</h4>
-                <img src="../img/cmc/absorcion Ing_3.png"  alt="">  
+                <img src="../img/cmc/absorcionIng_3.png"  alt="">  
               </div>
             </div>
             <div class="base" id="complementacion">
               <div class="itemLey" >
                 <h4>Símbolo Matemático</h4>
-                <img src="../img/cmc/complementario Mat_3.png"  alt="">
+                <img src="../img/cmc/complementarioMat_3.png"  alt="">
               </div>
               <div class="itemLey" >
                 <h4>Símbolo Ingeniería</h4>
-                <img src="../img/cmc/complementario Ing_3.png"  alt=""> 
+                <img src="../img/cmc/complementarioIng_3.png"  alt=""> 
               </div>
             </div>
             <div class="base" id="morgan">
               <div class="itemLey" >
                 <h4>Símbolo Matemático</h4>
-                <img src="../img/cmc/TMorgan Mat_3.png"  alt="">
+                <img src="../img/cmc/TMorganMat_3.png"  alt="">
               </div>
               <div class="itemLey">
                 <h4>Símbolo Ingeniería</h4>
-                <img src="../img/cmc/TMorgan Ing_3.png"  alt=""> 
+                <img src="../img/cmc/TMorganIng_3.png"  alt=""> 
               </div>
             </div>
           </div>
