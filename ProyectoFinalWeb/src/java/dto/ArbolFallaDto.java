@@ -6,6 +6,7 @@
 package dto;
 
 import dto.EventoIniciadorDto;
+import org.json.JSONObject;
 
 /**
  *
@@ -103,4 +104,28 @@ public class ArbolFallaDto {
     this.estructura = estructura;
   }
 
+public JSONObject toJsonObject(){
+    JSONObject object=new JSONObject();
+    object.put("class","ArbolFalla");
+    object.put("id",this.id);
+    object.put("nombre",this.nombre);
+    object.put("estructura",this.estructura);
+    object.putOpt("eventoTope",this.eventoTope);
+    object.put("fallaSistema",this.FallaDeSistema);
+
+    return object;
+  }
+  
+  public String toJsonObject(String cadena){
+    JSONObject object=new JSONObject();
+    object.put("class","ArbolFalla");
+    object.put("id",this.id);
+    object.put("nombre",this.nombre);
+    object.put("estructura",this.estructura);
+    object.putOpt("eventoTope",this.eventoTope);
+    object.put("fallaSistema",this.FallaDeSistema);
+    
+    return object.toString();
+  }   
+  
 }

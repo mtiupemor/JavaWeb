@@ -21,24 +21,32 @@ import java.util.logging.Logger;
  */
 public class ArbolFallaDAO {
 
-  public boolean agregaArbol(ArbolFallaDto arbol) {
+  private boolean error;
+  private String errorS;
+
+  public ArbolFallaDAO() {
+    error = false;
+    errorS = "";
+  }
+
+  //public boolean agregaArbol(ArbolFallaDto arbol) {
+  public boolean agregaArbolFalla(String arbol, String nombre) {
     Connection unaConexion = null;
     PreparedStatement pstm = null;
     ResultSet rs = null;
     try {
       unaConexion = UnidadConexion.getConexion();
-      String sentenciaSQL = "INSERT INTO arbol(id,nombre) VALUES(?,?)";
+      String sentenciaSQL = "INSERT INTO arbolfalla(id,nombre) VALUES(?,?)";
       pstm = unaConexion.prepareStatement(sentenciaSQL);
-      pstm.setString(1, arbol.getId());
-      pstm.setString(2, arbol.getNombre());
-      System.out.println(pstm);
+      pstm.setString(1, arbol);
+      pstm.setString(2, nombre);
+      //System.out.println(pstm);
       if (pstm.executeUpdate() > 0) {
-        return true;
+        error = false;
       }
-      return false;
     } catch (SQLException e) {
-      Logger.getLogger(ArbolFallaDto.class.getName()).log(Level.SEVERE, null, e);
-      throw new RuntimeException(CompuertaLogicaDto.class.getName() + " Error al obtener los datos>", e);
+      error = true;
+      errorS = e.getMessage();
     } finally {
       try {
         if (rs != null) {
@@ -48,30 +56,30 @@ public class ArbolFallaDAO {
           pstm.close();
         }
       } catch (Exception e) {
-        Logger.getLogger(ArbolFallaDto.class.getName()).log(Level.SEVERE, null, e.getMessage());
-        throw new RuntimeException(ArbolFallaDto.class.getName() + " Error al cerrar la conexion>", e);
+        error = true;
+        errorS = e.getMessage();
       }
-
     }
+    return error;
   }
 
-  public boolean agregaArbolGrafico(ArbolFallaDto arbol) {
+  public boolean agregaArbolFallaGrafico(String arbol, String estructura) {
     Connection unaConexion = null;
     PreparedStatement pstm = null;
     ResultSet rs = null;
     try {
       unaConexion = UnidadConexion.getConexion();
-      String sentenciaSQL = "INSERT INTO arbolgrafico(id,estructura) VALUES(?,?)";
+      String sentenciaSQL = "INSERT INTO arbolgraficofalla(id,estructura) VALUES(?,?)";
       pstm = unaConexion.prepareStatement(sentenciaSQL);
-      pstm.setString(1, arbol.getId());
-      pstm.setString(2, arbol.getEstructura());
+      pstm.setString(1, arbol);
+      pstm.setString(2, estructura);
+      //System.out.println(pstm);
       if (pstm.executeUpdate() > 0) {
-        return true;
+        error = false;
       }
-      return false;
     } catch (SQLException e) {
-      Logger.getLogger(ArbolFallaDto.class.getName()).log(Level.SEVERE, null, e);
-      throw new RuntimeException(CompuertaLogicaDto.class.getName() + " Error al obtener los datos>", e);
+      error = true;
+      errorS = e.getMessage();
     } finally {
       try {
         if (rs != null) {
@@ -81,30 +89,30 @@ public class ArbolFallaDAO {
           pstm.close();
         }
       } catch (Exception e) {
-        Logger.getLogger(ArbolFallaDto.class.getName()).log(Level.SEVERE, null, e.getMessage());
-        throw new RuntimeException(ArbolFallaDto.class.getName() + " Error al cerrar la conexion>", e);
+        error = true;
+        errorS = e.getMessage();
       }
-
     }
+    return error;
   }
 
-  public boolean agregaArbolLogico(ArbolFallaDto arbol) {
+  public boolean agregaArbolFallaLogico(ArbolFallaDto arbol) {
     Connection unaConexion = null;
     PreparedStatement pstm = null;
     ResultSet rs = null;
     try {
       unaConexion = UnidadConexion.getConexion();
-      String sentenciaSQL = "INSERT INTO arbollogico(id,ideventoini) VALUES(?,?)";
+      String sentenciaSQL = "INSERT INTO arbollogicofalla(id,ideventotop) VALUES(?,?)";
       pstm = unaConexion.prepareStatement(sentenciaSQL);
       pstm.setString(1, arbol.getId());
       pstm.setString(2, arbol.getEventoTope().getId());
+      System.out.println(pstm);
       if (pstm.executeUpdate() > 0) {
-        return true;
+        error = false;
       }
-      return false;
     } catch (SQLException e) {
-      Logger.getLogger(ArbolFallaDto.class.getName()).log(Level.SEVERE, null, e);
-      throw new RuntimeException(CompuertaLogicaDto.class.getName() + " Error al obtener los datos>", e);
+      error = true;
+      errorS = e.getMessage();
     } finally {
       try {
         if (rs != null) {
@@ -114,11 +122,11 @@ public class ArbolFallaDAO {
           pstm.close();
         }
       } catch (Exception e) {
-        Logger.getLogger(ArbolFallaDto.class.getName()).log(Level.SEVERE, null, e.getMessage());
-        throw new RuntimeException(ArbolFallaDto.class.getName() + " Error al cerrar la conexion>", e);
+        error = true;
+        errorS = e.getMessage();
       }
-
     }
+    return error;
   }
 
   public boolean getArbolFalla(String arbol) {
@@ -130,17 +138,16 @@ public class ArbolFallaDAO {
 
     try {
       unaConexion = UnidadConexion.getConexion();
-      String sentenciaSQL = "SELECT * FROM arbol where id=?";
+      String sentenciaSQL = "SELECT * FROM arbolfalla where id=?";
       pstm = unaConexion.prepareStatement(sentenciaSQL);
       pstm.setString(1, arbol);
       rs = pstm.executeQuery();
       while (rs.next()) {
-        exit = true;
+        error = false;
       }
-      return exit;
     } catch (SQLException e) {
-      Logger.getLogger(ArbolFallaDAO.class.getName()).log(Level.SEVERE, null, e);
-      throw new RuntimeException(ArbolFallaDAO.class.getName() + " Error al obtener los datos>", e);
+      error = true;
+      errorS = e.getMessage();
     } finally {
       try {
         if (rs != null) {
@@ -150,10 +157,46 @@ public class ArbolFallaDAO {
           pstm.close();
         }
       } catch (Exception e) {
-        Logger.getLogger(ArbolFallaDAO.class.getName()).log(Level.SEVERE, null, e.getMessage());
-        throw new RuntimeException(ArbolFallaDAO.class.getName() + " Error al cerrar la conexion>", e);
+        error = true;
+        errorS = e.getMessage();
       }
     }
+    return error;
+  }
+
+  public boolean getArbolFallaLogico(String arbol) {
+    Connection unaConexion = null;
+    Statement stm = null;
+    PreparedStatement pstm = null;
+    ResultSet rs = null;
+    boolean exit = false;
+
+    try {
+      unaConexion = UnidadConexion.getConexion();
+      String sentenciaSQL = "SELECT * FROM arbollogicofalla where id=?";
+      pstm = unaConexion.prepareStatement(sentenciaSQL);
+      pstm.setString(1, arbol);
+      rs = pstm.executeQuery();
+      while (rs.next()) {
+        error = false;
+      }
+    } catch (SQLException e) {
+      error = true;
+      errorS = e.getMessage();
+    } finally {
+      try {
+        if (rs != null) {
+          rs.close();
+        }
+        if (pstm != null) {
+          pstm.close();
+        }
+      } catch (Exception e) {
+        error = true;
+        errorS = e.getMessage();
+      }
+    }
+    return error;
   }
 
   public String getEstructuraArbolFalla(String arbol) {
@@ -161,21 +204,24 @@ public class ArbolFallaDAO {
     Statement stm = null;
     PreparedStatement pstm = null;
     ResultSet rs = null;
-    String exit = "";
+    String exit = null;
 
     try {
       unaConexion = UnidadConexion.getConexion();
-      String sentenciaSQL = "SELECT estructura FROM arbolgrafico where id=?";
+      String sentenciaSQL = "SELECT estructura FROM arbolgraficofalla where id=?";
       pstm = unaConexion.prepareStatement(sentenciaSQL);
       pstm.setString(1, arbol);
       rs = pstm.executeQuery();
       while (rs.next()) {
         exit = rs.getString("estructura");
       }
+      error=false;
       return exit;
     } catch (SQLException e) {
-      Logger.getLogger(ArbolFallaDAO.class.getName()).log(Level.SEVERE, null, e);
-      throw new RuntimeException(ArbolFallaDAO.class.getName() + " Error al obtener los datos>", e);
+      error = true;
+      errorS = e.getMessage();
+      exit = "";
+      return exit;
     } finally {
       try {
         if (rs != null) {
@@ -185,41 +231,40 @@ public class ArbolFallaDAO {
           pstm.close();
         }
       } catch (Exception e) {
-        Logger.getLogger(ArbolFallaDAO.class.getName()).log(Level.SEVERE, null, e.getMessage());
-        throw new RuntimeException(ArbolFallaDAO.class.getName() + " Error al cerrar la conexion>", e);
+        error = true;
+        errorS = e.getMessage();
       }
     }
   }
 
-  
-    public int deleteArbolFalla(String arbol) {
+  public int deleteArbolFalla(String arbol) {
     Connection unaConexion = null;
     PreparedStatement pstm = null;
     int rows = -1;
 
     try {
       unaConexion = UnidadConexion.getConexion();
-      String sentenciaSQL = "DELETE from arbol where id=?";
+      String sentenciaSQL = "DELETE from arbolfalla where id=?";
       pstm = unaConexion.prepareStatement(sentenciaSQL);
       pstm.setString(1, arbol);
       rows = pstm.executeUpdate();
+      error = false;
     } catch (SQLException e) {
-      Logger.getLogger(ArbolFallaDAO.class.getName()).log(Level.SEVERE, null, e);
-      throw new RuntimeException(ArbolFallaDAO.class.getName() + " Error al obtener los datos>", e);
+      error = true;
+      errorS = e.getMessage();
     } finally {
       try {
         if (pstm != null) {
           pstm.close();
         }
       } catch (Exception e) {
-        Logger.getLogger(ArbolFallaDAO.class.getName()).log(Level.SEVERE, null, e.getMessage());
-        throw new RuntimeException(ArbolFallaDAO.class.getName() + " Error al cerrar la conexion>", e);
+        error = true;
+        errorS = e.getMessage();
       }
     }
     return rows;
   }
 
-  
   public int deleteArbolFallaLogico(String arbol) {
     Connection unaConexion = null;
     PreparedStatement pstm = null;
@@ -227,21 +272,22 @@ public class ArbolFallaDAO {
 
     try {
       unaConexion = UnidadConexion.getConexion();
-      String sentenciaSQL = "DELETE from arbollogico where id=?";
+      String sentenciaSQL = "DELETE from arbollogicofalla where id=?";
       pstm = unaConexion.prepareStatement(sentenciaSQL);
       pstm.setString(1, arbol);
       rows = pstm.executeUpdate();
+      error=false;
     } catch (SQLException e) {
-      Logger.getLogger(ArbolFallaDAO.class.getName()).log(Level.SEVERE, null, e);
-      throw new RuntimeException(ArbolFallaDAO.class.getName() + " Error al obtener los datos>", e);
+      error = true;
+      errorS = e.getMessage();
     } finally {
       try {
         if (pstm != null) {
           pstm.close();
         }
       } catch (Exception e) {
-        Logger.getLogger(ArbolFallaDAO.class.getName()).log(Level.SEVERE, null, e.getMessage());
-        throw new RuntimeException(ArbolFallaDAO.class.getName() + " Error al cerrar la conexion>", e);
+        error = true;
+        errorS = e.getMessage();
       }
     }
     return rows;
@@ -254,24 +300,70 @@ public class ArbolFallaDAO {
 
     try {
       unaConexion = UnidadConexion.getConexion();
-      String sentenciaSQL = "DELETE from arbolgrafico where id=?";
+      String sentenciaSQL = "DELETE from arbolgraficofalla where id=?";
       pstm = unaConexion.prepareStatement(sentenciaSQL);
       pstm.setString(1, arbol);
       rows = pstm.executeUpdate();
+      error=false;
     } catch (SQLException e) {
-      Logger.getLogger(ArbolFallaDAO.class.getName()).log(Level.SEVERE, null, e);
-      throw new RuntimeException(ArbolFallaDAO.class.getName() + " Error al obtener los datos>", e);
+      error = true;
+      errorS = e.getMessage();
+
     } finally {
       try {
         if (pstm != null) {
           pstm.close();
         }
       } catch (Exception e) {
-        Logger.getLogger(ArbolFallaDAO.class.getName()).log(Level.SEVERE, null, e.getMessage());
-        throw new RuntimeException(ArbolFallaDAO.class.getName() + " Error al cerrar la conexion>", e);
+        error = true;
+        errorS = e.getMessage();
       }
     }
     return rows;
-  }  
-  
+  }
+
+  public int updateArbolFalla(String arbol, String nombre) {
+    Connection unaConexion = null;
+    PreparedStatement pstm = null;
+    int rows = -1;
+
+    try {
+      unaConexion = UnidadConexion.getConexion();
+      String sentenciaSQL = "UPDATE arbolfalla SET nombre=?  where id=?";
+      pstm = unaConexion.prepareStatement(sentenciaSQL);
+      pstm.setString(1, nombre);
+      pstm.setString(5, arbol);
+      rows = pstm.executeUpdate();
+      error=false;
+    } catch (SQLException e) {
+      error = true;
+      errorS = e.getMessage();      
+
+    } finally {
+      try {
+        if (pstm != null) {
+          pstm.close();
+        }
+      } catch (Exception e) {
+      error = true;
+      errorS = e.getMessage();
+      }
+    }
+    return rows;
+  }
+
+  /**
+   * @return the error
+   */
+  public boolean getError() {
+    return error;
+  }
+
+  /**
+   * @return the errorS
+   */
+  public String getErrorS() {
+    return errorS;
+  }
+
 }

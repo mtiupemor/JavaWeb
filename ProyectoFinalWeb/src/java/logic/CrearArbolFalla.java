@@ -22,6 +22,9 @@ import java.util.Collection;
  */
 public class CrearArbolFalla {
 
+ private boolean error;
+  private String errorS;
+  
   Collection<CompuertaLogicaDto> listaCompuertas;
   Collection<EventoDto> listaEventos;
   ArbolFallaDto falla;
@@ -33,8 +36,11 @@ public class CrearArbolFalla {
     e = getObjetoEventoTope(arbol);
     falla.setEventoTope(e);        
     getObjetos(e);
-    ArbolFallaDAO a = new ArbolFallaDAO();
-    falla.setEstructura(a.getEstructuraArbolFalla(arbol));    
+    ArbolFallaDAO aDAO = new ArbolFallaDAO();
+    falla.setEstructura(aDAO.getEstructuraArbolFalla(arbol)); 
+    error=aDAO.getError();
+    errorS=aDAO.getErrorS();
+    //System.out.println(falla.getEstructura());
     return falla;
   }
 
@@ -111,4 +117,33 @@ public class CrearArbolFalla {
     return id;
   }
 
+  
+  /**
+   * @return the error
+   */
+  public boolean getError() {
+    return error;
+  }
+
+  /**
+   * @param error the error to set
+   */
+  public void setError(boolean error) {
+    this.error = error;
+  }
+
+  /**
+   * @return the errorS
+   */
+  public String getErrorS() {
+    return errorS;
+  }
+
+  /**
+   * @param errorS the errorS to set
+   */
+  public void setErrorS(String errorS) {
+    this.errorS = errorS;
+  }
+    
 }

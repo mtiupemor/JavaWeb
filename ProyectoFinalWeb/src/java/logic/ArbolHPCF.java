@@ -92,7 +92,7 @@ public class ArbolHPCF {
        compuerta1.setEventoHijo(evento2);
      
        et.setHijo(compuerta1);
-       
+     
        //InsertarArbolFalla tree = new InsertarArbolFalla();       
       // tree.insertar(arbolFalla);
    

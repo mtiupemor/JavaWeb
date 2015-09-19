@@ -7,6 +7,7 @@ package dto;
 
 import java.util.Observable;
 import java.util.Observer;
+import org.json.JSONObject;
 
 /**
  *
@@ -90,7 +91,7 @@ public class EventoTopeDto implements Observer{
   public void setValor(double valor) {
     this.valor = valor;
   }
-  
+  /*
   @Override
   public String toString() {    
     String exit="";
@@ -102,7 +103,7 @@ public class EventoTopeDto implements Observer{
     
     exit+="}";   
     return exit;            
-  }
+  }*/
 
     /**
      * @return the idarbol
@@ -118,4 +119,26 @@ public class EventoTopeDto implements Observer{
         this.idarbol = idarbol;
     }
   
+   public JSONObject toJsonObject(){
+    JSONObject object=new JSONObject();
+    object.put("class","EventoTope");
+    object.put("id",this.id);
+    object.put("idArbol",this.idarbol);
+    object.put("bombre",this.nombre);
+    object.put("valor",this.valor);
+    object.putOpt("hijo",this.hijo.toJsonObject());
+    return object;
+  }
+  
+  public String toJsonObject(String cadena){
+      JSONObject object=new JSONObject();
+    object.put("class","EventoTope");
+    object.put("id",this.id);
+    object.put("idArbol",this.idarbol);
+    object.put("bombre",this.nombre);
+    object.put("valor",this.valor);
+    object.putOpt("hijo",this.hijo.toJsonObject(""));
+    return object.toString();
+  }       
+    
 }

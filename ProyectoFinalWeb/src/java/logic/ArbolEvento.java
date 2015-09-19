@@ -5,7 +5,6 @@
  */
 package logic;
 
-//import com.google.gson.Gson;
 import dto.ArbolEventoDto;
 import dto.ArbolFallaDto;
 import dto.EventoIniciadorDto;
@@ -29,8 +28,11 @@ public class ArbolEvento {
         //Crear el arbol de eventos LOCA Grande
         EventoIniciadorDto ei=new EventoIniciadorDto();
         ei.setValor(0.2d);
+        ei.setId("EI");
+        ei.setNombre("cayoyas");
         
         arbolEvento.arbolEvento.setEventoIniciador(ei);
+        arbolEvento.arbolEvento.setId("aaa");
         //Se iran creando los sitemas
         //Se crea el primer sistema Apagado del reactor
         SistemaDto apagadoReactor=new SistemaDto();
@@ -38,6 +40,7 @@ public class ArbolEvento {
         ArbolFallaDto miArbolHPCF=arbolHPCF.creaArbolFallaHPCF();
         apagadoReactor.setArbolFalla(miArbolHPCF);
         apagadoReactor.setNombre("Apagado del reactor");
+        apagadoReactor.setId("A");
         try {
             arbolHPCF.evento3.setValor(0.2d);
             arbolHPCF.evento6.setValor(0.1d);
@@ -51,6 +54,7 @@ public class ArbolEvento {
         SistemaDto sistemaHPCS =new SistemaDto();
         sistemaHPCS.setArbolFalla(miArbolHPCF);
         sistemaHPCS.setNombre("HPCS");
+        sistemaHPCS.setId("B");
         try {
             arbolHPCF.evento3.setValor(0.2d);
             arbolHPCF.evento6.setValor(0.1d);
@@ -63,6 +67,7 @@ public class ArbolEvento {
         SistemaDto sistemaLPCS=new SistemaDto();
         sistemaLPCS.setArbolFalla(miArbolHPCF);
         sistemaLPCS.setNombre("LPCS");
+        sistemaLPCS.setId("C");
         try {
             arbolHPCF.evento3.setValor(0.2d);
             arbolHPCF.evento6.setValor(0.1d);
@@ -75,6 +80,7 @@ public class ArbolEvento {
         SistemaDto sistemaLPCI=new SistemaDto();
         sistemaLPCI.setArbolFalla(miArbolHPCF);
         sistemaLPCI.setNombre("LPCI");
+        sistemaLPCI.setId("D");
         try {
             arbolHPCF.evento3.setValor(0.2d);
             arbolHPCF.evento6.setValor(0.1d);
@@ -84,6 +90,7 @@ public class ArbolEvento {
         SistemaDto sistemaLPCI2=new SistemaDto();
         sistemaLPCI2.setArbolFalla(miArbolHPCF);
         sistemaLPCI2.setNombre("LPCI");
+        sistemaLPCI2.setId("E");
         try {
             arbolHPCF.evento3.setValor(0.2d);
             arbolHPCF.evento6.setValor(0.1d);
@@ -96,6 +103,7 @@ public class ArbolEvento {
         SistemaDto recuperacion=new SistemaDto();
         recuperacion.setArbolFalla(miArbolHPCF);
         recuperacion.setNombre("recuperacion");
+        recuperacion.setId("F");
         try {
             arbolHPCF.evento3.setValor(0.2d);
             arbolHPCF.evento6.setValor(0.1d);
@@ -106,6 +114,7 @@ public class ArbolEvento {
         SistemaDto recuperacion2=new SistemaDto();
         recuperacion2.setArbolFalla(miArbolHPCF);
         recuperacion2.setNombre("recuperacion");
+        recuperacion2.setId("G");
         try {
             arbolHPCF.evento3.setValor(0.2d);
             arbolHPCF.evento6.setValor(0.1d);
@@ -115,16 +124,20 @@ public class ArbolEvento {
         
         arbolEvento.arbolEvento.setSistema(apagadoReactor);
         
-        apagadoReactor.setExito(sistemaHPCS);
-        sistemaHPCS.setExito(sistemaLPCI);
-        sistemaLPCI.setFalla(recuperacion);
-        sistemaHPCS.setFalla(sistemaLPCS);
-        sistemaLPCS.setExito(sistemaLPCI2);
-        sistemaLPCI2.setFalla(recuperacion2);
+        apagadoReactor.setExito(sistemaHPCS);   //A
+        sistemaHPCS.setExito(sistemaLPCI);      //B
+        sistemaLPCI.setFalla(recuperacion);     //D
+        sistemaHPCS.setFalla(sistemaLPCS);      //D
+        sistemaLPCS.setExito(sistemaLPCI2);     //E
+        sistemaLPCI2.setFalla(recuperacion2);   //F
         
         //Se conectan los sitemas
         
+        InsertarArbolEvento e = new InsertarArbolEvento();        
+        e.insertarLogico(arbolEvento.arbolEvento);
         
+        
+        /*
         //arbolEvento.arbolEvento.addSistema(apagadoSistema);
         //arbolEvento.arbolEvento.addSistema(sistemaRCIC);
        System.out.println("............................................................................."); 
@@ -135,6 +148,7 @@ public class ArbolEvento {
 //        String jsonString = g.toJson(miArbolHPCF);
 //        System.out.println(jsonString);
 
+                */
     }
     
     

@@ -5,6 +5,8 @@
  */
 package dto;
 
+import org.json.JSONObject;
+
 /**
  *
  * @author lirio
@@ -12,8 +14,8 @@ package dto;
 public class ArbolEventoDto {
     private String id;
     private String nombre;
+    private String estructura;
     private EventoIniciadorDto eventoIniciador;
-
     private SistemaDto sistema;
 
     public ArbolEventoDto(){
@@ -78,4 +80,40 @@ public class ArbolEventoDto {
         this.sistema = sistema;
     }
     
+    
+  /**
+   * @return the estructura
+   */
+  public String getEstructura() {
+    return estructura;
+  }
+
+  /**
+   * @param estructura the estructura to set
+   */
+  public void setEstructura(String estructura) {
+    this.estructura = estructura;
+  }
+    
+  public JSONObject toJsonObject(){
+    JSONObject object=new JSONObject();
+    object.put("class","ArbolEventoDto");
+    object.put("id",this.id);
+    object.put("estructura",this.estructura);
+    object.putOpt("eventoIniciador",this.eventoIniciador);
+    object.put("sistema",this.sistema);
+    return object;
+  }
+  
+  public String toJsonObject(String cadena){
+    JSONObject object=new JSONObject();
+    object.put("class","EventoDto");
+    object.put("id",this.id);
+    object.put("nombre",this.nombre);
+    object.put("estructira",this.estructura);
+    object.putOpt("eventoIniciador",this.eventoIniciador);
+    object.put("sistema",this.sistema);
+    return object.toString();
+  }     
+  
 }

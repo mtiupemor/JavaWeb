@@ -7,6 +7,7 @@ package dto;
 
 import java.util.Observable;
 import java.util.Observer;
+import org.json.JSONObject;
 
 /**
  *
@@ -211,23 +212,8 @@ public class EventoDto extends Observable implements Observer{
     this.editable = editable;
   }
    
-  @Override
-  public String toString() {    
-    String exit="";
-    exit="{";
-    exit+="\"id\":\"" + this.id + "\",";                            //string 
-    exit+="\"nombre\":\"" + this.nombre + "\",";
-    exit+="\"valor\":" + this.valor + ",";                          //decimal
-    exit+="\"i\":" + this.i + ",";                              //decimal
-    exit+="\"editable\":" + this.editable + ",";                    //booleano
-    exit+="\"idNomenclatura\":\"" + this.idNomenclatura + "\",";    //string 
-    exit+="\"patron\":\"" + this.patron + "\",";                    //string
-    exit+="\"hijo\":" + this.hijo + ",";                        //clase
-    exit+="\"padre\":" + this.padre + ",";                      //clase
-    
-    exit+="}";   
-    return exit;            
-  }
+ 
+ 
 
   /**
    * @return the idarbol
@@ -243,5 +229,36 @@ public class EventoDto extends Observable implements Observer{
     this.idarbol = idarbol;
   }
   
-   
+ public JSONObject toJsonObject(){
+    JSONObject object=new JSONObject();
+    object.put("class","Evento");
+    object.put("id",this.id);
+    object.put("nombre",this.nombre);
+    object.put("valor",this.valor);
+    object.put("i",this.id);
+    object.put("editable",this.editable);
+    object.put("idNomenclatura",this.idNomenclatura);
+    if(this.hijo!=null)
+    object.putOpt("hijo", this.hijo.toJsonObject());
+    object.put("hijo", "null");
+    //object.putOpt("padre",this.padre.toJsonObject());
+    return object;
+  }
+  
+  public String toJsonObject(String cadena){
+    JSONObject object=new JSONObject();
+    object.put("class","Evento");
+    object.put("id",this.id);
+    object.put("nombre",this.nombre);
+    object.put("valor",this.valor);
+    object.put("i",this.id);
+    object.put("editable",this.editable);
+    object.put("idNomenclatura",this.idNomenclatura);
+    object.putOpt("hijo", this.hijo.toJsonObject(""));
+    object.putOpt("padre",this.padre.toJsonObject(""));
+    return object.toString();
+  }   
+  
+  
+  
 }

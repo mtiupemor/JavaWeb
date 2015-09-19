@@ -3,48 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
+
 var ARBOL = ARBOL || {};
 ARBOL.eventoTope;
 //#definicion de EventoTope
-
-/*
-ARBOL.Event=function() {
-        this.handlers = [];  // observers
-    }
-     
-ARBOL.Event.prototype = {     
-        subscribe: function(fn) {
-            this.handlers.push(fn);
-        },     
-        unsubscribe: function(fn) {
-            this.handlers = this.handlers.filter(
-                function(item) {
-                    if (item !== fn) {
-                        return item;
-                    }
-                }
-            );
-        },    
-        fire: function(o, thisObj) {
-            var scope = thisObj || window;
-            this.handlers.forEach(function(item) {
-                item.call(scope, o);
-            });
-        }
-    }
-    */
-ARBOL.log=function(){
-  
-        var log = "";
-     
-        return {
-            add: function(msg) { log += msg + "\n"; },
-            show: function() { alert(log); log = ""; }
-        }
-    };  
-   
-     
-    
     
 ARBOL.EventoTope = function (id,nombre) 
 { 
@@ -56,34 +19,45 @@ ARBOL.EventoTope = function (id,nombre)
     this.y;
     this.modelId;
     this.portIn;
-    this.CompuertaHijo;
+    this.compuertaHijo;
+};
+
+ARBOL.EventoTope.prototype.hasHijo=function(hijo){
+    if(hijo instanceof ARBOL.Compuerta){ 
+       return hijo===this.compuertaHijo;   
+    }
+    return false;        
 };
 
 ARBOL.EventoTope.prototype.getValor=function(){
     return  this.valor;    
-}
+};
 
 ARBOL.EventoTope.prototype.Update=function(event)
 {
     console.log("procesando la solicitud de compuerta");
-    this.valor=this.CompuertaHijo.getValorCompuerta(this.CompuertaHijo);
-}
+    this.valor=this.compuertaHijo.getValorCompuerta(this.compuertaHijo);
+    //this.valor=this.compuertaHijo.getValor();
+    console.log("Miguel");
+    console.log(this.toJSON());
+};
+
 ARBOL.EventoTope.prototype.setValor=function(valor){
     this.valor=valor;    
-}
-
+};
 ARBOL.EventoTope.prototype.setHijo=function(compuerta){
     if(compuerta instanceof ARBOL.Compuerta){
-    this.CompuertaHijo=compuerta;    
-    this.CompuertaHijo.suscribir(this);
+    this.compuertaHijo=compuerta;    
+    this.compuertaHijo.suscribir(this);
+    this.valor=this.compuertaHijo.getValor();
     }
     else
         console.log("no es valido el objeto de espera un objeto ARBOL.Compuerta");    
-}
+};
 
 ARBOL.EventoTope.prototype.getHijo=function(){
-    return this.CompuertaHijo;
-}
+    return this.compuertaHijo;
+};
     
     
 ARBOL.EventoTope.prototype.OnUpdateValArbol=function(event)
@@ -92,6 +66,7 @@ ARBOL.EventoTope.prototype.OnUpdateValArbol=function(event)
     console.info("actualizando valor de arbol");
     console.info(this);
     */
+    
     
 };
 
@@ -102,7 +77,13 @@ ARBOL.EventoTope.prototype.OnSetCLHijo=function(event)
     console.log(this.val);
 };
 
-//#fin de definicion de evento Iniciador
+
+ARBOL.EventoTope.prototype.toJSON=function(){
+    var object='{"class":"EventoTope","idarbol":"'+this.idarbol+'","id":"'+this.id+'","nombre":"'+this.nombre+'","valor":'+this.valor+',"x":"'+this.x+'","y":"'+this.y+'","modelId":"'+this.modelID+'","portIn":"'+this.portIn+'","compuertaHijo":"'+this.compuertaHijo.id+'"}';                      
+    return object;
+}
+
+//#fin de definicion de Evento Iniciador
 
 //#definicion del link
 ARBOL.Link = function (x,y,length) {
@@ -143,6 +124,17 @@ ARBOL.Compuerta = function (id,tipo) {
 this.suscriptores = new Array();
 };
 
+ARBOL.Compuerta.prototype.hasHijoEvento=function(hijoEvento){
+    if(this.hijosEventos.length==0){
+        return false
+    }else{
+          for(var evento in this.hijosEventos) {
+                if(hijoEvento.id==this.hijosEventos[evento].id)
+                    return true;
+             }
+         }
+         return false;
+};
 
 ARBOL.Compuerta.prototype.suscribir=function(objeto){
     this.suscriptores.push(objeto);
@@ -150,8 +142,9 @@ ARBOL.Compuerta.prototype.suscribir=function(objeto){
 
 ARBOL.Compuerta.prototype.Update=function(event)
 {
+    
     if(event instanceof ARBOL.Evento){
-    console.log("procesando el evento"+event.nombre);
+        console.log("procesando el evento"+event.nombre);
     this.valor=this.getValorCompuerta(this);
         }
     else if(event instanceof ARBOL.Compuerta)
@@ -163,6 +156,7 @@ ARBOL.Compuerta.prototype.Update=function(event)
     for(var x=0,l = this.suscriptores.length;x<l;x++){
            this.suscriptores[x].Update(this);
     }
+    console.log(this.toJSON());
 };
 
 
@@ -224,7 +218,13 @@ ARBOL.Compuerta.prototype.setPadre=function(padre){
         */
 };
 
+ARBOL.Compuerta.prototype.getHijosEventos=function(){
+    return this.hijosEventos;
+}
 
+ARBOL.Compuerta.prototype.getHijosCompuertas=function(){
+    return this.hijosCompuertas;
+}
         
 ARBOL.Compuerta.prototype.setHijoEvento=function(evento){    
         if(evento instanceof ARBOL.Evento){
@@ -266,14 +266,53 @@ ARBOL.Compuerta.prototype.isValido=function(){
     return this.valido;    
 };
 
+ARBOL.Compuerta.prototype.getValEventosAND=function(arrayEventos) {
+    var valor = 1.0;
+    //iterar los eventos
+    var eventoTemp=new ARBOL.Evento();    
+    for (var evento in arrayEventos) {        
+       valor *= arrayEventos[evento].getValor();
+       console.log(evento);
+    }
+    return valor;
+  }
+
+  ARBOL.Compuerta.prototype.getValEventosOR=function(arrayEventos) {
+        var valor = 0.0;
+    //iterar los eventos      
+    try{
+        for (var evento in arrayEventos) {
+         valor +=arrayEventos[evento].getValor();//arrayEventos[evento].getValor();         
+         console.log(evento);
+            }     
+    return valor;
+        }
+        catch(err){
+            console.log(err);
+            
+        }
+  }
+
 
 ARBOL.Compuerta.prototype.getValorCompuerta=function(compuerta) {
     //this.setValEventos(valEventos);=0.0;
     //var valCompuerta=0.0;
     //var valor=0.0d;          
 //    console.log(compuerta,"numero de hijos",compuerta.getHijosCompuertas().length);
+    try{
+        /*
+    var compuertaint=new ARBOL.Compuerta('','TEMP');
+    compuerta.getTipo=compuertaint.getTipo;
+    compuerta.getValor=compuertaint.getValor;
+    compuerta.getHijosCompuertas=compuertaint.getHijosCompuertas;
+    compuerta.getHijosEventos=compuertaint.getHijosEventos;
+    compuerta.getid=compuertaint.getId;*/
+        
+    /*
+    compuerta.getHijosCompuertas=compuertaint.getHijosCompuertas(compuerta);
     for (var compuertaAux in compuerta.getHijosCompuertas())
         console.log(compuertaAux);
+    */
     switch (compuerta.getTipo()) {
       case "AND":
         compuerta.setValor(this.getValEventosAND(compuerta.getHijosEventos()));
@@ -305,42 +344,45 @@ ARBOL.Compuerta.prototype.getValorCompuerta=function(compuerta) {
 
     console.log("el valor de la compuerta " + compuerta.getId() + " : " + compuerta.getValor());
     return compuerta.getValor();
+    }
+    catch(err){
+        console.log(err);
+    }
   }
   
 ARBOL.Compuerta.prototype.getValEventos=function(){
     return this.valEventos;
 };
 
-ARBOL.Compuerta.prototype.getValEventosAND=function(arrayEventos) {
-    var valor = 1.0;
-    //iterar los eventos
-    var eventoTemp=new ARBOL.Evento();    
-    for (var evento in arrayEventos) {        
-      valor *= arrayEventos[evento].getValor();
+                                                                                                                        
+ARBOL.Compuerta.prototype.toJSON=function(){
+    var arregloEventos=new Array();
+    arregloEventos ="[";
+    for(var x=0,l=this.hijosEventos.length;x<l;x++) {
+        arregloEventos+=this.hijosEventos[x].toJSON();
+        if(x<l-1) arregloEventos+=",";
     }
-    return valor;
-  }
-
-  ARBOL.Compuerta.prototype.getValEventosOR=function(arrayEventos) {
-        var valor = 0.0;
-    //iterar los eventos
-        var eventoTemp=new ARBOL.Evento();
-        for (var evento in arrayEventos) {
-         valor +=arrayEventos[evento].getValor();         
-            }     
-    return valor;
-  }
-
-ARBOL.Compuerta.prototype.getHijosEventos=function(){
-    return this.hijosEventos;
-}
-
-ARBOL.Compuerta.prototype.getHijosCompuertas=function(){
-    return this.hijosCompuertas;
-}
-
-
-//ARBOL.Compuerta.prototype.setHijo
+    arregloEventos+="]";
+    
+    var arregloCompuertas=new Array();
+    arregloCompuertas ="[";
+    for(var x=0,l=this.hijosCompuertas.length;x<l;x++) {
+        arregloCompuertas+=this.hijosCompuertas[x].toJSON();
+        if(x<l-1) arregloCompuertas+=",";
+    }
+    arregloCompuertas+="]";
+    
+    var arregloSuscriptores=new Array();
+    arregloSuscriptores="[";
+    for(var x=0,l=this.suscriptores.length;x<l;x++) {
+        arregloSuscriptores+=this.suscriptores[x].toJSON();
+        if(x<l-1) arregloSuscriptores+=",";
+    }
+    arregloSuscriptores+="]";
+//    var object='{"class":"Compuerta","id":"'+this.id+'","valor":'+this.valor+',"valEventos":'+this.valEventos+',"tipo":"'+this.tipo+'","valCompuertas":'+this.valCompuertas+',"modelId":"'+this.modelID+'","portIn":"'+this.portIn+'","hijosEventos":'+arregloEventos+',"hijosCompuertas":'+arregloCompuertas+',"padre":"'+this.padre+'","valido":'+this.valido+',"suscriptores":'+arregloSuscriptores+'}';
+    var object='{"class":"Compuerta","id":"'+this.id+'","valor":'+this.valor+',"valEventos":'+this.valEventos+',"tipo":"'+this.tipo+'","valCompuertas":'+this.valCompuertas+',"modelId":"'+this.modelID+'","portIn":"'+this.portIn+'","hijosEventos":'+arregloEventos+',"hijosCompuertas":'+arregloCompuertas+',"padre":"'+this.padre+'","valido":'+this.valido+'}';
+    return object;                                                                                           
+}    
 //#fin de la definicion de la compuerta
 
 
@@ -368,6 +410,11 @@ ARBOL.Evento.prototype.suscribir=function(objeto){
     this.suscriptores.push(objeto);
 };
 
+ARBOL.Evento.prototype.Update=function(objeto){
+    this.valor=this.getHijo().getValor();
+    
+};
+
 ARBOL.Evento.prototype.setPadre=function(padre)
 {
    if( padre instanceof ARBOL.Compuerta){ 
@@ -378,26 +425,50 @@ ARBOL.Evento.prototype.setPadre=function(padre)
 
 ARBOL.Evento.prototype.setHijo=function(hijo)
 {
-   if(hijo instanceof ARBOL.Compuerta){ 
+   if(hijo instanceof ARBOL.Compuerta&& (typeof this.compuertaHijo=='undefined')){ 
        this.compuertaHijo=hijo;
-   }else
-       console.log("Solo se puede agregar un elemento del tipo ARBOL.Compuerta");   
-   
-   
+       hijo.suscribir(this);
+   }else if(this.compuertaHijo instanceof ARBOL.Compuerta){
+                  console.log("Solo puede tener un Hijo Compuerta");
+       
+        }else{
+       console.log("Solo se puede agregar un elemento del tipo ARBOL.Compuerta");
+   }
 };
 
+ARBOL.Evento.prototype.hasHijoCompuerta=function(hijo){
+    if(hijo instanceof ARBOL.Compuerta){ 
+       return hijo===this.compuertaHijo;   
+    }
+    return false;    
+};
+
+ARBOL.Evento.prototype.getHijo=function(){
+    return this.compuertaHijo;
+    
+};
 ARBOL.Evento.prototype.setValor=function(valor)
 {
    if((typeof valor==="number") && (valor >0 &&valor<1)){  
        this.valor=valor;
        //$(this).trigger("changeValueEvent",this);
        //ARBOL.Event.fire(this);
+       //console.log("test valor");
+       //alert(this.Contenedor);//.val('dos');
        for(var x=0,l = this.suscriptores.length;x<l;x++){
-           this.suscriptores[x].Update(this);
+//           console.log("------",this.suscriptores[x]);
+            this.suscriptores[x].Update(this);
+           
+           
        }
    }
    else
      console.log("Solo se aceptan valores mayores a 0 y menores a 1")
+};
+
+ARBOL.Evento.prototype.isValido=function(){
+    return (this.valor >0 &&this.valor<1)?true:false;
+      
 };
 
 
@@ -407,7 +478,76 @@ ARBOL.Evento.prototype.getValor=function()
    
 };
 
+
+ARBOL.Evento.prototype.setNombre=function(nombre)
+{   
+       this.nombre=nombre;
+   
+};
+
+ARBOL.Evento.prototype.getNombre=function()
+{   
+       return this.nombre;
+   
+};
+
+ARBOL.Evento.prototype.toJSON=function(){//this.editable=true;
+    this.idNomenclatura;
+    this.idarbol;
+    var object='{"class":"Evento","id":"'+this.id+'","nombre":"'+this.nombre+'","valor":'+this.valor+',"editable":"'+this.editable+
+            '","idNomenclatura":"'+this.idNomenclatura+'"}';
+    //console.log(JSON.stringify(this));
+    return object;
+}
+    
 //#fin de la definicion de Evento
+
+//#Definición de Arbol
+ARBOL.ArbolFalla=function(id,nombre){
+    this.id="";
+    this.nombre="";
+    this.eventoTope;
+    this.arbolGrafico;
+};
+
+ARBOL.ArbolFalla.prototype.setArbolGrafico=function(arbolGrafico){
+    return this.arbolGrafico=arbolGrafico;
+};
+
+ARBOL.ArbolFalla.prototype.getArbolGrafico=function(){
+    return this.arbolGrafico;
+};
+
+
+ARBOL.ArbolFalla.prototype.getEventoTope=function(){
+    return this.eventoTope;
+    
+}
+ARBOL.ArbolFalla.prototype.setEventoTope=function(eventoTope){
+    if(eventoTope instanceof this.eventoTope){
+       this.eventoTope=eventoTope; 
+    }
+};
+
+ARBOL.ArbolFalla.prototype.setNombre=function(nombre){
+  this.nombre=nombre;  
+};
+
+ARBOL.ArbolFalla.prototype.setId=function(id){
+  this.id=id;
+};
+
+
+ARBOL.ArbolFalla.prototype.getId=function(id){
+  this.id=id;    
+};
+
+ARBOL.ArbolFallas.prototype.toJSON=function(){
+    
+    
+};
+
+
 
 
 
@@ -462,7 +602,6 @@ ARBOL.OnSetCLHijo=function(event){
     console.log(event);
     console.info(ARBOL.EventoTope);
 };
-
 
 //#FIN DE ASIGNACIONES Y CREACION DE ARBOL
 

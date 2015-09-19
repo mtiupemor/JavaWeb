@@ -26,6 +26,14 @@ import java.util.logging.Logger;
  */
 public class EventoDao {
 
+  private boolean error;
+  private String errorS;
+
+  public EventoDao() {
+    error = false;
+    errorS = "";
+  }
+
   public boolean agregaEvento(EventoDto evento) {
     Connection unaConexion = null;
     PreparedStatement pstm = null;
@@ -47,12 +55,11 @@ public class EventoDao {
       pstm.setString(8, evento.getIdNomenclatura());
       //System.out.println(pstm);
       if (pstm.executeUpdate() > 0) {
-        return true;
+        error = false;
       }
-      return false;
     } catch (SQLException e) {
-      Logger.getLogger(EventoTopeDto.class.getName()).log(Level.SEVERE, null, e);
-      throw new RuntimeException(EventoTopeDto.class.getName() + " Error al obtener los datos>", e);
+      error = true;
+      errorS = e.getMessage();
     } finally {
       try {
         if (rs != null) {
@@ -62,13 +69,15 @@ public class EventoDao {
           pstm.close();
         }
       } catch (Exception e) {
-        Logger.getLogger(EventoTopeDto.class.getName()).log(Level.SEVERE, null, e.getMessage());
-        throw new RuntimeException(EventoTopeDto.class.getName() + " Error al cerrar la conexion>", e);
+        error = true;
+        errorS = e.getMessage();
       }
     }
+    return error;
   }
 
   public Collection<EventoDto> obtenerEventos(String idPadre) {
+    ArrayList<EventoDto> listaEventos = new ArrayList<EventoDto>();
     Connection unaConexion = null;
     PreparedStatement pstm = null;
     ResultSet rs = null;
@@ -80,8 +89,7 @@ public class EventoDao {
       pstm.setString(1, idPadre);
       //System.out.println(pstm);
       rs = pstm.executeQuery();
-      ArrayList<EventoDto> listaEventos = new ArrayList<EventoDto>();
-
+      
       while (rs.next()) {
         EventoDto evento = new EventoDto();
         evento.setId(rs.getString("id"));
@@ -96,8 +104,9 @@ public class EventoDao {
       }
       return listaEventos;
     } catch (SQLException e) {
-      Logger.getLogger(EventoDao.class.getName()).log(Level.SEVERE, null, e);
-      throw new RuntimeException(EventoDao.class.getName() + " Error al obtener los datos>", e);
+        error = true;
+        errorS = e.getMessage();  
+        return listaEventos;
     } finally {
       try {
         if (rs != null) {
@@ -107,8 +116,8 @@ public class EventoDao {
           pstm.close();
         }
       } catch (Exception e) {
-        Logger.getLogger(EventoDao.class.getName()).log(Level.SEVERE, null, e.getMessage());
-        throw new RuntimeException(EventoDao.class.getName() + " Error al cerrar la conexion>", e);
+        error = true;
+        errorS = e.getMessage();
       }
     }
   }
@@ -124,20 +133,34 @@ public class EventoDao {
       pstm = unaConexion.prepareStatement(sentenciaSQL);
       pstm.setString(1, arbol);
       rows = pstm.executeUpdate();
+      error=false;
     } catch (SQLException e) {
-      Logger.getLogger(ArbolFallaDAO.class.getName()).log(Level.SEVERE, null, e);
-      throw new RuntimeException(ArbolFallaDAO.class.getName() + " Error al obtener los datos>", e);
+        error = true;
+        errorS = e.getMessage();      
     } finally {
       try {
         if (pstm != null) {
           pstm.close();
         }
       } catch (Exception e) {
-        Logger.getLogger(ArbolFallaDAO.class.getName()).log(Level.SEVERE, null, e.getMessage());
-        throw new RuntimeException(ArbolFallaDAO.class.getName() + " Error al cerrar la conexion>", e);
+        error = true;
+        errorS = e.getMessage();        
       }
     }
     return rows;
   }
+  /**
+   * @return the error
+   */
+  public boolean getError() {
+    return error;
+  }
+
+  /**
+   * @return the errorS
+   */
+  public String getErrorS() {
+    return errorS;
+  }  
 
 }

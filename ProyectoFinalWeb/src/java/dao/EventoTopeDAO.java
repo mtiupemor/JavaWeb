@@ -23,81 +23,94 @@ import java.util.logging.Logger;
  */
 public class EventoTopeDAO {
 
-  
-    public boolean agregaEventoTope(EventoTopeDto evento){
+  private boolean error;
+  private String errorS;
+
+  public EventoTopeDAO() {
+    error = false;
+    errorS = "";
+  }
+
+  public boolean agregaEventoTope(EventoTopeDto evento) {
     Connection unaConexion = null;
     PreparedStatement pstm = null;
     ResultSet rs = null;
 
-    try{
+    try {
       //System.out.println(evento.getId());
       //System.out.println(evento.getHijo().getId());
       unaConexion = UnidadConexion.getConexion();
       String sentenciaSQL = "INSERT INTO eventotope(id,idarbol,nombre,valor,idhijo) VALUES(?,?,?,?,?)";
       pstm = unaConexion.prepareStatement(sentenciaSQL);
-      pstm.setString(1,evento.getId());
-      pstm.setString(2,evento.getIdarbol());
+      pstm.setString(1, evento.getId());
+      pstm.setString(2, evento.getIdarbol());
       pstm.setString(3, evento.getNombre());
       pstm.setDouble(4, evento.getValor());
       pstm.setString(5, evento.getHijo().getId());
       //System.out.println(pstm);
-      if (pstm.executeUpdate()>0)
-        return true;
-      return false;
-    }catch (SQLException e){
-      Logger.getLogger(EventoTopeDto.class.getName()).log(Level.SEVERE, null, e);
-        throw new RuntimeException(EventoTopeDto.class.getName() + " Error al obtener los datos>",e);
-    }finally{
-      try{
-        if (rs != null)
+      if (pstm.executeUpdate() > 0) {
+        error = false;
+      }
+    } catch (SQLException e) {
+      error = true;
+      errorS = e.getMessage();
+    } finally {
+      try {
+        if (rs != null) {
           rs.close();
-        if (pstm != null)
+        }
+        if (pstm != null) {
           pstm.close();
-      }catch(Exception e){
-        Logger.getLogger(EventoTopeDto.class.getName()).log(Level.SEVERE, null, e.getMessage());
-        throw new RuntimeException(EventoTopeDto.class.getName() + " Error al cerrar la conexion>",e);
+        }
+      } catch (Exception e) {
+        error = true;
+        errorS = e.getMessage();
       }
     }
+    return error;
   }
-    
-  public EventoTopeDto obtenerObjetoEventoTope(String idPadre){
+
+  public EventoTopeDto obtenerObjetoEventoTope(String idPadre) {
+    EventoTopeDto evento = new EventoTopeDto();
     Connection unaConexion = null;
     PreparedStatement pstm = null;
     ResultSet rs = null;
-     
-    try{
+
+    try {
       unaConexion = UnidadConexion.getConexion();
       String sentenciaSQL = "SELECT * FROM eventotope WHERE id=?";
       pstm = unaConexion.prepareStatement(sentenciaSQL);
       pstm.setString(1, idPadre);
       //System.out.println("query: " + pstm);
       rs = pstm.executeQuery();
-      EventoTopeDto evento = new EventoTopeDto();
-      while (rs.next()){      
-        
+
+      while (rs.next()) {
+
         evento.setId(rs.getString("id"));
         evento.setNombre(rs.getString("nombre"));
         //evento.setValor(rs.getDouble("valor"));
         //eventos.setIdHijo(rs.getString("idhijo"));                
-      }      
-      return evento;
-    }catch (SQLException e) {
-        Logger.getLogger(EventoTopeDAO.class.getName()).log(Level.SEVERE, null, e);
-        throw new RuntimeException(EventoTopeDAO.class.getName() + " Error al obtener los datos>",e);
-    }finally{
-      try{
-        if (rs != null)
+        error = false;
+      }
+    } catch (SQLException e) {
+      error = true;
+      errorS = e.getMessage();
+    } finally {
+      try {
+        if (rs != null) {
           rs.close();
-        if (pstm != null)
+        }
+        if (pstm != null) {
           pstm.close();
-      }catch(Exception e){
-        Logger.getLogger(EventoTopeDAO.class.getName()).log(Level.SEVERE, null, e.getMessage());
-        throw new RuntimeException(EventoTopeDAO.class.getName() + " Error al cerrar la conexion>",e);
+        }
+      } catch (Exception e) {
+        error = true;
+        errorS = e.getMessage();
       }
     }
+    return evento;
   }
-  
-  
+
   public int deleteEventoTope(String arbol) {
     Connection unaConexion = null;
     PreparedStatement pstm = null;
@@ -109,21 +122,35 @@ public class EventoTopeDAO {
       pstm = unaConexion.prepareStatement(sentenciaSQL);
       pstm.setString(1, arbol);
       rows = pstm.executeUpdate();
+      error = false;
     } catch (SQLException e) {
-      Logger.getLogger(ArbolFallaDAO.class.getName()).log(Level.SEVERE, null, e);
-      throw new RuntimeException(ArbolFallaDAO.class.getName() + " Error al obtener los datos>", e);
+      error = true;
+      errorS = e.getMessage();
     } finally {
       try {
         if (pstm != null) {
           pstm.close();
         }
       } catch (Exception e) {
-        Logger.getLogger(ArbolFallaDAO.class.getName()).log(Level.SEVERE, null, e.getMessage());
-        throw new RuntimeException(ArbolFallaDAO.class.getName() + " Error al cerrar la conexion>", e);
+        error = true;
+        errorS = e.getMessage();
       }
     }
     return rows;
-  }    
+  }
 
-  
+  /**
+   * @return the error
+   */
+  public boolean getError() {
+    return error;
+  }
+
+  /**
+   * @return the errorS
+   */
+  public String getErrorS() {
+    return errorS;
+  }
+
 }

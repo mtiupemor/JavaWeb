@@ -6,8 +6,11 @@
 package dto;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Observable;
 import java.util.Observer;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 /**
  *
@@ -15,7 +18,7 @@ import java.util.Observer;
  */
 public class CompuertaLogicaDto extends Observable implements Observer {
 
-  private String idarbol;  
+  private String idarbol;
   private String id;
   private double valor;
   private ArrayList<EventoDto> hijosEventos;
@@ -68,19 +71,19 @@ public class CompuertaLogicaDto extends Observable implements Observer {
     }
   }
 
-    /**
-     * @return the idarbol
-     */
-    public String getIdarbol() {
-        return idarbol;
-    }
+  /**
+   * @return the idarbol
+   */
+  public String getIdarbol() {
+    return idarbol;
+  }
 
-    /**
-     * @param idarbol the idarbol to set
-     */
-    public void setIdarbol(String idarbol) {
-        this.idarbol = idarbol;
-    }
+  /**
+   * @param idarbol the idarbol to set
+   */
+  public void setIdarbol(String idarbol) {
+    this.idarbol = idarbol;
+  }
 
   public static enum TYPO {
 
@@ -108,8 +111,6 @@ public class CompuertaLogicaDto extends Observable implements Observer {
         break;
     }
   }
-
-
 
   public int getSizeHijosEventos() {
     return hijosEventos.size();
@@ -208,7 +209,7 @@ public class CompuertaLogicaDto extends Observable implements Observer {
         break;
     }
     hijosCompuertas.add(CL);
-   // CL.setPadre(this);
+    // CL.setPadre(this);
   }
   /*
    ARBOL.Compuerta.prototype.OnUpdateCLPadre=function(event){
@@ -446,6 +447,51 @@ public class CompuertaLogicaDto extends Observable implements Observer {
 
     exit += "}";
     return exit;
+  }
+
+  public JSONObject toJsonObject() {
+    JSONObject object = new JSONObject();
+    JSONArray arrayHijoEventos=new JSONArray() ;
+    object.put("class", "Compuerta");
+    object.put("idArbol", this.idarbol);
+    object.put("id", this.id);
+    object.put("valor", this.valor);
+    for(EventoDto e :this.hijosEventos){
+      arrayHijoEventos.put(e.toJsonObject());
+    }
+    object.putOpt("hijosEventos",arrayHijoEventos );
+    //object.put("hijosCompuertas", this.hijosCompuertas);
+    //object.put(this.hijosEventos);
+    //object.put(this.hijosCompuertas); 
+
+    return object;
+  }
+
+  public String toJsonObject(String cadena) {
+    JSONObject object = new JSONObject();
+    JSONArray arrayHijoEventos=new JSONArray() ;
+    object.put("class", "Compuerta");
+    object.put("idArbol", this.idarbol);
+    object.put("id", this.id);
+    object.put("valor", this.valor);
+    
+    object.putOpt("hijosEventos", arrayHijoEventos);
+    //object.put("hijosCompuertas", this.hijosCompuertas);
+    return object.toString();
+  }
+
+  public CompuertaLogicaDto getObjectFromJSON(JSONObject objeto) {
+    CompuertaLogicaDto cl = new CompuertaLogicaDto();
+                   
+    JSONArray obj=objeto.getJSONArray("id");    
+    Iterator i = obj.iterator();            
+    while(i.hasNext()){
+      //cl.setId(o.getString("id"));
+      JSONObject o =(JSONObject)i.next();
+      System.out.println(o.getString("id"));
+      System.out.println(o.getString("nombre"));
+    }           
+    return cl;
   }
 
 }

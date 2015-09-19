@@ -5,6 +5,8 @@
  */
 package dto;
 
+import org.json.JSONObject;
+
 /**
  *
  * @author lirio
@@ -96,4 +98,25 @@ public class EventoIniciadorDto {
     public void setIdarbol(String idarbol) {
         this.idarbol = idarbol;
     }
+    
+public JSONObject toJsonObject(){
+    JSONObject object=new JSONObject();
+    object.put("class","EventoIniciadorDto");
+    object.put("id",this.id);
+    object.put("idarbol",this.idarbol);
+    object.put("bombre",this.nombre);
+    object.put("valor",this.valor);
+    return object;
+  }
+  
+  public String toJsonObject(String cadena){
+    JSONObject object=new JSONObject();
+    object.put("class","EventoIniciadorDto");
+    object.put("id",this.id);
+    object.put("idarbol",this.idarbol);
+    object.put("bombre",this.nombre);
+    object.put("valor",this.valor);
+    return object.toString();
+  }    
+  
 }

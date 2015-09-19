@@ -25,10 +25,10 @@ public class UnidadConexion {
          String cadenaConexion = archivoConfiguracion.getString("cadenaconexion");
          String clave = archivoConfiguracion.getString("clave");
          String usuario = archivoConfiguracion.getString("usuario");
-         System.out.println(manejador);
-         System.out.println(cadenaConexion);
-         System.out.println(clave);
-         System.out.println(usuario);
+         //System.out.println(manejador);
+         //System.out.println(cadenaConexion);
+         //System.out.println(clave);
+         //System.out.println(usuario);
 
          Class.forName(manejador);
          conexion = DriverManager.getConnection(cadenaConexion,usuario,clave);

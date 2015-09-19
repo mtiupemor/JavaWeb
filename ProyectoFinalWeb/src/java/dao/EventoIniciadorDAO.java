@@ -8,6 +8,7 @@ package dao;
 import dto.CompuertaLogicaDto;
 import dto.EventoDto;
 import dto.EventoIniciadorDto;
+import dto.EventoTopeDto;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,46 +24,91 @@ import java.util.logging.Logger;
  * @author rubcer
  */
 public class EventoIniciadorDAO {
-    
-    public boolean agregaEventoIniciador(EventoIniciadorDto evento){
+
+  private boolean error;
+  private String errorS;
+
+  public boolean agregaEventoIniciador(EventoIniciadorDto evento) {
     Connection unaConexion = null;
     PreparedStatement pstm = null;
     ResultSet rs = null;
-    try{
+    try {
       unaConexion = UnidadConexion.getConexion();
       String sentenciaSQL = "INSERT INTO eventoiniciador(id,idarbol,nombre,valor) VALUES(?,?,?,?)";
       pstm = unaConexion.prepareStatement(sentenciaSQL);
-      pstm.setString(1,evento.getId());
-      pstm.setString(2,evento.getIdarbol());
+      pstm.setString(1, evento.getId());
+      pstm.setString(2, evento.getIdarbol());
       pstm.setString(3, evento.getNombre());
       pstm.setDouble(4, evento.getValor());
-  
-      if (pstm.executeUpdate()>0)
-        return true;
-      return false;
-    }catch (SQLException e){
-      Logger.getLogger(EventoIniciadorDto.class.getName()).log(Level.SEVERE, null, e);
-        throw new RuntimeException(EventoIniciadorDto.class.getName() + " Error al obtener los datos>",e);
-    }finally{
-      try{
-        if (rs != null)
+
+      if (pstm.executeUpdate() > 0) {
+        error = false;
+      }
+    } catch (SQLException e) {
+      error = true;
+      errorS = e.getMessage();
+    } finally {
+      try {
+        if (rs != null) {
           rs.close();
-        if (pstm != null)
+        }
+        if (pstm != null) {
           pstm.close();
-      }catch(Exception e){
-        Logger.getLogger(EventoIniciadorDto.class.getName()).log(Level.SEVERE, null, e.getMessage());
-        throw new RuntimeException(EventoIniciadorDto.class.getName() + " Error al cerrar la conexion>",e);
+        }
+      } catch (Exception e) {
+        error = true;
+        errorS = e.getMessage();
       }
     }
+    return error;
   }
 
-     public Collection<EventoIniciadorDto> obtenerEventoIniciador(String idPadre){
+  public EventoIniciadorDto obtenerObjetoEventoIniciador(String idPadre) {
+    EventoIniciadorDto evento = new EventoIniciadorDto();
     Connection unaConexion = null;
     PreparedStatement pstm = null;
     ResultSet rs = null;
-     
 
-    try{
+    try {
+      unaConexion = UnidadConexion.getConexion();
+      String sentenciaSQL = "SELECT * FROM eventoiniciador WHERE id=?";
+      pstm = unaConexion.prepareStatement(sentenciaSQL);
+      pstm.setString(1, idPadre);
+      //System.out.println("query: " + pstm);
+      rs = pstm.executeQuery();
+
+      while (rs.next()) {
+        evento.setId(rs.getString("id"));
+        evento.setNombre(rs.getString("nombre"));
+        evento.setValor(rs.getDouble("valor"));
+        evento.setIdarbol(rs.getString("idarbol"));
+        error = false;
+      }
+    } catch (SQLException e) {
+      error = true;
+      errorS = e.getMessage();
+    } finally {
+      try {
+        if (rs != null) {
+          rs.close();
+        }
+        if (pstm != null) {
+          pstm.close();
+        }
+      } catch (Exception e) {
+        error = true;
+        errorS = e.getMessage();
+      }
+    }
+    return evento;
+  }
+
+  public Collection<EventoIniciadorDto> obtenerEventoIniciador(String idPadre) {
+    Connection unaConexion = null;
+    PreparedStatement pstm = null;
+    ResultSet rs = null;
+
+    try {
       unaConexion = UnidadConexion.getConexion();
       String sentenciaSQL = "SELECT * FROM eventoiniciador WHERE idpadre=?";
       pstm = unaConexion.prepareStatement(sentenciaSQL);
@@ -70,33 +116,34 @@ public class EventoIniciadorDAO {
       rs = pstm.executeQuery();
       ArrayList<EventoIniciadorDto> listaEventosIniciador = new ArrayList<EventoIniciadorDto>();
 
-      while (rs.next()){
+      while (rs.next()) {
         EventoIniciadorDto evento = new EventoIniciadorDto();
         evento.setId(rs.getString("id"));
         evento.setNombre(rs.getString("nombre"));
         evento.setValor(rs.getDouble("valor"));
-  
 
         listaEventosIniciador.add(evento);
       }
       return listaEventosIniciador;
-    }catch (SQLException e) {
-        Logger.getLogger(EventoIniciadorDAO.class.getName()).log(Level.SEVERE, null, e);
-        throw new RuntimeException(EventoIniciadorDAO.class.getName() + " Error al obtener los datos>",e);
-    }finally{
-      try{
-        if (rs != null)
+    } catch (SQLException e) {
+      Logger.getLogger(EventoIniciadorDAO.class.getName()).log(Level.SEVERE, null, e);
+      throw new RuntimeException(EventoIniciadorDAO.class.getName() + " Error al obtener los datos>", e);
+    } finally {
+      try {
+        if (rs != null) {
           rs.close();
-        if (pstm != null)
+        }
+        if (pstm != null) {
           pstm.close();
-      }catch(Exception e){
+        }
+      } catch (Exception e) {
         Logger.getLogger(CompuertaLogicaDAO.class.getName()).log(Level.SEVERE, null, e.getMessage());
-        throw new RuntimeException(CompuertaLogicaDAO.class.getName() + " Error al cerrar la conexion>",e);
+        throw new RuntimeException(CompuertaLogicaDAO.class.getName() + " Error al cerrar la conexion>", e);
       }
     }
   }
-    
-public int deleteEventosIniciador(String arbol) {
+
+  public int deleteEventoIniciador(String arbol) {
     Connection unaConexion = null;
     PreparedStatement pstm = null;
     int rows = -1;
@@ -107,21 +154,36 @@ public int deleteEventosIniciador(String arbol) {
       pstm = unaConexion.prepareStatement(sentenciaSQL);
       pstm.setString(1, arbol);
       rows = pstm.executeUpdate();
+      error = false;
     } catch (SQLException e) {
-      Logger.getLogger(ArbolFallaDAO.class.getName()).log(Level.SEVERE, null, e);
-      throw new RuntimeException(ArbolFallaDAO.class.getName() + " Error al obtener los datos>", e);
+      error = true;
+      errorS = e.getMessage();
+
     } finally {
       try {
         if (pstm != null) {
           pstm.close();
         }
       } catch (Exception e) {
-        Logger.getLogger(ArbolFallaDAO.class.getName()).log(Level.SEVERE, null, e.getMessage());
-        throw new RuntimeException(ArbolFallaDAO.class.getName() + " Error al cerrar la conexion>", e);
+        error = true;
+        errorS = e.getMessage();
       }
     }
     return rows;
-  }    
-    
+  }
+
+  /**
+   * @return the error
+   */
+  public boolean getError() {
+    return error;
+  }
+
+  /**
+   * @return the errorS
+   */
+  public String getErrorS() {
+    return errorS;
+  }
+
 }
-    

@@ -34,8 +34,11 @@
 
       });
 
-      var eT = new ARBOL.EventoTope();
-      var arbolGrafico;
+      var arbolFalla = new ARBOL.ArbolFalla();
+      
+      
+      
+      
       $(document).ready(function () {
 
         var graph = new joint.dia.Graph;
