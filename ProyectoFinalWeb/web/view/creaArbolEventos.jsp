@@ -265,18 +265,15 @@
       <section id="informacion">
         <div class="container">
           <br/><br/><br/>
-          <div class="section-heading scrollpoint sp-effect3">
+          <div class="section-heading ">
             <h2>Crea tu árbol de eventos</h2>
             <div class="divider"></div>
           </div>
           <div class="row">
             <div class="col-md-12">
               <div>  
-
-
-
-
-                <table border="1" width="98%">
+                
+                <table border="1" width="98%" class="cont_Paper">
 
                   <tr>
                     <td rowspan="4">
@@ -286,7 +283,7 @@
 
                   <tr>
                     <td width="250" height="30%" align="CENTER" >
-                     </br> 
+                      </br> 
                       Nombre: 
                       <input type="text" id="txtNombreEventoIniciador" value="" />
                       </br> </br>
@@ -294,32 +291,52 @@
                       </br> </br>
                     </td>
                   </tr>
-                  
+
                   <tr>
                     <td width="250" height="40%" align="CENTER">
-                     </br> 
+                      </br> 
                       Nombre: 
-                      <input type="text" id="txtNombreSistema" value="" />
-                     </br> </br>
+                      <select name="txtNombreSistema" >
+                        <optgroup label="Sistemas">
+
+                          <!-- while (unIteradorEmpleado.hasNext()) {
+                            EmpleadoDTO unEmpleado = (EmpleadoDTO) unIteradorEmpleado.next(); -->
+
+                          <option value="0.27"> HPCF</option>
+                          <option value="0.33"> RCIC</option>
+                          <option value="0.12"> RHR</option>
+                          <option value="0.25"> ADS</option>
+                          <option value="0.7"> ICS</option>
+                          <option value="0.48"> GDCS</option>
+                          <option value="0.88"> PCCS</option>
+                          <option value="0.17"> HPVCSCF</option>
+
+                          <!--  } -->
+
+                        </optgroup>
+                      </select>
+
+                      <!-- <input type="text" id="txtNombreSistema" value="" />-->
+                      </br> </br>
                       Tipo:  
-                     
+
                       <input id="rbtFalla" type="radio" name="sistema" value="falla" checked> Falla
                       <input id="rbtExito" type="radio" name="sistema" value="exito"> Éxito
-                    </br> </br>
+                      </br> </br>
                       <input type="button" id="sistema" value="Sistema" />
                       </br> </br>
                     </td>
                   </tr>
-                  
+
                   <tr>
                     <td width="250" height="10%" align="CENTER">
                       </br>
                       <input type="button" id="calcular" value="Calcular"  />
-                        
+
                       </br> </br>
                     </td>
                   </tr>
-                  
+
                 </table>
 
                 <div id="paper-link-out"><b></b></div>
@@ -331,12 +348,17 @@
           </div>
         </div>
       </section>
-      <%@include file="footer.jsp" %>
+      <footer>
+        <div class="container">
+          <a href="#" >
+            <img src="../img/freeze/logomin.png" alt="" class="logo">
+          </a>
+          <div class="rights">
+            <p>Copyright &copy; 2015</p>
+          </div>
+        </div>
+      </footer>
     </div>
-    <script>
-      $(document).ready(function () {
-        appMaster.preLoader();
-      });
-    </script> 
+
   </body>
 </html>
