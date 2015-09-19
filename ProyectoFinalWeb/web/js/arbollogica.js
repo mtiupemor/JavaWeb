@@ -79,7 +79,13 @@ ARBOL.EventoTope.prototype.OnSetCLHijo=function(event)
 
 
 ARBOL.EventoTope.prototype.toJSON=function(){
-    var object='{"class":"EventoTope","idarbol":"'+this.idarbol+'","id":"'+this.id+'","nombre":"'+this.nombre+'","valor":'+this.valor+',"x":"'+this.x+'","y":"'+this.y+'","modelId":"'+this.modelID+'","portIn":"'+this.portIn+'","compuertaHijo":"'+this.compuertaHijo.id+'"}';                      
+    var object;
+    if(typeof this.compuertaHijo != 'undefined')
+        object='{"class":"EventoTope","idarbol":"'+this.idarbol+'","id":"'+this.id+'","nombre":"'+this.nombre+'","valor":'+this.valor+',"x":"'+this.x+'","y":"'+this.y+'","modelId":"'+this.modelID+'","portIn":"'+this.portIn+'","compuertaHijo":"'+this.compuertaHijo.id+'"}';        
+    else
+        object='{"class":"EventoTope","idarbol":"'+this.idarbol+'","id":"'+this.id+'","nombre":"'+this.nombre+'","valor":'+this.valor+',"x":"'+this.x+'","y":"'+this.y+'","modelId":"'+this.modelID+'","portIn":"'+this.portIn+'","compuertaHijo":"undefined"}';                  
+                              
+        
     return object;
 }
 
@@ -510,6 +516,16 @@ ARBOL.ArbolFalla=function(id,nombre){
     this.arbolGrafico;
 };
 
+ARBOL.ArbolFalla.prototype.toObjctLogicJSON=function(){
+    var objeto='{"class":"ArbolFalla","id":"'+this.id+'","nombre":"'+this.nombre+'","eventoTope":'+this.eventoTope.toJSON()+'}';   
+    return objeto;
+};
+
+ARBOL.ArbolFalla.prototype.toObjctGraphicJSON=function(){
+    var objeto='{"class":"ArbolFalla","id":"'+this.id+'","nombre":"'+this.nombre+'","arbolGrafico":'+this.arbolGrafico+'}';   
+    return objeto;
+};
+
 ARBOL.ArbolFalla.prototype.setArbolGrafico=function(arbolGrafico){
     return this.arbolGrafico=arbolGrafico;
 };
@@ -524,7 +540,8 @@ ARBOL.ArbolFalla.prototype.getEventoTope=function(){
     
 }
 ARBOL.ArbolFalla.prototype.setEventoTope=function(eventoTope){
-    if(eventoTope instanceof this.eventoTope){
+    if(eventoTope instanceof ARBOL.EventoTope){
+        console.log("Agregando Evento Tope");
        this.eventoTope=eventoTope; 
     }
 };
@@ -542,10 +559,10 @@ ARBOL.ArbolFalla.prototype.getId=function(id){
   this.id=id;    
 };
 
-ARBOL.ArbolFallas.prototype.toJSON=function(){
-    
-    
-};
+ARBOL.ArbolFalla.prototype.toJSON=function(){    
+    var objeto='{"class":"ArbolFalla","id":"'+this.id+'","nombre":"'+this.nombre+'","eventoTope":'+this.eventoTope.toJSON()+',"CompuertaHijo":'+this.eventoTope.getHijo().toJSON()+',"arbolGrafico":'+this.arbolGrafico+'}';   
+    return objeto;
+};   
 
 
 
@@ -604,8 +621,3 @@ ARBOL.OnSetCLHijo=function(event){
 };
 
 //#FIN DE ASIGNACIONES Y CREACION DE ARBOL
-
-
-
-
-   

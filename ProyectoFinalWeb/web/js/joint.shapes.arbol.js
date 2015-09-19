@@ -75,7 +75,7 @@ joint.shapes.arbol.Model = joint.shapes.basic.Generic.extend(_.extend({}, joint.
         attrs[portSelector] = { ref: '.body', 'ref-x': (index + 0.5) * (1 / total) };
 
         if (selector === '.inPorts') { attrs[portSelector]['ref-dy'] = 2; }
-        if (selector === '.outPorts') { attrs[portSelector]['ref-y'] = -23; }
+        if (selector === '.outPorts') { attrs[portSelector]['ref-y'] = -27; }
         
         
 
@@ -131,25 +131,13 @@ joint.shapes.arbol.Evento=joint.shapes.arbol.Model.extend({
 
         attrs[portLabelSelector] = { text: portName };
         attrs[portBodySelector] = { port: { id: portName || _.uniqueId(type) , type: type } };
-        attrs[portSelector] = { ref: '.body', 'ref-x': (index + 0.3) * (1 / total) };
+        attrs[portSelector] = { ref: '.body', 'ref-x': (index + 0.4) * (1 / total) };
 
-        if (selector === '.inPorts') { attrs[portSelector]['ref-dy'] = 15;}
-        if (selector === '.outPorts') { attrs[portSelector]['ref-y'] = -15; }       
+        if (selector === '.inPorts') { attrs[portSelector]['ref-dy'] = 13; }
+        if (selector === '.outPorts') { attrs[portSelector]['ref-y'] = -13; }       
        return attrs;
     }
     });
-
-
-//joint.shapes.arbol.Model.Evento.type='arbol.Model.Evento';
-var ARBOL = ARBOL || {};
-ARBOL.Compuerta = function (id,type) {
-    this.id=id;
-    this.val=0;
-    this.hijosEventos=new Array();
-    this.hijosCompuertas=new Array();
-    this.type=type;
-    this.Compuerta;
-};
 
 
 joint.shapes.arbol.CompuertaAND = joint.shapes.arbol.Model.extend({
@@ -183,7 +171,7 @@ joint.shapes.arbol.CompuertaAND = joint.shapes.arbol.Model.extend({
         attrs[portBodySelector] = { port: { id: portName || _.uniqueId(type) , type: type } };
         attrs[portSelector] = { ref: '.body', 'ref-x': (index + 0.5) * (1 / total) };
 
-        if (selector === '.inPorts') { attrs[portSelector]['ref-dy'] = 2; }
+        if (selector === '.inPorts') { attrs[portSelector]['ref-dy'] = 8; }
         if (selector === '.outPorts') { attrs[portSelector]['ref-y'] = -10; }       
        return attrs;
     }
@@ -474,13 +462,12 @@ joint.shapes.arbol.Evento = joint.shapes.basic.Rect.extend({
         joint.dia.ElementView.prototype.initialize.apply(this, arguments);
 
         this.$box = $(_.template(this.template)());
-        caja=this;
+        this.caja=this;
          console.log(this);
          this.$box.on('mouseover',function(evt) { 
            
             console.log($(evt.target));
-            console.log($(evt.target).context.nodeName=='DIV');{
-          
+            console.log($(evt.target).context.nodeName=='DIV');{          
             console.log($(evt.target).find('button').css('display'));
 
             //if($(evt.target).find('button').css('display')=="none")
@@ -1064,8 +1051,8 @@ joint.shapes.arbol.ModelView = joint.dia.ElementView.extend({
     template: [
         '<div class="evento">',
         '<button class="delete">x</button>',
-        '<input class="name" name="nameEvento" type="text"   value="1" />',
-        '<input class="value" name="valueEvento"  type="text"  value="0" />',
+        '<input class="name" name="nameEvento" type="text"  value="1" />',
+        '<input class="value" name="valueEvento" type="text" size="5" value="0" />',
         '</div>'
     ].join(''),
 
@@ -1073,16 +1060,13 @@ joint.shapes.arbol.ModelView = joint.dia.ElementView.extend({
         _.bindAll(this, 'updateBox');
         joint.dia.ElementView.prototype.initialize.apply(this, arguments);
 
-        this.$box = $(_.template(this.template)());
-        caja=this;
-         console.log(this);
+        this.$box = $(_.template(this.template)());        
+        // console.log(this);
          this.$box.on('mouseover',function(evt) { 
            
-            console.log($(evt.target));
-            console.log($(evt.target).context.nodeName=='DIV');{
-          
-            console.log($(evt.target).find('button').css('display'));
-
+          //  console.log($(evt.target));
+            //console.log($(evt.target).context.nodeName=='DIV');
+            //console.log($(evt.target).find('button').css('display'));
             //if($(evt.target).find('button').css('display')=="none")
             $(evt.target).find('button').css('display', 'block');
            // $(evt.target).find('.delete').on('click', _.bind($(evt.target).model.remove,$(evt.target).model));
@@ -1090,9 +1074,9 @@ joint.shapes.arbol.ModelView = joint.dia.ElementView.extend({
                // $(evt.target).find('button').css('display', 'none');
 
             //$(evt.target).css('pointer-events', 'none');
-            console.log('P');
+            //console.log('P');
             evt.stopPropagation(); 
-        }
+            
 
         });
        
@@ -1114,19 +1098,30 @@ joint.shapes.arbol.ModelView = joint.dia.ElementView.extend({
         
         this.$box.find('.value').on('change', _.bind(function(evt) {
             //alert($);
-            console.log("en value",$(evt.target).val(),this);
-            valorEvento=$(evt.target).val();
-            if(typeof this.model.Evento!='undefined'){                             
-                this.model.Evento.setValor(eval($(evt.target).val()));
-                if(!this.model.Evento.isValido()){
-                    alert("Objeto no valido"+this.model.Evento.id);
-                    $(evt.target).val('')
+            //console.log("en value",$(evt.target).val(),this);
+            try{
+           if(typeof eval($(evt.target).val())=='number'){
+            var valorEvento=eval($(evt.target).val());
+            if(typeof this.model.Evento!='undefined'){
+                this.model.Evento.contenedor=this.$box;                
+                this.model.Evento.setValor(valorEvento);
+                console.log(this.model.Evento.toJSON());
+                if(!this.model.Evento.isValido()||valorEvento>1.0||valorEvento<=0){
+                    alert("Valor no valido para Evento \n"+this.model.Evento.getNombre());
+                    if(this.model.Evento.isValido())
+                        $(evt.target).val(this.model.Evento.getValor());
+                    else
+                    $(evt.target).val('');
                 }
                 else                    
-                $(evt.target).val($(evt.target).val());
-            console.log(this.model.Evento);
-            }
-            
+                $(evt.target).val(this.model.Evento.getValor());
+            console.log(this.model.Evento,this.model.Evento.isValido());
+            };
+        }}catch(err)
+            { //alert("Solo se aceptan valores numericos");
+                alert(err);
+            $(evt.target).val('');}
+        
         }, this));
         
         /*this.$box.find('select').on('change', _.bind(function(evt) {
@@ -1139,24 +1134,27 @@ joint.shapes.arbol.ModelView = joint.dia.ElementView.extend({
         //this.$box.find('select').val(this.model.get('select'));
         //console.log("this");
         //console.log(this);
-        this.$box.find('.delete').on('click', function(evt)
+        this.$box.find('.delete').on('click',_.bind(function(evt)
             {
                     console.log(caja);
                     var r = confirm("Eliminar elemento?");
 
                     if (r == true) {
-                        caja.model.remove();
-                        caja.$box.remove();
+                        this.model.remove();
+                        this.$box.remove();
                     } else {
                         //this.$box.css('pointer-events', 'auto');
-                      caja.$box.find('button').css('display', 'none');
+                      this.$box.find('button').css('display', 'none');
                       //this.updateBox();
                      //   this.$box.css('pointer-events', 'none');
                     }
                    
-            });
+            },this));
         // Update the box position whenever the underlying model changes.
         this.model.on('change', this.updateBox, this);
+        this.model.on('change:parent',_.bind(function(evt){
+            console.log("procesando parent");
+        },this));
         // Remove the box when the model gets removed from the graph.
         //this.model.on('remove', this.removeBox, this);              
         this.updateBox();
@@ -1197,17 +1195,28 @@ joint.shapes.arbol.ModelView = joint.dia.ElementView.extend({
         var bbox = this.model.getBBox();
         // Example of updating the HTML with a data stored in the cell model.
        // this.$box.find('hover',this.$box.css('visibility','hidden'));
+       if((typeof this.model.Evento!='undefined')&&(typeof this.model.Evento.getHijo()!='undefined'))
+       {
+           this.$box.find('.value').val(this.model.Evento.getHijo().getValor());
+           
+           
+       }else if((typeof this.model.EventoTope!='undefined')){//&&(typeof this.model.EventoTope.getHijo()!='undefined')){
+           this.$box.find('.value').val(this.model.EventoTope.getValor());
+           //console.log(JSON.stringify(this.model.EventoTope.getHijo()));
+       }
         this.$box.find('label').text(this.model.get('label'));
         //this.$box.find('span').text(this.model.get('select'));
         this.$box.css({ width: bbox.width, height: bbox.height, left: bbox.x, top: bbox.y, transform: 'rotate(' + (this.model.get('angle') || 0) + 'deg)' });
          this.$box.find('button').css('display', 'none');
             this.$box.css('pointer-events', 'auto');
         //this.$box.css('pointer-events', 'auto');
-     console.log(this.$box.find('button'));
+     console.log("Actualizando arbol.. en modelo");
     },
     removeBox: function(evt) {
         //var context=this.$box.context;
-        var r = confirm("Eliminar elemento dos ?");
+        //var r = confirm("Eliminar elemento dos ?");
+         //this.model.remove();
+         this.$box.remove();
 
             if (r == true) {
                // this.modelremove();
@@ -1238,7 +1247,7 @@ joint.shapes.arbol.CompuertaView = joint.dia.ElementView.extend({
         joint.dia.ElementView.prototype.initialize.apply(this, arguments);
 
         this.$box = $(_.template(this.template)());
-        this.caja=this;
+        this.caja=$(_.template(this.template)());
         console.log('inicializando caja');
          console.log(this);
 
@@ -1280,12 +1289,14 @@ joint.shapes.arbol.CompuertaView = joint.dia.ElementView.extend({
         this.$box.find('button').on('click',_.bind( function(evt)
             {
 
-                    console.log(caja);
+                    
                     var r = confirm("Eliminar elemento?");
-
+                    console.log("confirmando",this);
                     if (r == true) {
-                        this.model.remove();
+                        //graph.getCell(this.model.id).remove();
+                        //graph.getCell(this.model.id).remove();                        
                         this.$box.remove();
+                        this.remove();
                     } else {
                         //this.$box.css('pointer-events', 'auto');
                       this.$box.find('button').css('display', 'none');
@@ -1369,23 +1380,25 @@ joint.shapes.arbol.CompuertaView = joint.dia.ElementView.extend({
 
 //
 
+                
 
 joint.shapes.arbol.Link = joint.dia.Link.extend({
 
     defaults: {
     type: 'arbol.Link',
-    attrs: {
+    attrs: {        
             '.label': { text: 'Model', 'ref-x': .4, 'ref-y': .2 },
             rect: { fill: '#2ECC71' },
-            '.inPorts circle': { fill: '#16A085', magnet: 'passive', type: 'input' },
+            '.inPorts circle': { fill: '#16A085', type: 'input'},// magnet: 'passive', type: 'input' },
             '.outPorts circle': { fill: '#E74C3C', type: 'output' }
-        }
+        },
+   
     }
 });
-
+// router: { name: 'orthogonal' }
 //joint.shapes.arbol.ModelView = joint.dia.ElementView.extend(joint.shapes.basic.PortsViewInterface);
 //joint.shapes.arbol.AtomicView = joint.shapes.arbol.ModelView;
-//joint.shapes.arbol.CoupledView = joint.shapes.arbol.ModelView;
+//joint.shapes.arbol.CoupledView = joint.shapes.arbolol;
 joint.shapes.arbol.CompuertaANDView = joint.shapes.arbol.CompuertaView ;
 joint.shapes.arbol.CompuertaORView = joint.shapes.arbol.CompuertaView ;
 joint.shapes.arbol.CompuertaOREXView = joint.shapes.arbol.CompuertaView ;
@@ -1403,5 +1416,3 @@ if (typeof exports === 'object') {
 
     module.exports = joint.shapes.arbol;
 }
-
-

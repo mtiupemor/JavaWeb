@@ -40,105 +40,184 @@
       
       
       $(document).ready(function () {
+graph = new joint.dia.Graph;
+                /*graph.on('change', function(link){
+                   console.log("En evento graph on",link);                    
+                }
+                );*/
 
-        var graph = new joint.dia.Graph;
-
-        var paper = new joint.dia.Paper(
+                
+                var paper = new joint.dia.Paper(
                 {
-                  el: $('#paper'),
-                  width: 1000,
-                  height: 600,
-                  gridSize: 1,
-                  model: graph,
-                  snapLinks: true,
-                  embeddingMode: true,
-                  defaultLink: new joint.shapes.logic.Wire, // Implemento Ramon, CLIO lo agrego
-                  validateEmbedding: function (childView, parentView) {
-                    return false;//parentView.model instanceof joint.shapes.arbol.Coupled;
-                  },
-                  validateConnection: function (sourceView, sourceMagnet, targetView, targetMagnet)
-                  {
-                    /*CLIO,  16092015 1812*/
-                    var msj = "";
-                    graph.on('change:source change:target', function (link)
-                    {
-                      var puertoOrigen = link.get('source').port;
-                      var origenId = link.get('source').id;
-                      var puertoDestino = link.get('target').port;
-                      var destinoId = link.get('target').id;
-                      console.log("val1 " + origenId);
-                      console.log("val2" + destinoId);
-                      if (origenId == destinoId)
-                      {
-                        msj = "Mismo";
-                        link.remove();
-                      } else
-                      {
-                        msj = "Diferente";
-                        if (typeof origenId != 'undefined' && typeof destinoId != 'undefined')
+                    el: $('#paper'),
+                    width: 1000,
+                    height: 600,
+                    gridSize: 1,
+                    model: graph,
+                    defaultLink:new joint.shapes.arbol.Link,
+                    snapLinks: true,
+                    linkPinning: false,                    
+                    restrictTranslate:{x: 0, y: 0, width: 1100, height:600},
+                    validateConnection: function(vs, ms, vt, mt, e, vl) {
+                       if(vs!=vt)
+                       {
+                    if (e === 'target') {
+                        //console.log("port source",vs);
+                        //console.log("port source");
+                        //console.log("vt",vt);
+                        //console.log("vs",vs);
+                        console.log("tipo de puerto origen",vs instanceof joint.dia.ElementView);
+                        var puertoOrigen=V(ms || !ms.getAttribute('class') || mt.getAttribute('class').indexOf('output')).attr('port').slice(0,2);
+                        console.log("tipo de puerto origen",puertoOrigen);                        
+                        
+                        //vs.model.set('input .name',"Gorge");
+                        //console.log(vs.model);
+                        if(ms!=mt){
+                            //var source = graph.getCell();
+                            //source.attr('.outPorts circle/magnet', 'passive')
+                        if(puertoOrigen=='ou')
                         {
-                          var partida = puertoOrigen.slice(0, 2);
-                          var destino = puertoDestino.slice(0, 2);
-                          console.log("puertos: primero>" + partida + " segundo>" + destino);
-                          /*ou->ou*/
-                          if (partida == "ou" && destino == "ou")
-                          {
-                            console.log("Primer validacion");
-                            link.remove();
-                          } else if (partida == "in" && destino == "in")
-                          {
-                            console.log("Segunda validacion");
-                            link.remove();
-                          } else if (partida == "in" && destino == "ou")
-                          {
-                            console.log("Tercera validacion");
-                            link.remove();
+                            console.log("out a in",vt,vs);                               
+                                if(((typeof vt.model.Evento)!='undefined')&&((typeof vs.model.Compuerta)!='undefined')){ //cuando se une de out compuerta -> in Evento
+                                    if(!(vt.model.Evento.hasHijoCompuerta(vs.model.Compuerta))){
+                                        vt.model.Evento.setHijo(vs.model.Compuerta);
+                                        console.log("Agregado Compuerta",vt.model.Evento.getHijo());
+                                       // alert("Se agrego la compuerta como hijo de Evento");
+                                        return true;
+                                    }
+                             }else if(((typeof vs.model.Evento)!='undefined')&&((typeof vt.model.Compuerta)!='undefined')){ //se une out Evento-> int Compuerta
+                                        if(!(vt.model.Compuerta.hasHijoEvento(vs.model.Evento))){
+                                            vt.model.Compuerta.setHijoEvento(vs.model.Evento);
+                                            console.log("Agregado Evento",vt.model.Compuerta.getTipo(),vt.model.Compuerta.getValor());
+                                            return true;
+                                        }else
+                                             console.log("Lo tengo como hijo");
+                                        console.log("Compuerta",vt.model.Compuerta,"Compuerta \n",vt.model.Compuerta.hasHijoEvento(vs.model.Evento));
+                                    }else if(((typeof vs.model.Compuerta)!='undefined')&&((typeof vt.model.EventoTope)!='undefined')){
+                                                    if(!(vt.model.EventoTope.hasHijo(vs.model.Compuerta))){
+                                                        vt.model.EventoTope.setHijo(vs.model.Compuerta);
+                                                        console.log("Agregado Compuerta a evento Tope",vs.model.Compuerta.getTipo(),vs.model.Compuerta.getValor());
+                                                       vs.model.set('input',vs.model.Compuerta.getValor());
+                                                        return true;
+                                                    }
+                                        
+                                            }
+                             
+                            
+                            
+                            /*if(typeof vs.model.Evento!='undefined'&&typeof vt.model.Compuerta!='undefined'){
+                                    if(!(vs.model.Evento.hasHijoCompuerta(vt.model.Compuerta))){
+                                        console.log("Agregando Hijo compuerta!!");
+                                        vs.model.Evento.setHijo(vt.model.Compuerta);
+                                    }
+                                    console.log("Evento",vs.model.Evento,"Evento \n",vs.model.Evento.hasHijoCompuerta(vt.model.Compuerta));
+                                }*/
+                        }else if(puertoOrigen=='in')
+                        {
+                            console.log("en in....");
+                            console.log("in a out VS",vs.model);     
+                            console.log("in a out VT",vt.model);     
+                            if(((typeof vt.model.Compuerta)!='undefined')&&((typeof vs.model.EventoTope)!='undefined'))
+                            {
+                                console.log("ëntrando");
+                                if(!(vs.model.EventoTope.hasHijo(vt.model.Compuerta)))
+                                {
+                                    vs.model.EventoTope.setHijo(vt.model.Compuerta);
+                                    console.log("EventoTope",vs.model.EventoTope);
+                                   //vs.model.set('input',vs.model.Compuerta.getValor());
+                                    return true;
+                                }
+                                        
+                            }else if(((typeof vs.model.Compuerta)!='undefined')&&((typeof vt.model.EventoTope)!='undefined'))
+                            {                                
+                                if(!(vt.model.EventoTope.hasHijo(vs.model.Compuerta)))
+                                {
+                                    vt.model.EventoTope.setHijo(vs.model.Compuerta);
+                                    console.log("EventoTope",vt.model.EventoTope);
+                                   //vs.model.set('input',vs.model.Compuerta.getValor());
+                                    return true;
+                                }
+                                        
+                            }else
+                                if(((typeof vt.model.Evento)!='undefined')&&((typeof vs.model.Compuerta)!='undefined'))
+                                {
+                                    //console.log("hazuer");
+                                    //cuando se une de in evento -> out compuerta
+                                    if(!(vs.model.Compuerta.hasHijoEvento(vt.model.Evento)))
+                                    {
+                                            vs.model.Compuerta.setHijoEvento(vt.model.Evento);
+                                            console.log("See Agregado Evento",vt.model.Evento);
+                                            return true;
+                                        }
+                                }
+                                            
+                            /*if(((typeof vs.model.Compuerta)!='undefined')&&((typeof vt.model.EventoTope)!='undefined')){
+                                                    if(!(vt.model.EventoTope.hasHijo(vs.model.Compuerta))){
+                                                        vt.model.EventoTope.setHijo(vs.model.Compuerta);
+                                                        console.log("Agregado Compuerta a evento Tope",vs.model.Compuerta.getTipo(),vs.model.Compuerta.getValor());
+                                                       vs.model.set('input',vs.model.Compuerta.getValor());
+                                                        return true;
+                                                      }*/
+                        }
+                      
+                    }
+                        //console.log("test",typeof vs.model.Evento!='undefined',typeof vt.model.Compuerta!='undefined',vs.model.Evento.hasHijoCompuerta(vt.model.Compuerta));
+                        // target requires an input port to connect
+                         
+                         /*
+                        
+                        
+                        
                           }
+                        */
+                        /*if (!mt || !mt.getAttribute('class') || mt.getAttribute('class').indexOf('input') < 0) 
+                            return false;*/
+                        
+                       
+
+                        } else { // e === 'source'
+                            console.log("es source");
+                            // source requires an output port to connect
+                            /*return ms && ms.getAttribute('class') && ms.getAttribute('class').indexOf('output') >= 0; */
                         }
                       }
-                      var m = [
-                        'The port <b>' + puertoOrigen,
-                        '</b> of element with ID <b>' + origenId,
-                        '</b> is connected to port <b>' + puertoDestino,
-                        '</b> of elemnt with ID <b>' + destinoId + '</b> : ' + '<b>' + msj + '</b>'
-                      ].join('');
-                      //enviamos cordenadas
-                      out(m);
+                     return true;
+                    }
+             });
+             
+             
+
+/*here*/
+                /*
+                 * To change this license header, choose License Headers in Project Properties.
+                 * To change this template file, choose Tools | Templates
+                 * and open the template in the editor.
+                 */
+
+               /* var connect = function (source, sourcePort, target, targetPort) {
+                    if(source instanceof joint.shapes.arbol.Evento && target instanceof joint.shapes.arbol.Evento ){
+                            console.log("Evento no se puede unir con evento");
+                    }else{
+                        console.log("Entra");
+                    var link = new joint.shapes.arbol.Link({
+                        source: {id: source.id, selector: source.getPortSelector(sourcePort)},
+                        target: {id: target.id, selector: target.getPortSelector(targetPort)}
                     });
-                    return sourceMagnet != targetMagnet;
-                  }//Fin validateConnection, CLIO
-                });
-
-
-        /*
-         * To change this license header, choose License Headers in Project Properties.
-         * To change this template file, choose Tools | Templates
-         * and open the template in the editor.
-         */
-
-        /* var connect = function (source, sourcePort, target, targetPort) {
-         if(source instanceof joint.shapes.arbol.Evento && target instanceof joint.shapes.arbol.Evento ){
-         console.log("Evento no se puede unir con evento");
-         }else{
-         console.log("Entra");
-         var link = new joint.shapes.arbol.Link({
-         source: {id: source.id, selector: source.getPortSelector(sourcePort)},
-         target: {id: target.id, selector: target.getPortSelector(targetPort)}
-         });
-         link.addTo(graph).reparent();
-         }
-         };*/
+                    link.addTo(graph).reparent();
+                }
+                };*/
 
 
 
-        /*
-         eventoIniciador.el=new ARBOL.EventoIniciador;
-         console.log(eventoIniciador);
-         */
+                /*
+                 eventoIniciador.el=new ARBOL.EventoIniciador;
+                 console.log(eventoIniciador);
+                 */
 
 
-        /* Metodo para asignar ID del evento*/
-        // evento.setIdModel("500ffe65-583f-4205-92b3-1545dd618d4x");
+                /* Metodo para asignar ID del evento*/
+                //No eliminar
+               // evento.setIdModel("500ffe65-583f-4205-92b3-1545dd618d4x");
 
 
 //graph.addCells([evento,cAND]);
@@ -147,147 +226,228 @@
 
 //connect(c1,'in',a1,'xy');
 
-        /* rounded corners */
-        /*
-         _.each([c1,a1,a2,a3,a4,cAND], function(element) {
-         element.attr({ '.body': { 'rx': 6, 'ry': 6 }});
-         });
-         */
+                /* rounded corners */
+                /*
+                 _.each([c1,a1,a2,a3,a4,cAND], function(element) {
+                 element.attr({ '.body': { 'rx': 6, 'ry': 6 }});
+                 });
+                 */
 
-        /* custom highlighting */
+                /* custom highlighting */
+                paper.on( "cell:pointerdown", function( cellview, evt, x, y)  {
+                  console.log( "pointer down on cell ", cellview.model.id, " pos: ", x , ",", y);
+              });
+              
+                var highlighter = V('circle', {
+                    'r': 14,
+                    'stroke': '#ff7e5d',
+                    'stroke-width': '6px',
+                    'fill': 'transparent',
+                    'pointer-events': 'none'
+                });
 
-        var highlighter = V('circle', {
-          'r': 14,
-          'stroke': '#ff7e5d',
-          'stroke-width': '6px',
-          'fill': 'transparent',
-          'pointer-events': 'none'
-        });
+                paper.off('cell:highlight cell:unhighlight').on({
+                    'cell:highlight': function (cellView, el, opt) {
 
-        paper.off('cell:highlight cell:unhighlight').on({
-          'cell:highlight': function (cellView, el, opt) {
+                        if (opt.embedding) {
+                            V(el).addClass('highlighted-parent');
+                        }
 
-            if (opt.embedding) {
-              V(el).addClass('highlighted-parent');
-            }
+                        if (opt.connecting) {
+                            var bbox = V(el).bbox(false, paper.viewport);
+                            highlighter.translate(bbox.x + 10, bbox.y + 10, {absolute: true});
+                            V(paper.viewport).append(highlighter);
+                        }
+                    },
+                    'cell:unhighlight': function (cellView, el, opt) {
 
-            if (opt.connecting) {
-              var bbox = V(el).bbox(false, paper.viewport);
-              highlighter.translate(bbox.x + 10, bbox.y + 10, {absolute: true});
-              V(paper.viewport).append(highlighter);
-            }
-          },
-          'cell:unhighlight': function (cellView, el, opt) {
+                        if (opt.embedding) {
+                            V(el).removeClass('highlighted-parent');
+                        }
 
-            if (opt.embedding) {
-              V(el).removeClass('highlighted-parent');
-            }
+                        if (opt.connecting) {
+                            highlighter.remove();
+                        }
+                    }
+                });
 
-            if (opt.connecting) {
-              highlighter.remove();
-            }
-          }
-        });
+                //Llamada a evento tope
+                $("#eventoTope").click(function (evt) {
+                     if(typeof arbolFalla.getEventoTope()!='undefined'){
+                    var eventoTope = new joint.shapes.arbol.Evento({
+                        position: {x: 750, y: 30},
+                        size: {width: 100, height: 80},
+                        label: 'I am HTML',
+                        inPorts: ['in'],
+                    });
 
-        //Llamada a evento tope
-        $("#eventoTope").click(function (evt) {
+                    eventoTope.EventoTope=new ARBOL.EventoTope(eventoTope.id,"Evento Tope");      
+                    arbolFalla.setEventoTope(eventoTope.EventoTope);
+                    graph.addCells([eventoTope]);
+                    }else{
+                        var respuesta=confirm("Desea remplazar el Evento Tope Original?");
+                        if(respuesta){
+                            var eventoTope = new joint.shapes.arbol.Evento({
+                        position: {x: 750, y: 30},
+                        size: {width: 100, height: 80},
+                        label: 'I am HTML',
+                        inPorts: ['in'],
+                    });
 
-          var eventoIniciador = new joint.shapes.arbol.Evento({
-            position: {x: 920, y: 30},
-            size: {width: 80, height: 80},
-            label: 'I am HTML',
-            inPorts: ['in'],
-          });
+                    eventoTope.EventoTope=new ARBOL.EventoTope(eventoTope.id,"Evento Tope");      
+                    arbolFalla.setEventoTope(eventoTope.EventoTope);
+                            
+                        }
+                        
+                    }
+                }); //FIN compuertaTope
 
-
-          graph.addCells([eventoIniciador]);
-
-        }); //FIN compuertaTope
-
-        //Llamada a evento
-        $("#evento").click(function (evt) {
-          var evento = new joint.shapes.arbol.Evento({
-            position: {x: 920, y: 30},
-            size: {width: 80, height: 80},
-            label: 'I am HTML',
-            inPorts: ['in'],
-            outPorts: ['out']
-          });
-          graph.addCells([evento]);
-        }); //Fin compuerta evento
-
-
-        //Llamada a compuerta And
-        $("#compuertaAnd").click(function (evt) {
-
-          var cAND = new joint.shapes.arbol.CompuertaAND({
-            position: {x: 920, y: 30},
-            size: {width: 48, height: 48},
-            inPorts: [""],
-            outPorts: [""]
-          });
-          cAND.Compuerta = new ARBOL.Compuerta(cAND.id, 'AND')
-          graph.addCells([cAND]);
-          console.log(cAND);
-        }); //FIN compuertaAnd
-
-
-        //Llamada a compuerta Or
-        $("#compuertaOr").click(function (evt)
-        {
-          var cOr = new joint.shapes.arbol.CompuertaOR({
-            position: {x: 920, y: 30},
-            size: {width: 48, height: 48},
-            inPorts: [""],
-            outPorts: [""]
-          });
-          graph.addCells([cOr]);
-
-        }); //FIN compuertaOr
-
-        //Llamada a compuerta Or Exclusiva
-        $("#compuertaOrEx").click(function (evt)
-        {
-          var cOrExclusiva = new joint.shapes.arbol.CompuertaOREX({
-            position: {x: 920, y: 30},
-            size: {width: 48, height: 48},
-            inPorts: [""],
-            outPorts: [""]
-          });
-          graph.addCells([cOrExclusiva]);
-
-        }); //FIN compuertaOr
-
-        //Llamada a compuerta AND Prioritaria
-        $("#compuertaAndPri").click(function (evt)
-        {
-          var cAndPrioritaria = new joint.shapes.arbol.CompuertaANDPRI({
-            position: {x: 920, y: 30},
-            size: {width: 48, height: 48},
-            inPorts: [""],
-            outPorts: [""]
-          });
+                  //Llamada a evento
+                  $("#evento").click(function (evt) {
+                  var evento = new joint.shapes.arbol.Evento({
+                        position: {x: 750, y: 30},
+                        size: {width: 100, height: 80},
+                        label: 'I am HTML',
+                        inPorts: ['in'],
+                        outPorts: ['out']
+                    });
+                    evento.Evento=new ARBOL.Evento(evento.id,'Evento 1');  
+                    evento.Evento.setValor(0.2);
+                    evento.Update=function(object){
+                        console.log("Prueba dentro de Update");
+                        console.log(graph.getCell(object.id));
+                        //console.log(paper.findView('.evento>.name'));
+                    }
+                    console.log(evento);
+                    graph.addCells([evento]);
+                    evento.Update(evento);
+                    }); //Fin compuerta evento
 
 
+                 //Llamada a compuerta And
+                $("#compuertaAnd").click(function (evt) {
 
-          graph.addCells([cAndPrioritaria]);
+                    var cAND = new joint.shapes.arbol.CompuertaAND({
+                    position: {x: 800, y: 40},
+                    size: {width: 48, height: 48},
+                    inPorts: [""],
+                    outPorts: [""]
+                });
+                cAND.Compuerta=new ARBOL.Compuerta(cAND.id,'AND');
+                graph.addCells([cAND]);
+                console.log(cAND);
+                }); //FIN compuertaAnd
 
-        }); //FIN compuertaAND Prioritaria
 
-        //Llamada a redimencionar Pantalla
-        $("#redimensiona").click(function (evt)
-        {
+                //Llamada a compuerta Or
+                $("#compuertaOr").click(function (evt)
+                {
+                     var cOr = new joint.shapes.arbol.CompuertaOR({
+                    position: {x: 800, y: 40},
+                    size: {width: 48, height: 48},
+                    inPorts: [""],
+                    outPorts: [""]
+                });
+                    cOr.Compuerta=new ARBOL.Compuerta(cOr.id,'OR');
+                    graph.addCells([cOr]);
 
-          var heightActual = 0;
-          $('#paper').css("height", function (index, value) {
-            var dato = value.length - 2;
-            heightActual = value.substr(0, dato);
-            heightActual = parseInt(heightActual) + 450;
-          });
+                }); //FIN compuertaOr
 
-          document.getElementById('paper').style.height = heightActual + "px";
-          document.getElementById('v-2').style.height = heightActual + "px";
-        });
+               //Llamada a compuerta Or Exclusiva
+                $("#compuertaOrEx").click(function (evt)
+                {
+                    var cOrExclusiva = new joint.shapes.arbol.CompuertaOREX({
+                    position: {x: 800, y: 40},
+                    size: {width: 48, height: 48},
+                    inPorts: [""],
+                    outPorts: [""]
+                });
+                    graph.addCells([cOrExclusiva]);
+
+                }); //FIN compuertaOr
+
+                //Llamada a compuerta AND Prioritaria
+                $("#compuertaAndPri").click(function (evt)
+                {
+                    var cAndPrioritaria = new joint.shapes.arbol.CompuertaANDPRI({
+                    position: {x: 800, y: 40},
+                    size: {width: 48, height: 48},
+                    inPorts: [""],
+                    outPorts: [""]
+                });
+                    graph.addCells([cAndPrioritaria]);
+
+                }); //FIN compuertaAND Prioritaria
+                
+                
+                /*Funcion para mostrar el resultado de conectar los puertos entrada/salida
+                CLIO
+                16092015 1828
+                */
+                function out(m) 
+                {
+                    $('#paper-link-out').html(m);
+                }//Fin out, CLIO
+                    var eventoTope = new joint.shapes.arbol.Evento({
+                        position: {x: 450, y: 30},
+                        size: {width: 100, height: 80},
+                        label: 'I am HTML',
+                        inPorts: ['in'],
+                    });
+
+                    eventoTope.EventoTope=new ARBOL.EventoTope(eventoTope.id,"Evento Tope");    
+                    arbolFalla.setEventoTope(eventoTope.EventoTope);
+
+                        var evento = new joint.shapes.arbol.Evento({
+                        position: {x: 300, y: 350},
+                        size: {width: 100, height: 80},
+                        label: 'I am HTML',
+                        inPorts: ['in'],
+                        outPorts: ['out']
+                    });
+                    
+                    evento.Evento=new ARBOL.Evento(evento.id,'Evento 1');  
+                    evento.Evento.setValor(0.2);
+                    
+var evento1 = new joint.shapes.arbol.Evento({
+                        position: {x: 600, y: 350},
+                        size: {width: 100, height:80},
+                        label: 'I am HTML',
+                        inPorts: ['in'],
+                        outPorts: ['out'],
+                        '.value':0.2
+                    });
+                    evento1.Evento=new ARBOL.Evento(evento1.id,'Evento 1');                      
+                    evento1.Evento.setValor(0.2);
+                    
+
+var cAND = new joint.shapes.arbol.CompuertaAND({
+                    position: {x: 500, y: 200},
+                    size: {width: 48, height: 48},
+                    inPorts: [""],
+                    outPorts: [""]
+                });
+                cAND.Compuerta=new ARBOL.Compuerta(cAND.id,'AND');
+
+
+                graph.addCells([eventoTope,evento,evento1,cAND]);
+                console.log("evento 1",evento1);
+                console.log('calss',paper.findView(graph.getCell(evento1.id)))
+                
+                
+                paper.on("cell:mouseover",function(cellView, el){
+                 //console.log("aqui en paper",cellView,cellView.$box.find('.name').val("Oscar"),el);   
+                 var x=0;
+                 for(var x=0,l=graph.getElements();x<l.length;x++){
+                     console.log("elemento:",x,l[x]);                     
+                     console.log("Evento",eventoTope);
+                     console.log("Vista",eventoTope.findView(paper));
+                     console.log("Actualizando a box");
+                     eventoTope.findView(paper).updateBox();
+                 }
+             });
+        
+  
 
         //Funciones del menu general del arbol
         $("#clearArbol").click(function (evt) {
@@ -299,15 +459,17 @@
         });
 
         $("#saveArbol").click(function (evt) {
-          evt.preventDefault();
-          arbolGrafico = JSON.stringify(graph);
-          //alert(arbolGrafico);   
-          /*
+           evt.preventDefault();
+           arbolFalla.setArbolGrafico(JSON.stringify(graph));          
+           console.log(arbolFalla.getArbolGrafico());
+           //console.log(arbolFalla.toObjctGraphicJSON());
+           console.log(arbolFalla.toJSON());
+           /*
            $.ajax({
            url: "guardaArbol",
            type: "POST",
-           data: {arbol : JSON.stringify(graph)},
-           dataType: "html", 
+           data: {arbol : arbolFalla.getArbolGrafico()},
+           dataType: "json", 
            success: function(respuesta)                          
            {                                  
            
@@ -318,24 +480,19 @@
            //Se puede obtener informacion útil inspecionando el Objeto XMLHttpRequest
            console.log(XMLHttpRequest.status);
            }
-           ,
-           
-           });   
-           */
+           });*/              
         });
 
 
         $("#loadArbol").click(function (evt) {
-          evt.preventDefault();
-          /*
+          evt.preventDefault();          
            $.ajax({
            url: "getArbol",
            type: "POST",
            data: {solicitud : "arbolfallas"},
            dataType: "json", 
            success: function(respuesta)                          
-           {                                  
-           
+           {                                             
            graph.fromJSON(respuesta);
            
            },
@@ -346,7 +503,7 @@
            }
            ,
            
-           });   */
+           }); 
           // JSON.parse(obtieneArbol("")));
 
           graph.fromJSON(JSON.parse(arbolGrafico));
