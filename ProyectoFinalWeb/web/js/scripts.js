@@ -92,7 +92,6 @@ var appMaster = {
             $('.filter a').removeClass('active');
             $(this).addClass('active');
         });
-
     },
 
     animateScript: function() {

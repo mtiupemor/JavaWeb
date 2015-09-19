@@ -12,8 +12,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <link rel="shortcut icon" href="favicon.png">
+     <%@include file="head_arbol.jsp" %>  
     <title>Crea tu árbol de fallas</title>
-    
     <link rel="stylesheet" href="../css/joint.css" />
     <link rel="stylesheet" href="../css/arbol.css" />
     <link rel="stylesheet" href="../css/compuerta.css" />
@@ -191,7 +191,7 @@
 
           var eventoIniciador = new joint.shapes.arbol.Evento({
             position: {x: 920, y: 30},
-            size: {width: 170, height: 100},
+            size: {width: 80, height: 80},
             label: 'I am HTML',
             inPorts: ['in'],
           });
@@ -205,7 +205,7 @@
         $("#evento").click(function (evt) {
           var evento = new joint.shapes.arbol.Evento({
             position: {x: 920, y: 30},
-            size: {width: 170, height: 100},
+            size: {width: 80, height: 80},
             label: 'I am HTML',
             inPorts: ['in'],
             outPorts: ['out']
@@ -370,7 +370,6 @@
 
     </script>
     
-    <%@include file="head_arbol.jsp" %> 
   </head>
   <body>
     <header>
@@ -380,8 +379,8 @@
         <section id="informacion">
             <div class="container">
                 <br/><br/><br/>
-                <div class="section-heading scrollpoint sp-effect3">
-                    <h2>Crea tu árbol</h2>
+                <div class="section-heading">
+                    <h2>Crea tu árbol de fallas</h2>
                     <div class="divider"></div>
                 </div>
               <div class="row">
@@ -453,12 +452,16 @@
               </div>
             </div>
         </section>
-        <%@include file="footer.jsp" %>
+         <footer>
+            <div class="container">
+                <a href="#" >
+                    <img src="../img/freeze/logomin.png" alt="" class="logo">
+                </a>
+                <div class="rights">
+                    <p>Copyright &copy; 2015</p>
+                </div>
+            </div>
+        </footer>
     </div>
-     <script>
-      $(document).ready(function () {
-        appMaster.preLoader();        
-      });
-    </script> 
 </body>
 </html>
