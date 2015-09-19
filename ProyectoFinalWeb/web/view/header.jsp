@@ -43,7 +43,7 @@
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                         <span class="fa fa-bars fa-lg"></span>
                     </button>
-                    <a class="navbar-brand" href="index.jsp">
+                    <a class="navbar-brand" href="../index.jsp">
                         <img src="../img/freeze/logo.png" alt="" class="logo" style="width: 222px !important; height:81px !important;">
                     </a>
                 </div>
