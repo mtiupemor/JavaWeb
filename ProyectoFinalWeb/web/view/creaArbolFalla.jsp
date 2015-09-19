@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <link rel="shortcut icon" href="favicon.png">
-     <%@include file="head_arbol.jsp" %>  
+    <%@include file="head_arbol.jsp" %>  
     <title>Crea tu árbol de fallas</title>
     <link rel="stylesheet" href="../css/joint.css" />
     <link rel="stylesheet" href="../css/arbol.css" />
@@ -369,58 +369,82 @@
 
 
     </script>
-    
+
   </head>
   <body>
     <header>
       <%@include file="header_arbol.jsp" %> 
     </header>
     <div class="wrapper">
-        <section id="informacion">
-            <div class="container">
-                <br/><br/><br/>
-                <div class="section-heading">
-                    <h2>Crea tu árbol de fallas</h2>
-                    <div class="divider"></div>
-                </div>
-              <div class="row">
-                <div class="col-md-12">               
-                        <div class="izquierdo" border="1">
-                            <div id="paper" ></div>
-                        </div>
-         
-                        <div class="derecho">   
-                            <input type="image" id="eventoTope"   title="Agregar Evento Tope" src="../images/eventoTope.png"  width="100" height="100"/><br><hr>
-                            <input type="image" id="evento"  title="Agregar Evento" src="../images/evento.png" width="100" height="100" /><br> <hr>        
-                            <input type="image" id="compuertaAnd" title="Agregar Compuerta AND" src="../images/and.png" width="25" height="30" /><br><hr>
-                            <input type="image" id="compuertaOr" title="Agregar Compuerta OR" src="../images/or.png" width="25" height="30" /><br><hr>
-                            <input type="image" id="compuertaOrEx"  title="Agregar Compuerta OR Exclusiva" src="../images/orEx.png" width="25" height="30"/><br><hr>
-                            <input type="image" id="compuertaAndPri" title="Agregar Compuerta AND Prioritaria" src="../images/andPri.png" width="25" height="30" /><br><hr>    
-                            <input type="image" id="redimensiona" title="Redimensiona el área de dibujo" src="../images/redimensionar.png"  width="35" height="35" /><br><hr>
-                        </div>
-                        <div class="footer">
-                            <center>
-                                <input type="image" id="clearArbol" title="Limpiar área" src="../img/freeze/limpia.png"  width="50" height="50" />
-                                <input type="image" id="saveArbol" title="Guardar árbol" src="../img/freeze/guarda.png"  width="50" height="50" />
-                                <input type="image" id="loadArbol" title="Cargar un árbol" src="../img/freeze/recarga.png"  width="50" height="50" />
-                            </center>
-                        </div>
-                        <!--Mostrar conexiones validas,CLIO, 16092015 1830-->
-                        <div id="paper-link-out"></b></div> 
-                </div>  
+      <section id="informacion">
+        <div class="container">
+          <br/><br/><br/>
+          <div class="section-heading">
+            <h2>Crea tu árbol de fallas</h2>
+            <div class="divider"></div>
+            <br>
+            <br>
+            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+            Nombra tu árbol
+          </button>
+          </div>          
+          <div class="row">
+            <div class="col-md-12">               
+              <div class="izquierdo" border="1">
+                <div id="paper" ></div>
               </div>
+
+              <div class="derecho">   
+                <input type="image" id="eventoTope"   title="Agregar Evento Tope" src="../images/eventoTope.png"  width="100" height="100"/><br><hr>
+                <input type="image" id="evento"  title="Agregar Evento" src="../images/evento.png" width="100" height="100" /><br> <hr>        
+                <input type="image" id="compuertaAnd" title="Agregar Compuerta AND" src="../images/and.png" width="25" height="30" /><br><hr>
+                <input type="image" id="compuertaOr" title="Agregar Compuerta OR" src="../images/or.png" width="25" height="30" /><br><hr>
+                <input type="image" id="compuertaOrEx"  title="Agregar Compuerta OR Exclusiva" src="../images/orEx.png" width="25" height="30"/><br><hr>
+                <input type="image" id="compuertaAndPri" title="Agregar Compuerta AND Prioritaria" src="../images/andPri.png" width="25" height="30" /><br><hr>    
+                <input type="image" id="redimensiona" title="Redimensiona el área de dibujo" src="../images/redimensionar.png"  width="35" height="35" /><br><hr>
+              </div>
+              <div class="footer">
+                <center>
+                  <input type="image" id="clearArbol" title="Limpiar área" src="../img/freeze/limpia.png"  width="50" height="50" />
+                  <input type="image" id="saveArbol" title="Guardar árbol" src="../img/freeze/guarda.png"  width="50" height="50" />
+                  <input type="image" id="loadArbol" title="Cargar un árbol" src="../img/freeze/recarga.png"  width="50" height="50" />
+                </center>
+              </div>
+              <!--Mostrar conexiones validas,CLIO, 16092015 1830-->
+              <div id="paper-link-out"></b></div> 
+            </div>  
+          </div>
+        </div>
+      </section>
+      <!-- Modal -->
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Nombre de árbol</h4>
             </div>
-        </section>
-        <footer>
-            <div class="container">
-                <a href="#" >
-                    <img src="../img/freeze/logomin.png" alt="" class="logo">
-                </a>
-                <div class="rights">
-                    <p>Copyright &copy; 2015</p>
-                </div>
+            <div class="modal-body">
+              <input type="text"/>
             </div>
-        </footer>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="container">
+          <a href="#" >
+            <img src="../img/freeze/logomin.png" alt="" class="logo">
+          </a>
+          <div class="rights">
+            <p>Copyright &copy; 2015</p>
+          </div>
+        </div>
+      </footer>
     </div>
-</body>
+  </body>
 </html>
