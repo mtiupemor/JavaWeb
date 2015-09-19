@@ -523,7 +523,15 @@ var cAND = new joint.shapes.arbol.CompuertaAND({
         {
           $('#paper-link-out').html(m);
         }//Fin out, CLIO
+        
+        /*****funcion dato modal********/
+          $("#SaveTitle").on("click", function(){
+              var titulo_arbol = $("#nameArbol").val();
 
+              $("#titulo").html(titulo_arbol);
+              arbolFalla.setNombre(titulo_arbol);
+          })
+        /************************/
 
       }); //FIN DE READY
 
@@ -547,7 +555,8 @@ var cAND = new joint.shapes.arbol.CompuertaAND({
             <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
             Nombra tu árbol
           </button>
-          </div>          
+          </div>
+          <div id="titulo"></div>      
           <div class="row">
             <div class="col-md-12">               
               <div class="izquierdo" border="1">
@@ -585,11 +594,11 @@ var cAND = new joint.shapes.arbol.CompuertaAND({
               <h4 class="modal-title" id="myModalLabel">Nombre de árbol</h4>
             </div>
             <div class="modal-body">
-              <input type="text"/>
+              <input type="text" id="nameArbol" />
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+              <button type="button" class="btn btn-primary" id="SaveTitle" data-dismiss="modal">Guardar</button>
             </div>
           </div>
         </div>
