@@ -9,6 +9,11 @@ var ARBOL = ARBOL || {};
 ARBOL.eventoTope;
 //#definicion de EventoTope
     
+ARBOL.Falla=function(){
+    this.nombre;
+    this.valor;
+};
+
 ARBOL.EventoTope = function (id,nombre) 
 { 
     this.id=id;
@@ -81,7 +86,7 @@ ARBOL.EventoTope.prototype.OnSetCLHijo=function(event)
 ARBOL.EventoTope.prototype.toJSON=function(){
     var object;
     if(typeof this.compuertaHijo != 'undefined')
-        object='{"class":"EventoTope","idarbol":"'+this.idarbol+'","id":"'+this.id+'","nombre":"'+this.nombre+'","valor":'+this.valor+',"x":"'+this.x+'","y":"'+this.y+'","modelId":"'+this.modelID+'","portIn":"'+this.portIn+'","compuertaHijo":"'+this.compuertaHijo.id+'"}';        
+        object='{"class":"EventoTope","idarbol":"'+this.idarbol+'","id":"'+this.id+'","nombre":"'+this.nombre+'","valor":'+this.valor+',"x":"'+this.x+'","y":"'+this.y+'","modelId":"'+this.modelID+'","portIn":"'+this.portIn+'","compuertaHijo":'+this.compuertaHijo.toJSON()+'}';        
     else
         object='{"class":"EventoTope","idarbol":"'+this.idarbol+'","id":"'+this.id+'","nombre":"'+this.nombre+'","valor":'+this.valor+',"x":"'+this.x+'","y":"'+this.y+'","modelId":"'+this.modelID+'","portIn":"'+this.portIn+'","compuertaHijo":"undefined"}';                  
                               
@@ -377,14 +382,15 @@ ARBOL.Compuerta.prototype.toJSON=function(){
         if(x<l-1) arregloCompuertas+=",";
     }
     arregloCompuertas+="]";
-    
+    /*
     var arregloSuscriptores=new Array();
     arregloSuscriptores="[";
     for(var x=0,l=this.suscriptores.length;x<l;x++) {
         arregloSuscriptores+=this.suscriptores[x].toJSON();
         if(x<l-1) arregloSuscriptores+=",";
     }
-    arregloSuscriptores+="]";
+    
+    arregloSuscriptores+="]";*/
 //    var object='{"class":"Compuerta","id":"'+this.id+'","valor":'+this.valor+',"valEventos":'+this.valEventos+',"tipo":"'+this.tipo+'","valCompuertas":'+this.valCompuertas+',"modelId":"'+this.modelID+'","portIn":"'+this.portIn+'","hijosEventos":'+arregloEventos+',"hijosCompuertas":'+arregloCompuertas+',"padre":"'+this.padre+'","valido":'+this.valido+',"suscriptores":'+arregloSuscriptores+'}';
     var object='{"class":"Compuerta","id":"'+this.id+'","valor":'+this.valor+',"valEventos":'+this.valEventos+',"tipo":"'+this.tipo+'","valCompuertas":'+this.valCompuertas+',"modelId":"'+this.modelID+'","portIn":"'+this.portIn+'","hijosEventos":'+arregloEventos+',"hijosCompuertas":'+arregloCompuertas+',"padre":"'+this.padre+'","valido":'+this.valido+'}';
     return object;                                                                                           
@@ -517,7 +523,7 @@ ARBOL.ArbolFalla=function(id,nombre){
 };
 
 ARBOL.ArbolFalla.prototype.toObjctLogicJSON=function(){
-    var objeto='{"class":"ArbolFalla","id":"'+this.id+'","nombre":"'+this.nombre+'","eventoTope":'+this.eventoTope.toJSON()+'}';   
+    var objeto='{"class":"ArbolFalla","id":"'+this.id+'","nombre":"'+this.nombre+'","valor":'+this.eventoTope.getValor()+',"eventoTope":'+this.eventoTope.toJSON()+'}';   
     return objeto;
 };
 
@@ -550,6 +556,11 @@ ARBOL.ArbolFalla.prototype.setNombre=function(nombre){
   this.nombre=nombre;  
 };
 
+ARBOL.ArbolFalla.prototype.getNombre=function(){
+  return this.nombre;  
+};
+
+
 ARBOL.ArbolFalla.prototype.setId=function(id){
   this.id=id;
 };
@@ -559,8 +570,14 @@ ARBOL.ArbolFalla.prototype.getId=function(id){
   this.id=id;    
 };
 
+ARBOL.ArbolFalla.prototype.getValor=function(id){
+  return this.eventoTope.getValor();
+};
+
+
+
 ARBOL.ArbolFalla.prototype.toJSON=function(){    
-    var objeto='{"class":"ArbolFalla","id":"'+this.id+'","nombre":"'+this.nombre+'","eventoTope":'+this.eventoTope.toJSON()+',"CompuertaHijo":'+this.eventoTope.getHijo().toJSON()+',"arbolGrafico":'+this.arbolGrafico+'}';   
+    var objeto='{"class":"ArbolFalla","id":"'+this.id+'","nombre":"'+this.nombre+'","valor:"'+this.eventoTope.getValor()+'","eventoTope":'+this.eventoTope.toJSON()+',"arbolGrafico":'+this.arbolGrafico+'}';   
     return objeto;
 };   
 

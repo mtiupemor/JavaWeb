@@ -27,26 +27,19 @@
     <script>
 
       $(document).ready(function () {
-
         // CLIO
         //16092015 1812
         //alert($(".inputEvento").val());
 
       });
-
-      var arbolFalla = new ARBOL.ArbolFalla();
-      
-      
-      
-      
+      var arbolesFalla=Array();    
+      var arbolFalla= new ARBOL.ArbolFalla();      
       $(document).ready(function () {
-graph = new joint.dia.Graph;
+            graph = new joint.dia.Graph;
                 /*graph.on('change', function(link){
                    console.log("En evento graph on",link);                    
                 }
-                );*/
-
-                
+                );*/               
                 var paper = new joint.dia.Paper(
                 {
                     el: $('#paper'),
@@ -460,27 +453,32 @@ var cAND = new joint.shapes.arbol.CompuertaAND({
 
         $("#saveArbol").click(function (evt) {
            evt.preventDefault();
-           arbolFalla.setArbolGrafico(JSON.stringify(graph));          
-           console.log(arbolFalla.getArbolGrafico());
+           arbolFalla.setArbolGrafico(JSON.stringify(graph));            
+           //var arbol=new ARBOL.Falla();
+           //arbol.nombre=arbolFalla.getNombre();
+           //arbol.valor=arbolFalla.getValor();
+           //arbolesFalla.push(arbol);           
+           console.log(arbolFalla.getNombre());
            //console.log(arbolFalla.toObjctGraphicJSON());
-           console.log(arbolFalla.toJSON());
-           /*
-           $.ajax({
-           url: "guardaArbol",
-           type: "POST",
-           data: {arbol : arbolFalla.getArbolGrafico()},
-           dataType: "json", 
-           success: function(respuesta)                          
-           {                                  
+           console.log(arbolFalla.toObjctLogicJSON());           
            
-           alert(respuesta);
-           },
-           error: function(XMLHttpRequest, textStatus, errorThrown) {
-           alert("No se encontro el servicio solicitado"+errorThrown);
-           //Se puede obtener informacion útil inspecionando el Objeto XMLHttpRequest
-           console.log(XMLHttpRequest.status);
-           }
-           });*/              
+                $.ajax({
+                url: "../guardaarbollogico",
+                type: "POST",
+                data: {nombre:arbolFalla.getNombre(),arbol:arbolFalla.toObjctLogicJSON()},
+                dataType: "json", 
+                success: function(respuesta)                          
+                {                                  
+
+                alert(respuesta.status);
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                alert("No se encontro el servicio solicitado"+errorThrown);
+                //Se puede obtener informacion útil inspecionando el Objeto XMLHttpRequest
+                console.log(XMLHttpRequest.status);
+                }
+                });
+            
         });
 
 
@@ -527,12 +525,11 @@ var cAND = new joint.shapes.arbol.CompuertaAND({
         /*****funcion dato modal********/
           $("#SaveTitle").on("click", function(){
               var titulo_arbol = $("#nameArbol").val();
-
-              $("#titulo").html(titulo_arbol);
+              $("#titulo").html(titulo_arbol);              
               arbolFalla.setNombre(titulo_arbol);
+              console.log("Poniendo Nombre",titulo_arbol,arbolFalla.getNombre());
           })
         /************************/
-
       }); //FIN DE READY
 
 
