@@ -26,20 +26,14 @@
     <script src="../js/joint.shapes.logic.min.js"></script> <!-- Agrego CLIO-->
     <script>
 
-      $(document).ready(function () {
-        // CLIO
-        //16092015 1812
-        //alert($(".inputEvento").val());
+      $(document).ready(function () {        
 
       });
       var arbolesFalla=Array();    
       var arbolFalla= new ARBOL.ArbolFalla();      
       $(document).ready(function () {
             graph = new joint.dia.Graph;
-                /*graph.on('change', function(link){
-                   console.log("En evento graph on",link);                    
-                }
-                );*/               
+               
                 var paper = new joint.dia.Paper(
                 {
                     el: $('#paper'),
@@ -180,53 +174,6 @@
              
              
 
-/*here*/
-                /*
-                 * To change this license header, choose License Headers in Project Properties.
-                 * To change this template file, choose Tools | Templates
-                 * and open the template in the editor.
-                 */
-
-               /* var connect = function (source, sourcePort, target, targetPort) {
-                    if(source instanceof joint.shapes.arbol.Evento && target instanceof joint.shapes.arbol.Evento ){
-                            console.log("Evento no se puede unir con evento");
-                    }else{
-                        console.log("Entra");
-                    var link = new joint.shapes.arbol.Link({
-                        source: {id: source.id, selector: source.getPortSelector(sourcePort)},
-                        target: {id: target.id, selector: target.getPortSelector(targetPort)}
-                    });
-                    link.addTo(graph).reparent();
-                }
-                };*/
-
-
-
-                /*
-                 eventoIniciador.el=new ARBOL.EventoIniciador;
-                 console.log(eventoIniciador);
-                 */
-
-
-                /* Metodo para asignar ID del evento*/
-                //No eliminar
-               // evento.setIdModel("500ffe65-583f-4205-92b3-1545dd618d4x");
-
-
-//graph.addCells([evento,cAND]);
-
-//connect(a3,'y',a1,'a');
-
-//connect(c1,'in',a1,'xy');
-
-                /* rounded corners */
-                /*
-                 _.each([c1,a1,a2,a3,a4,cAND], function(element) {
-                 element.attr({ '.body': { 'rx': 6, 'ry': 6 }});
-                 });
-                 */
-
-                /* custom highlighting */
                 paper.on( "cell:pointerdown", function( cellview, evt, x, y)  {
                   console.log( "pointer down on cell ", cellview.model.id, " pos: ", x , ",", y);
               });

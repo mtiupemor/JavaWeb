@@ -1,13 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
-        <servlet-name>guardaArbol</servlet-name>
-        <servlet-class>server.logica.guardaArbol</servlet-class>
+        <servlet-name>guardaarbolgrafico</servlet-name>
+        <servlet-class>server.logica.guardaarbolgrafico</servlet-class>
+    </servlet>
+     <servlet-mapping>
+        <servlet-name>guardaarbolgrafico</servlet-name>
+        <url-pattern>/guardaarbolgrafico</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>guardaarbollogico</servlet-name>
+        <servlet-class>server.logica.guardaarbollogico</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>guardaArbol</servlet-name>
-        <url-pattern>/guardaArbol</url-pattern>
+        <servlet-name>guardaarbollogico</servlet-name>
+        <url-pattern>/guardaarbollogico</url-pattern>
     </servlet-mapping>
+       <servlet>
+        <servlet-name>getArbol</servlet-name>
+        <servlet-class>server.logica.getArbol</servlet-class>
+    </servlet>  
+    <servlet-mapping>
+        <servlet-name>getArbol</servlet-name>
+        <url-pattern>/getArbol</url-pattern>
+    </servlet-mapping>
+ <servlet>
+        <servlet-name>getArbolFallaLogico</servlet-name>
+        <servlet-class>server.logica.getArbolFallaLogico</servlet-class>
+    </servlet> 
+    <servlet-mapping>
+        <servlet-name>getArbolFallaLogico</servlet-name>
+        <url-pattern>/getArbolFallaLogico</url-pattern>
+    </servlet-mapping>        
+   
+ <servlet>
+        <servlet-name>getArbolesFalla</servlet-name>
+        <servlet-class>server.logica.getArbolesFalla</servlet-class>
+    </servlet> 
+    <servlet-mapping>
+        <servlet-name>getArbolesFalla</servlet-name>
+        <url-pattern>/getArbolesFalla</url-pattern>
+        </servlet-mapping>  
+   
     <session-config>
         <session-timeout>
             30
