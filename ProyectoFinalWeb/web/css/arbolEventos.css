@@ -8,6 +8,16 @@ and open the template in the editor.
     Author     : iiteplus
 */
 
+/*estilos para centrar el nombre del arbol**/
+.modal-body input
+{
+    width: 95%;
+}
+#titulo{
+  font-size: 2em;
+  text-align: center;
+}
+
 /* elements */
 
 .arbolEventos text {

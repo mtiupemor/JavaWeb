@@ -393,6 +393,7 @@
             Nombra tu árbol
           </button>
             </div>
+          <div id="titulo"></div>     
           <div class="row">
             <div class="col-md-12">
               <div>  
