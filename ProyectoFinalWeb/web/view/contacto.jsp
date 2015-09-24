@@ -69,7 +69,7 @@
                       <i class="fa fa-user  fa-2x"></i>
                     </a>
                     <div class="media-body">
-                      <h4 class="media-heading">Dr. Fernando Enrique Hidalgo Hernández</h4>
+                      <h4 class="media-heading">Soporte técnico.</h4>
                     </div>
                   </div>
 
@@ -80,7 +80,7 @@
                     </a>
                     <div class="media-body">
                       <h4 class="media-heading">
-                        <a href="mailto:ferhidalgohdz@gmail.com">ferhidalgohdz@gmail.com</a>
+                        <a href="mailto:isycnan@gmail.com">isycnan@gmail.com</a>
                       </h4>
                     </div>
                   </div>

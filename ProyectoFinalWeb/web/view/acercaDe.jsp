@@ -202,9 +202,24 @@ and open the template in the editor.
 
                 </form>
               </div>
+
+              <div class="col-md-12  scrollpoint sp-effect1" style="text-align: left">
+                <div class="form-group">
+                  <div class="img-responsive">
+                    <a class="pull-left" href="#" >
+                      <!-- <i class="fa fa-thumbs-o-up  fa-2x"></i> -->
+                      <i class="fa fa-users  fa-2x"></i>
+                    </a>
+                    <h3 style="color: #094975"> Agradecimientos especiales a <b>Anita, Jorge</b> y <b>Rodrigo</b> por su hospitalidad y generosidad.</h3>
+                  </div>
+                </div>
+              </div>
+
+
             </div>
           </div>
         </div>
+
       </section>
 
       <%@include file="footer.jsp" %>
