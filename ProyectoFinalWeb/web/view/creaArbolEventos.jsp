@@ -392,6 +392,8 @@
                       <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
             Nombra tu árbol
           </button>
+             <a href="
+http://www.pdfspot.com/export_to_pdf/?pdf_page_size=A4&pdf_orientation=Landscape" class="btn btn-primary btn-lg">Export to PDF</a>
             </div>
           <div id="titulo"></div>     
           <div class="row">

@@ -594,6 +594,8 @@ var cAND = new joint.shapes.arbol.CompuertaAND({
             <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
             Nombra tu árbol
           </button>
+           <a href="
+http://www.pdfspot.com/export_to_pdf/?pdf_page_size=A4&pdf_orientation=Landscape" class="btn btn-primary btn-lg">Export to PDF</a>
           </div>
           <div id="titulo"></div>      
           <div class="row">
@@ -605,10 +607,10 @@ var cAND = new joint.shapes.arbol.CompuertaAND({
               <div class="derecho">   
                 <input type="image" id="eventoTope"   title="Agregar Evento Tope" src="../images/eventoTope.png"  width="100" height="100"/><br><hr>
                 <input type="image" id="evento"  title="Agregar Evento" src="../images/evento.png" width="100" height="100" /><br> <hr>        
-                <input type="image" id="compuertaAnd" title="Agregar Compuerta AND" src="../images/and.png" width="25" height="30" /><br><hr>
+               <input type="image" id="compuertaAnd" title="Agregar Compuerta AND" src="../images/and.png" width="25" height="30" /><br><hr>
                 <input type="image" id="compuertaOr" title="Agregar Compuerta OR" src="../images/or.png" width="25" height="30" /><br><hr>
-                <input type="image" id="compuertaOrEx"  title="Agregar Compuerta OR Exclusiva" src="../images/orEx.png" width="25" height="30"/><br><hr>
-                <input type="image" id="compuertaAndPri" title="Agregar Compuerta AND Prioritaria" src="../images/andPri.png" width="25" height="30" /><br><hr>    
+                <!--<input type="image" id="compuertaOrEx"  title="Agregar Compuerta OR Exclusiva" src="../images/orEx.png" width="25" height="30"/><br><hr>
+                <input type="image" id="compuertaAndPri" title="Agregar Compuerta AND Prioritaria" src="../images/andPri.png" width="25" height="30" /><br><hr>-->    
                 <input type="image" id="redimensiona" title="Redimensiona el área de dibujo" src="../images/redimensionar.png"  width="35" height="35" /><br><hr>
               </div>
               <div class="footer">
