@@ -41,7 +41,7 @@
             var exitosNull=[]; //Almacena los exitos que han quedado nulos
             var sistemasNull=[];//Almacena los sistemas que han quedado nulos
             var arbolEventos = new APS.ArbolEventos("","");
-            var calculado =0; //Para no redibujar los elementos en calcular   
+            var calculado =0; //Para no redibujar los elementos en calcular
            $(document).ready(function () {
 
                 var graph = new joint.dia.Graph;
@@ -99,7 +99,8 @@
                         console.log(XMLHttpRequest.status);
                     }   
                }); 
-                
+
+
 
                 //Llamada a evento iniciador
                 $("#eventoIniciador").click(function (evt) {
@@ -113,7 +114,8 @@
                     });
                     eventoIniciador.eventoIniciador = new APS.EventoIniciador(eventoIniciador.id,eventoIniciadorNombre);
                     eventoIniciador.eventoIniciador.setValor($("#txtValorEventoIniciador").val());
-                    arbolEventos.setId("abcd1234"); //Agregar id dinamicamente funcion CLIO                    
+                    arbolEventos.setId("abcd1234"); //Agregar id dinamicamente funcion CLIO
+                    arbolEventos.setNombre(eventoIniciadorNombre);
                     arbolEventos.setEventoIniciador(eventoIniciador.eventoIniciador);
                     
                     console.log(arbolEventos);
@@ -158,7 +160,6 @@
                             sistema.sistema = new APS.Sistema(sistema.id,sistemaNombre);//Creo el nuevo sistema
                             sistema.sistema.setValorArbolFalla(valorArbolFalla);
                             sistema.findView(paper).updateBox();
-
                             
                             for(var x=0,l=graph.getElements();x<l.length;x++){
                                 if (l[x].id == idSistema){
@@ -167,6 +168,9 @@
                                     break;
                                 }
                             }
+                            exito.exito=1-valorArbolFalla;
+                            exito.valorExito=sistema.sistema.getValorExito();
+                            exito.findView(paper).updateBox();
                         console.log(arbolEventos);    
                         }else{
                             crearSistema();
@@ -180,6 +184,9 @@
                             //idExito = exito.get('id'); //Obtiene el id del nuevo exito
                             //exitosNull.push(idExito); //Se agrega el sistema anterior porque queda nulo
                             sistema.findView(paper).updateBox();
+                            exito.exito=1-valorArbolFalla;
+                            exito.valorExito=sistema.sistema.getValorExito();
+                            exito.findView(paper).updateBox();
                         }
                   }else{
                         if(graph.getCell(idSistema)!=null){
@@ -201,6 +208,11 @@
                                     break;
                                 }
                             }
+                          
+                          exito.exito=1-valorArbolFalla;
+                          exito.valorExito=sistema.sistema.getValorExito();
+                          exito.findView(paper).updateBox();
+                          
                         }else{
                             alert("Agrega primero un sistema");
                             //idSistema = sistema.get('id'); //Obtiene el id del primer sistema
@@ -290,12 +302,17 @@
                         conectar(sistema,'in',frecuencia,'in');
                         //crear el elemento exito para el ultimo exito (Solo para dibujar bien el arbol.
                         crearExitoFin(xMax,graph.getCell(exito.id).get('position').y);
+                        exitoFin.exito=graph.getCell(sistema.id).sistema.getValorExito();
+                        exitoFin.findView(paper).updateBox();
                         //Conectar el ultimo exito
                         conectar(exito,'in',exitoFin,'in');
                         //recorrer exitosNull y conectarlos par dibujar el arbol
                         exitosNull.forEach(function(idExitoNull){
                             crearExitoFin(xMax,graph.getCell(idExitoNull).get('position').y);
                             conectar(graph.getCell(idExitoNull),'in',exitoFin,'in');
+                            exitoFin.exito=graph.getCell(idExitoNull).valorExito;
+                            exitoFin.findView(paper).updateBox();
+                            console.log("ExitoNull:",graph.getCell(idExitoNull));
                         });
                         //recorrer sistemasNull, crear sus frecuencias y conectarlos
                         sistemasNull.forEach(function(idSistemaNull){
@@ -346,7 +363,7 @@
                     }*/
                 }
                 
-                   /*****funcion dato modal********/
+                 /*****funcion dato modal********/
                   $("#SaveTitle").on("click", function(){
                       var titulo_arbol = $("#nameArbol").val();
                       $("#titulo").html(titulo_arbol);              
@@ -405,7 +422,7 @@
                           <!-- while (unIteradorEmpleado.hasNext()) {
                             EmpleadoDTO unEmpleado = (EmpleadoDTO) unIteradorEmpleado.next(); -->
 
-                         <!-- <option value="0.27"> HPCF</option>
+                         <!--<option value="0.27"> HPCF</option>
                           <option value="0.33"> RCIC</option>
                           <option value="0.12"> RHR</option>
                           <option value="0.25"> ADS</option>

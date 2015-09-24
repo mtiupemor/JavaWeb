@@ -793,7 +793,10 @@ joint.shapes.arbolEventos.ExitoModelView = joint.dia.ElementView.extend({
          this.$box.find('button').css('display', 'none');
             this.$box.css('pointer-events', 'auto');
         //this.$box.css('pointer-events', 'auto');
-     console.log(this.$box.find('button'));
+        if(typeof this.model.exito !='undefined'){//////////////////////
+                 console.log("En if:",this.model.exito);
+            this.$box.find('.name').val(this.model.exito.toFixed(4));
+        }
     },
     removeBox: function(evt) {
         //var context=this.$box.context;
