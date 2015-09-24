@@ -502,6 +502,18 @@ var cAND = new joint.shapes.arbol.CompuertaAND({
                 console.log(XMLHttpRequest.status);
                 }
                 });
+         //Funcion que redimensiona el area de trabajo       
+        $("#redimensiona").click(function (evt){
+            var heightActual = 0;
+            $('#paper').css("height", function (index, value) {
+                var dato = value.length - 2;
+                heightActual = value.substr(0, dato);
+                heightActual = parseInt(heightActual) + 450;
+            });
+
+            document.getElementById('paper').style.height = heightActual + "px";
+            document.getElementById('v-2').style.height = heightActual + "px";
+        });
                 
                
             
