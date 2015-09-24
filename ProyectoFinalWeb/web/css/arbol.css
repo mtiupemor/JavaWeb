@@ -38,6 +38,15 @@ and open the template in the editor.
     display: inline-block;
     margin-left: 35px;
 }
+
+.modal-body input
+{
+    width: 95%;
+}
+#titulo{
+  font-size: 2em;
+  text-align: center;
+}
 /* elements */
 
 .arbol text {
