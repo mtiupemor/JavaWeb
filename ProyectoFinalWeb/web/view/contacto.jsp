@@ -80,7 +80,7 @@
                     </a>
                     <div class="media-body">
                       <h4 class="media-heading">
-                        <a href="mailto:isycnan@gmail.com">isycnan@gmail.com</a>
+                        <a href="mailto:hazuer_icl@hotmail.com">hazuer_icl@hotmail.com</a>
                       </h4>
                     </div>
                   </div>
