@@ -110,7 +110,7 @@ public class ArbolFallaDAO {
       pstm = unaConexion.prepareStatement(sentenciaSQL);
       pstm.setString(1, arbol.getId());
       pstm.setString(2, arbol.getEstructura());
-      pstm.setString(3, arbol.getEventoTope().getId());
+      pstm.setString(3, "1");//arbol.getEventoTope().getId());
       System.out.println(pstm);
       if (pstm.executeUpdate() > 0) {
         error = false;

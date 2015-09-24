@@ -43,18 +43,28 @@ public class getArbolesFalla extends HttpServlet {
         JSONArray a; 
         String arbol ="";
         context=getServletContext();
+        String consulta=request.getParameter("consulta");
         
         CrearArbolFalla falla = new CrearArbolFalla();
-        a=falla.getListaArbolFallaLogico();
+        
                        
         //context.log(("nuevo: "+ (arbol==null?true:false)));
         //context.log(("obj: "+ falla));
         context.log(("id: "+ request.getParameter("id")));
         //out.print.getParameter("(request.getParameter("id"));
        
-        try (PrintWriter out = response.getWriter()) {     
-             out.print(a);             
-             out.close();
+        try (PrintWriter out = response.getWriter()) {   
+            switch(consulta){
+                case "all":                    
+                    a=falla.getListaArbolFallaLogico();
+                     out.print(a);             
+                     out.close();
+                   break;
+                    
+                    
+            }
+        
+            
         }
         
     }

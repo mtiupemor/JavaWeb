@@ -1,7 +1,7 @@
 <%-- 
     Document   : creaArbolEventos
     Created on : 18/09/2015, 12:53:38 AM
-    Author     : Aydeeth
+    Author     : Ramon
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -41,7 +41,7 @@
             var exitosNull=[]; //Almacena los exitos que han quedado nulos
             var sistemasNull=[];//Almacena los sistemas que han quedado nulos
             var arbolEventos = new APS.ArbolEventos("","");
-            var calculado =0; //Para no redibujar los elementos en calcular
+            var calculado =0; //Para no redibujar los elementos en calcular   
            $(document).ready(function () {
 
                 var graph = new joint.dia.Graph;
@@ -62,6 +62,44 @@
                         return sourceMagnet != targetMagnet;
                     }
                 });
+                
+                //cargando sistemas  o arboles de fallas//
+                //txtNombreSistema
+                    $.ajax({
+                        url: "../getArbolesFalla",
+                        type: "POST",
+                        data: {consulta : "all"},
+                        dataType: "json", 
+                        success: function(respuesta)                          
+                        {                                             
+                        //graph.fromJSON(respuesta);
+                        var options="<option ";
+                        $.each(respuesta, function(posicion, arbol){
+                            console.log(' >',
+                                'Posición: ', posicion," ",arbol                      
+                            );
+                                
+                                $.each(arbol,function(clave,valor){
+                                    console.log(' >',
+                                'clave: ', clave," ",valor  
+                                 );
+                                 options+="value='"+valor+"'>"+clave+"</option>";
+                            });
+                           
+                                });
+                          $("#txtNombreSistema").html(options);
+                        
+                    
+           
+
+                        },
+                        error: function(XMLHttpRequest, textStatus, errorThrown) {
+                        alert("No se encontro el servicio solicitado"+errorThrown);
+                        //Se puede obtener informacion útil inspecionando el Objeto XMLHttpRequest
+                        console.log(XMLHttpRequest.status);
+                    }   
+               }); 
+                
 
                 //Llamada a evento iniciador
                 $("#eventoIniciador").click(function (evt) {
@@ -75,8 +113,7 @@
                     });
                     eventoIniciador.eventoIniciador = new APS.EventoIniciador(eventoIniciador.id,eventoIniciadorNombre);
                     eventoIniciador.eventoIniciador.setValor($("#txtValorEventoIniciador").val());
-                    arbolEventos.setId("abcd1234"); //Agregar id dinamicamente funcion CLIO
-                    arbolEventos.setNombre(eventoIniciadorNombre);
+                    arbolEventos.setId("abcd1234"); //Agregar id dinamicamente funcion CLIO                    
                     arbolEventos.setEventoIniciador(eventoIniciador.eventoIniciador);
                     
                     console.log(arbolEventos);
@@ -121,6 +158,7 @@
                             sistema.sistema = new APS.Sistema(sistema.id,sistemaNombre);//Creo el nuevo sistema
                             sistema.sistema.setValorArbolFalla(valorArbolFalla);
                             sistema.findView(paper).updateBox();
+
                             
                             for(var x=0,l=graph.getElements();x<l.length;x++){
                                 if (l[x].id == idSistema){
@@ -129,9 +167,6 @@
                                     break;
                                 }
                             }
-                            exito.exito=1-valorArbolFalla;
-                            exito.valorExito=sistema.sistema.getValorExito();
-                            exito.findView(paper).updateBox();
                         console.log(arbolEventos);    
                         }else{
                             crearSistema();
@@ -145,9 +180,6 @@
                             //idExito = exito.get('id'); //Obtiene el id del nuevo exito
                             //exitosNull.push(idExito); //Se agrega el sistema anterior porque queda nulo
                             sistema.findView(paper).updateBox();
-                            exito.exito=1-valorArbolFalla;
-                            exito.valorExito=sistema.sistema.getValorExito();
-                            exito.findView(paper).updateBox();
                         }
                   }else{
                         if(graph.getCell(idSistema)!=null){
@@ -169,11 +201,6 @@
                                     break;
                                 }
                             }
-                          
-                          exito.exito=1-valorArbolFalla;
-                          exito.valorExito=sistema.sistema.getValorExito();
-                          exito.findView(paper).updateBox();
-                          
                         }else{
                             alert("Agrega primero un sistema");
                             //idSistema = sistema.get('id'); //Obtiene el id del primer sistema
@@ -263,17 +290,12 @@
                         conectar(sistema,'in',frecuencia,'in');
                         //crear el elemento exito para el ultimo exito (Solo para dibujar bien el arbol.
                         crearExitoFin(xMax,graph.getCell(exito.id).get('position').y);
-                        exitoFin.exito=graph.getCell(sistema.id).sistema.getValorExito();
-                        exitoFin.findView(paper).updateBox();
                         //Conectar el ultimo exito
                         conectar(exito,'in',exitoFin,'in');
                         //recorrer exitosNull y conectarlos par dibujar el arbol
                         exitosNull.forEach(function(idExitoNull){
                             crearExitoFin(xMax,graph.getCell(idExitoNull).get('position').y);
                             conectar(graph.getCell(idExitoNull),'in',exitoFin,'in');
-                            exitoFin.exito=graph.getCell(idExitoNull).valorExito;
-                            exitoFin.findView(paper).updateBox();
-                            console.log("ExitoNull:",graph.getCell(idExitoNull));
                         });
                         //recorrer sistemasNull, crear sus frecuencias y conectarlos
                         sistemasNull.forEach(function(idSistemaNull){
@@ -323,6 +345,15 @@
                         paper.fitToContent();
                     }*/
                 }
+                
+                   /*****funcion dato modal********/
+                  $("#SaveTitle").on("click", function(){
+                      var titulo_arbol = $("#nameArbol").val();
+                      $("#titulo").html(titulo_arbol);              
+                      arbolEventos.setNombre(titulo_arbol);
+                      console.log("Poniendo Nombre",titulo_arbol,arbolEventos.getNombre());
+                  });
+                /************************/
             }); //FIN DE READY
     </script>
     <%@include file="head_arbol.jsp" %> 
@@ -331,7 +362,7 @@
 
   <body>
     <header>
-      <%@include file="header_arbol.jsp" %>
+      <%@include file="header_arbol.jsp" %> 
     </header>
 
     <div class="wrapper">
@@ -341,6 +372,9 @@
           <div class="section-heading ">
             <h2>Crea tu árbol de eventos</h2>
             <div class="divider"></div>
+                      <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+            Nombra tu árbol
+          </button>
             </div>
           <div class="row">
             <div class="col-md-12">
@@ -366,12 +400,12 @@
                 <td width="250" align="CENTER">
                     Nombre: 
                       <select id="txtNombreSistema" name="nombreSistema" >
-                        <optgroup label="Sistemas">
+                        <!--<optgroup label="Sistemas">-->
 
                           <!-- while (unIteradorEmpleado.hasNext()) {
                             EmpleadoDTO unEmpleado = (EmpleadoDTO) unIteradorEmpleado.next(); -->
 
-                          <option value="0.27"> HPCF</option>
+                         <!-- <option value="0.27"> HPCF</option>
                           <option value="0.33"> RCIC</option>
                           <option value="0.12"> RHR</option>
                           <option value="0.25"> ADS</option>
@@ -379,10 +413,9 @@
                           <option value="0.48"> GDCS</option>
                           <option value="0.88"> PCCS</option>
                           <option value="0.17"> HPVCSCF</option>
-
+                         -->
                           <!--  } -->
-
-                        </optgroup>
+                       <!-- </optgroup>-->
                       </select>
                     <br>
                     Tipo: <input id="rbtFalla" type="radio" name="sistema" value="falla" checked>Falla
@@ -408,6 +441,23 @@
           </div>
         </div>
       </section>
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Nombre de árbol</h4>
+            </div>
+            <div class="modal-body">
+              <input type="text" id="nameArbol" />
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+              <button type="button" class="btn btn-primary" id="SaveTitle" data-dismiss="modal">Guardar</button>
+            </div>
+          </div>
+        </div>
+      </div>
       <footer>
         <div class="container">
           <a href="#" >

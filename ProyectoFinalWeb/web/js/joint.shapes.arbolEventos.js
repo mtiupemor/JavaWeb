@@ -792,15 +792,8 @@ joint.shapes.arbolEventos.ExitoModelView = joint.dia.ElementView.extend({
         this.$box.css({ width: bbox.width, height: bbox.height, left: bbox.x, top: bbox.y, transform: 'rotate(' + (this.model.get('angle') || 0) + 'deg)' });
          this.$box.find('button').css('display', 'none');
             this.$box.css('pointer-events', 'auto');
-        //if(typeof this.model.exito !='undefined'){
-        //         console.log("En if:");
-        //    this.$box.find('.name').val(this.model.sistema.getValorArbolFalla());
-        //}
-        //console.log("Actualizando sistema:");
-        if(typeof this.model.exito !='undefined'){//////////////////////
-                 console.log("En if de Exito:",this.model.exito);
-            this.$box.find('.name').val(this.model.exito.toFixed(4));
-        }
+        //this.$box.css('pointer-events', 'auto');
+     console.log(this.$box.find('button'));
     },
     removeBox: function(evt) {
         //var context=this.$box.context;

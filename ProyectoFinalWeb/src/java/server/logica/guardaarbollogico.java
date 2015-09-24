@@ -35,7 +35,7 @@ private ServletContext context;
    */
   protected void processRequest(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {    
-    response.setContentType("application/json");
+    response.setContentType("text/html;charset=UTF-8");  
     response.setHeader("Access-Control-Allow-Origin","*");    
     
     PrintWriter out2 = null;
@@ -48,9 +48,7 @@ private ServletContext context;
     try (PrintWriter out = response.getWriter()) {      
       af = new ArbolFallaDto(request.getParameter("nombre"));
       af.setEstructura(request.getParameter("arbol"));
-      context.log(af.getId()+","+af.getNombre()+"\n"+af.getEstructura());
-      falla.insertarLogico(af);      
-      
+      falla.insertarLogico(af);        
       out.print("{\"status\":"+(falla.getError()==false?1:-1)+"}");    
     }             
   }
