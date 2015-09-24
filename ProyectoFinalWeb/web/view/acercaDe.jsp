@@ -210,7 +210,7 @@ and open the template in the editor.
                       <!-- <i class="fa fa-thumbs-o-up  fa-2x"></i> -->
                       <i class="fa fa-users  fa-2x"></i>
                     </a>
-                    <h3 style="color: #094975"> Agradecimientos especiales a <b>Anita, Jorge</b> y <b>Rodrigo</b> por su hospitalidad y generosidad.</h3>
+                    <h3 style="color: #094975; text-align: justify"> Agradecimientos especiales a <b>Anita, Jorge</b> y <b>Rodrigo</b> por su hospitalidad y generosidad.</h3>
                   </div>
                 </div>
               </div>
