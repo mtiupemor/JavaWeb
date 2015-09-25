@@ -73,12 +73,12 @@
                         success: function(respuesta)                          
                         {                                             
                         //graph.fromJSON(respuesta);
-                        var options="<option ";
+                        var options;
                         $.each(respuesta, function(posicion, arbol){
                             console.log(' >',
                                 'Posición: ', posicion," ",arbol                      
                             );
-                                
+                                options+="<option ";
                                 $.each(arbol,function(clave,valor){
                                     console.log(' >',
                                 'clave: ', clave," ",valor  
