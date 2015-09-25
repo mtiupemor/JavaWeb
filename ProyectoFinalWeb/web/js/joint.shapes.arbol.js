@@ -1092,7 +1092,7 @@ joint.shapes.arbol.ModelView = joint.dia.ElementView.extend({
              if(typeof this.model.Evento!='undefined'){
                 this.model.Evento.setNombre($(evt.target).val());                
                 $(evt.target).val($(evt.target).val());
-                console.log(this.model.Evento);
+                //console.log(this.model.Evento);
             }
         }, this));
         
@@ -1128,7 +1128,7 @@ joint.shapes.arbol.ModelView = joint.dia.ElementView.extend({
             this.model.set('select', $(evt.target).val());            
         }, this));*/
         this.$box.find('.evento').on('mousehover',_.bind(function(evt){
-            console.log("capturando evento hover de Evento");
+         //   console.log("capturando evento hover de Evento");
         },this));
         
         //this.$box.find('select').val(this.model.get('select'));
@@ -1136,7 +1136,7 @@ joint.shapes.arbol.ModelView = joint.dia.ElementView.extend({
         //console.log(this);
         this.$box.find('.delete').on('click',_.bind(function(evt)
             {
-                    console.log(caja);
+                    //console.log(caja);
                     var r = confirm("Eliminar elemento?");
 
                     if (r == true) {
@@ -1153,7 +1153,7 @@ joint.shapes.arbol.ModelView = joint.dia.ElementView.extend({
         // Update the box position whenever the underlying model changes.
         this.model.on('change', this.updateBox, this);
         this.model.on('change:parent',_.bind(function(evt){
-            console.log("procesando parent");
+          //  console.log("procesando parent");
         },this));
         // Remove the box when the model gets removed from the graph.
         //this.model.on('remove', this.removeBox, this);              
@@ -1198,11 +1198,12 @@ joint.shapes.arbol.ModelView = joint.dia.ElementView.extend({
        if((typeof this.model.Evento!='undefined')&&(typeof this.model.Evento.getHijo()!='undefined'))
        {
            this.$box.find('.value').val(this.model.Evento.getHijo().getValor());
-           
+         //  console.log("Actualizando arbol.. evento");
            
        }else if((typeof this.model.EventoTope!='undefined')){//&&(typeof this.model.EventoTope.getHijo()!='undefined')){
            this.$box.find('.value').val(this.model.EventoTope.getValor());
            //console.log(JSON.stringify(this.model.EventoTope.getHijo()));
+           //console.log("Actualizando arbol.. evento Iniciador");
        }
         this.$box.find('label').text(this.model.get('label'));
         //this.$box.find('span').text(this.model.get('select'));
@@ -1210,7 +1211,7 @@ joint.shapes.arbol.ModelView = joint.dia.ElementView.extend({
          this.$box.find('button').css('display', 'none');
             this.$box.css('pointer-events', 'auto');
         //this.$box.css('pointer-events', 'auto');
-     console.log("Actualizando arbol.. en modelo");
+     
     },
     removeBox: function(evt) {
         //var context=this.$box.context;
@@ -1248,8 +1249,8 @@ joint.shapes.arbol.CompuertaView = joint.dia.ElementView.extend({
 
         this.$box = $(_.template(this.template)());
         this.caja=$(_.template(this.template)());
-        console.log('inicializando caja');
-         console.log(this);
+        //console.log('inicializando caja');
+        // console.log(this);
 
          this.$box.on('mouseover',_.bind(function(evt) { 
            
@@ -1280,12 +1281,12 @@ joint.shapes.arbol.CompuertaView = joint.dia.ElementView.extend({
             this.model.set('select', $(evt.target).val());            
         }, this));*/
         this.$box.find('.evento').on('mousehover',_.bind(function(evt){
-            console.log("capturando evento hover de Evento");
+          //  console.log("capturando evento hover de Evento");
         },this));
         
         //this.$box.find('select').val(this.model.get('select'));
-        console.log("this");
-        console.log(this);
+        //console.log("this");
+        //console.log(this);
         this.$box.find('button').on('click',_.bind( function(evt)
             {
 
@@ -1352,7 +1353,7 @@ joint.shapes.arbol.CompuertaView = joint.dia.ElementView.extend({
          this.$box.find('button').css('display', 'none');
             this.$box.css('pointer-events', 'auto');
         //this.$box.css('pointer-events', 'auto');
-     console.log(this.$box.find('button'));
+     //console.log(this.$box.find('button'));
     },
     removeBox: function(evt) {
         //var context=this.$box.context;

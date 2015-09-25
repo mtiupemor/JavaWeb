@@ -37,7 +37,7 @@
       $(document).ready(function () {
         graph = new joint.dia.Graph;
         /*graph.on('change', function(link){
-         console.log("En evento graph on",link);                    
+         //console.log("En evento graph on",link);                    
          }
          );*/
         var paper = new joint.dia.Paper(
@@ -55,41 +55,40 @@
                     if (vs != vt)
                     {
                       if (e === 'target') {
-                        //console.log("port source",vs);
-                        //console.log("port source");
-                        //console.log("vt",vt);
-                        //console.log("vs",vs);
-                        console.log("tipo de puerto origen", vs instanceof joint.dia.ElementView);
+                        ////console.log("port source",vs);
+                        ////console.log("port source");
+                        ////console.log("vt",vt);
+                        ////console.log("vs",vs);
+                        //console.log("tipo de puerto origen", vs instanceof joint.dia.ElementView);
                         var puertoOrigen = V(ms || !ms.getAttribute('class') || mt.getAttribute('class').indexOf('output')).attr('port').slice(0, 2);
-                        console.log("tipo de puerto origen", puertoOrigen);
+                        //console.log("tipo de puerto origen", puertoOrigen);
 
                         //vs.model.set('input .name',"Gorge");
-                        //console.log(vs.model);
+                        ////console.log(vs.model);
                         if (ms != mt) {
                           //var source = graph.getCell();
                           //source.attr('.outPorts circle/magnet', 'passive')
                           if (puertoOrigen == 'ou')
                           {
-                            console.log("out a in", vt, vs);
+                            //console.log("out a in", vt, vs);
                             if (((typeof vt.model.Evento) != 'undefined') && ((typeof vs.model.Compuerta) != 'undefined')) { //cuando se une de out compuerta -> in Evento
                               if (!(vt.model.Evento.hasHijoCompuerta(vs.model.Compuerta))) {
                                 vt.model.Evento.setHijo(vs.model.Compuerta);
-                                console.log("Agregado Compuerta", vt.model.Evento.getHijo());
+                                //console.log("Agregado Compuerta", vt.model.Evento.getHijo());
                                 // alert("Se agrego la compuerta como hijo de Evento");
                                 return true;
                               }
                             } else if (((typeof vs.model.Evento) != 'undefined') && ((typeof vt.model.Compuerta) != 'undefined')) { //se une out Evento-> int Compuerta
                               if (!(vt.model.Compuerta.hasHijoEvento(vs.model.Evento))) {
                                 vt.model.Compuerta.setHijoEvento(vs.model.Evento);
-                                console.log("Agregado Evento", vt.model.Compuerta.getTipo(), vt.model.Compuerta.getValor());
-                                return true;
-                              } else
-                                console.log("Lo tengo como hijo");
-                              console.log("Compuerta", vt.model.Compuerta, "Compuerta \n", vt.model.Compuerta.hasHijoEvento(vs.model.Evento));
-                            } else if (((typeof vs.model.Compuerta) != 'undefined') && ((typeof vt.model.EventoTope) != 'undefined')) {
+                                //console.log("Agregado Evento", vt.model.Compuerta.getTipo(), vt.model.Compuerta.getValor());
+                                return true; //console.log("Lo tengo como hijo");//console.log("Compuerta", vt.model.Compuerta, "Compuerta \n", vt.model.Compuerta.hasHijoEvento(vs.model.Evento));
+                              
+                            }
+                        }else if (((typeof vs.model.Compuerta) != 'undefined') && ((typeof vt.model.EventoTope) != 'undefined')) {
                               if (!(vt.model.EventoTope.hasHijo(vs.model.Compuerta))) {
                                 vt.model.EventoTope.setHijo(vs.model.Compuerta);
-                                console.log("Agregado Compuerta a evento Tope", vs.model.Compuerta.getTipo(), vs.model.Compuerta.getValor());
+                                //console.log("Agregado Compuerta a evento Tope", vs.model.Compuerta.getTipo(), vs.model.Compuerta.getValor());
                                 vs.model.set('input', vs.model.Compuerta.getValor());
                                 return true;
                               }
@@ -100,23 +99,23 @@
 
                             /*if(typeof vs.model.Evento!='undefined'&&typeof vt.model.Compuerta!='undefined'){
                              if(!(vs.model.Evento.hasHijoCompuerta(vt.model.Compuerta))){
-                             console.log("Agregando Hijo compuerta!!");
+                             //console.log("Agregando Hijo compuerta!!");
                              vs.model.Evento.setHijo(vt.model.Compuerta);
                              }
-                             console.log("Evento",vs.model.Evento,"Evento \n",vs.model.Evento.hasHijoCompuerta(vt.model.Compuerta));
+                             //console.log("Evento",vs.model.Evento,"Evento \n",vs.model.Evento.hasHijoCompuerta(vt.model.Compuerta));
                              }*/
                           } else if (puertoOrigen == 'in')
                           {
-                            console.log("en in....");
-                            console.log("in a out VS", vs.model);
-                            console.log("in a out VT", vt.model);
+                            //console.log("en in....");
+                            //console.log("in a out VS", vs.model);
+                            //console.log("in a out VT", vt.model);
                             if (((typeof vt.model.Compuerta) != 'undefined') && ((typeof vs.model.EventoTope) != 'undefined'))
                             {
-                              console.log("ëntrando");
+                              //console.log("ëntrando");
                               if (!(vs.model.EventoTope.hasHijo(vt.model.Compuerta)))
                               {
                                 vs.model.EventoTope.setHijo(vt.model.Compuerta);
-                                console.log("EventoTope", vs.model.EventoTope);
+                                //console.log("EventoTope", vs.model.EventoTope);
                                 //vs.model.set('input',vs.model.Compuerta.getValor());
                                 return true;
                               }
@@ -126,7 +125,7 @@
                               if (!(vt.model.EventoTope.hasHijo(vs.model.Compuerta)))
                               {
                                 vt.model.EventoTope.setHijo(vs.model.Compuerta);
-                                console.log("EventoTope", vt.model.EventoTope);
+                                //console.log("EventoTope", vt.model.EventoTope);
                                 //vs.model.set('input',vs.model.Compuerta.getValor());
                                 return true;
                               }
@@ -134,12 +133,12 @@
                             } else
                             if (((typeof vt.model.Evento) != 'undefined') && ((typeof vs.model.Compuerta) != 'undefined'))
                             {
-                              //console.log("hazuer");
+                              ////console.log("hazuer");
                               //cuando se une de in evento -> out compuerta
                               if (!(vs.model.Compuerta.hasHijoEvento(vt.model.Evento)))
                               {
                                 vs.model.Compuerta.setHijoEvento(vt.model.Evento);
-                                console.log("See Agregado Evento", vt.model.Evento);
+                                //console.log("See Agregado Evento", vt.model.Evento);
                                 return true;
                               }
                             }
@@ -147,14 +146,14 @@
                             /*if(((typeof vs.model.Compuerta)!='undefined')&&((typeof vt.model.EventoTope)!='undefined')){
                              if(!(vt.model.EventoTope.hasHijo(vs.model.Compuerta))){
                              vt.model.EventoTope.setHijo(vs.model.Compuerta);
-                             console.log("Agregado Compuerta a evento Tope",vs.model.Compuerta.getTipo(),vs.model.Compuerta.getValor());
+                             //console.log("Agregado Compuerta a evento Tope",vs.model.Compuerta.getTipo(),vs.model.Compuerta.getValor());
                              vs.model.set('input',vs.model.Compuerta.getValor());
                              return true;
                              }*/
                           }
 
                         }
-                        //console.log("test",typeof vs.model.Evento!='undefined',typeof vt.model.Compuerta!='undefined',vs.model.Evento.hasHijoCompuerta(vt.model.Compuerta));
+                        ////console.log("test",typeof vs.model.Evento!='undefined',typeof vt.model.Compuerta!='undefined',vs.model.Evento.hasHijoCompuerta(vt.model.Compuerta));
                         // target requires an input port to connect
 
                         /*
@@ -169,7 +168,7 @@
 
 
                       } else { // e === 'source'
-                        console.log("es source");
+                        //console.log("es source");
                         // source requires an output port to connect
                         /*return ms && ms.getAttribute('class') && ms.getAttribute('class').indexOf('output') >= 0; */
                       }
@@ -189,9 +188,9 @@
 
         /* var connect = function (source, sourcePort, target, targetPort) {
          if(source instanceof joint.shapes.arbol.Evento && target instanceof joint.shapes.arbol.Evento ){
-         console.log("Evento no se puede unir con evento");
+         //console.log("Evento no se puede unir con evento");
          }else{
-         console.log("Entra");
+         //console.log("Entra");
          var link = new joint.shapes.arbol.Link({
          source: {id: source.id, selector: source.getPortSelector(sourcePort)},
          target: {id: target.id, selector: target.getPortSelector(targetPort)}
@@ -204,7 +203,7 @@
 
         /*
          eventoIniciador.el=new ARBOL.EventoIniciador;
-         console.log(eventoIniciador);
+         //console.log(eventoIniciador);
          */
 
 
@@ -228,7 +227,7 @@
 
         /* custom highlighting */
         paper.on("cell:pointerdown", function (cellview, evt, x, y) {
-          console.log("pointer down on cell ", cellview.model.id, " pos: ", x, ",", y);
+          //console.log("pointer down on cell ", cellview.model.id, " pos: ", x, ",", y);
         });
 
         var highlighter = V('circle', {
@@ -307,11 +306,11 @@
           evento.Evento = new ARBOL.Evento(evento.id, 'Evento 1');
           evento.Evento.setValor(0.2);
           evento.Update = function (object) {
-            console.log("Prueba dentro de Update");
-            console.log(graph.getCell(object.id));
-            //console.log(paper.findView('.evento>.name'));
+            //console.log("Prueba dentro de Update");
+            //console.log(graph.getCell(object.id));
+            ////console.log(paper.findView('.evento>.name'));
           }
-          console.log(evento);
+          //console.log(evento);
           graph.addCells([evento]);
           evento.Update(evento);
         }); //Fin compuerta evento
@@ -328,7 +327,7 @@
           });
           cAND.Compuerta = new ARBOL.Compuerta(cAND.id, 'AND');
           graph.addCells([cAND]);
-          console.log(cAND);
+          //console.log(cAND);
         }); //FIN compuertaAnd
 
 
@@ -398,10 +397,8 @@
           inPorts: ['in'],
           outPorts: ['out']
         });
-
-        evento.Evento = new ARBOL.Evento(evento.id, 'Evento 1');
-        evento.Evento.setValor(0.2);
-
+        evento.Evento = new ARBOL.Evento(evento.id, 'Evento 1');        
+        
         var evento1 = new joint.shapes.arbol.Evento({
           position: {x: 600, y: 350},
           size: {width: 100, height: 80},
@@ -410,8 +407,8 @@
           outPorts: ['out'],
           '.value': 0.2
         });
-        evento1.Evento = new ARBOL.Evento(evento1.id, 'Evento 1');
-        evento1.Evento.setValor(0.2);
+        
+        evento1.Evento = new ARBOL.Evento(evento1.id, 'Evento 1');        
 
 
         var cAND = new joint.shapes.arbol.CompuertaAND({
@@ -424,19 +421,19 @@
 
 
         graph.addCells([eventoTope, evento, evento1, cAND]);
-        console.log("evento 1", evento1);
-        console.log('calss', paper.findView(graph.getCell(evento1.id)))
+        //console.log("evento 1", evento1);
+        //console.log('calss', paper.findView(graph.getCell(evento1.id)))
 
 
         paper.on("cell:mouseover", function (cellView, el) {
-          //console.log("aqui en paper",cellView,cellView.$box.find('.name').val("Oscar"),el);   
+          ////console.log("aqui en paper",cellView,cellView.$box.find('.name').val("Oscar"),el);   
           var x = 0;
           for (var x = 0, l = graph.getElements(); x < l.length; x++) {
-            console.log("elemento:", x, l[x]);
-            console.log("Evento", eventoTope);
-            console.log("Vista", eventoTope.findView(paper));
+            //console.log("elemento:", x, l[x]);
+            ////console.log("Evento", eventoTope);
+            //console.log("Vista", l[x].findView(paper));
             console.log("Actualizando a box");
-            eventoTope.findView(paper).updateBox();
+            l[x].findView(paper).updateBox();
           }
         });
 
@@ -460,7 +457,7 @@
           /*evt.preventDefault();
            graph.clear();
            paper.model=graph;
-           console.log("borrando","aqui");*/
+           //console.log("borrando","aqui");*/
 
         
           location.reload();
@@ -473,9 +470,9 @@
           //arbol.nombre=arbolFalla.getNombre();
           //arbol.valor=arbolFalla.getValor();
           //arbolesFalla.push(arbol);           
-          console.log(arbolFalla.getNombre());
-          //console.log(arbolFalla.toObjctGraphicJSON());
-          console.log(arbolFalla.toObjctLogicJSON());
+          //console.log(arbolFalla.getNombre());
+          ////console.log(arbolFalla.toObjctGraphicJSON());
+          //console.log(arbolFalla.toObjctLogicJSON());
 
           $.ajax({
             url: "../guardaarbollogico",
@@ -501,7 +498,7 @@
                   error: function (XMLHttpRequest, textStatus, errorThrown) {
                     alert("No se encontro el servicio solicitado" + errorThrown);
                     //Se puede obtener informacion útil inspecionando el Objeto XMLHttpRequest
-                    console.log(XMLHttpRequest.status);
+                    //console.log(XMLHttpRequest.status);
                   }
                 });
 
@@ -514,7 +511,7 @@
             error: function (XMLHttpRequest, textStatus, errorThrown) {
               alert("No se encontro el servicio solicitado" + errorThrown);
               //Se puede obtener informacion útil inspecionando el Objeto XMLHttpRequest
-              console.log(XMLHttpRequest.status);
+              //console.log(XMLHttpRequest.status);
             }
           });
           //Funcion que redimensiona el area de trabajo       
@@ -545,23 +542,21 @@
             success: function (respuesta)
             {
               $.each(contenidoDelArchivo.estudiantes, function (posicion, arbol) {
-                console.log(' >',
-                        'Posición: ' + posicion, +" " + arbol[0] + " " + " valor" + arbol[1]
-                        );
+                //console.log(' >', 'Posición: ' + posicion, +" " + arbol[0] + " " + " valor" + arbol[1]                      );
               });
 
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
               alert("No se encontro el servicio solicitado" + errorThrown);
               //Se puede obtener informacion útil inspecionando el Objeto XMLHttpRequest
-              console.log(XMLHttpRequest.status);
+              //console.log(XMLHttpRequest.status);
             }
             ,
           });
           // JSON.parse(obtieneArbol("")));
 
           graph.fromJSON(JSON.parse(arbolGrafico));
-          console.log("cargando arbol", "aqui");
+          //console.log("cargando arbol", "aqui");
 
 
           graph.fromJSON(JSON.parse(arbolGrafico));
@@ -583,7 +578,7 @@
           var titulo_arbol = $("#nameArbol").val();
           $("#titulo").html(titulo_arbol);
           arbolFalla.setNombre(titulo_arbol);
-          console.log("Poniendo Nombre", titulo_arbol, arbolFalla.getNombre());
+          //console.log("Poniendo Nombre", titulo_arbol, arbolFalla.getNombre());
         });
         /************************/
       }); //FIN DE READY
